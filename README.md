@@ -1,73 +1,110 @@
-# Welcome to your Lovable project
+# 🌐 Diya Kanwar Portfolio Website
 
-## Project info
+Welcome to the source code of my personal portfolio website — a fully responsive and modern front-end portfolio built with **React**, **TypeScript**, and **Tailwind CSS**.
 
-**URL**: https://lovable.dev/projects/8872eef1-bcab-4832-9736-e0e9c670c460
+> 🎯 Showcasing my journey as an aspiring front-end developer — from education and skills to real-world projects and achievements.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🔥 Live Website
 
-**Use Lovable**
+🌎 [**View Portfolio**](https://your-vercel-or-custom-link.com)  
+📁 Deployed with **Vercel**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8872eef1-bcab-4832-9736-e0e9c670c460) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📌 Sections Included
 
-**Use your preferred IDE**
+- **Home** – Hero introduction with CTA buttons  
+- **About** – Background, vision, and goals  
+- **Skills** – Technical and soft skills  
+- **Projects** – Selected technical work  
+- **Achievements** – Certifications, competitions, workshops  
+- **Contact** – Email, phone, and social media  
+- **Get In Touch** – CTA for collaboration and internship opportunities  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🧠 About Me
 
-Follow these steps:
+Hi! I’m **Diya Kanwar**, an aspiring **Front-End Developer** from Gurgaon, India. I’m passionate about crafting user-friendly digital experiences with a blend of design and code.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+🎓 **Education:**  
+Currently pursuing **B.E. in Computer Science** at **Chandigarh University**  
+📊 **CGPA:** 7.53 (Expected Graduation: July 2026)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🛠️ Tech Stack
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+| Area              | Technologies |
+|-------------------|--------------|
+| Front-End         | HTML, CSS, JavaScript, React JS |
+| Programming       | C++, Java, Python, C# |
+| Design & Tools    | Figma, WordPress |
+| Database          | MySQL |
+| Soft Skills       | Creativity, Critical Thinking, Adaptability |
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Projects Featured
 
-**Use GitHub Codespaces**
+### 🎙️ Vocal AI Assistant – _Dec 2024_
+> Built an AI-powered voice assistant using JavaScript and Speech Recognition API.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Voice Commands & Real-Time Responses  
+- Subtitles for Accessibility  
+- **Tech Used:** JavaScript, Tailwind CSS
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+### 💸 Expense Tracking Website – _May 2024_
+> A responsive React JS project for tracking daily expenses.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Clean UI and intuitive UX  
+- Mobile Responsive Design  
+- **Tech Used:** React JS, CSS, JavaScript
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/8872eef1-bcab-4832-9736-e0e9c670c460) and click on Share -> Publish.
+### ✋ Stone-Paper-Scissors Game – _Mar 2023_
+> Classic game with a GUI interface built using Java and Swing.
 
-## Can I connect a custom domain to my Lovable project?
+- Interactive Gameplay  
+- Beginner-Friendly Interface  
+- **Tech Used:** Java, Swing
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🏅 Achievements
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- 🥈 **Elite Silver – NPTEL Cloud Computing** (Swayam, Apr 2024)  
+- 💻 **Game of Code** Participant – IEEE (Mar 2024)  
+- 📘 **Introduction to Databases** – Meta via Coursera (Mar 2024)  
+- 📱 **Flutter Workshop** – CSE Dept. (Feb 2024)  
+- 🔧 **Multi-Core Architecture Course** – Swayam (Jul–Oct 2023)
+
+---
+
+## 📬 Contact Me
+
+I’m open to internship opportunities and collaborations!
+
+- 📧 Email: [kanwardiya1@gmail.com](mailto:kanwardiya1@gmail.com)  
+- 📱 Phone: +91 9643885989  
+- 🌍 Location: Gurgaon, Haryana, India  
+- 💼 [LinkedIn](https://www.linkedin.com/in/diya-kanwar-6a045024a/)  
+- 🛠️ [GitHub](https://github.com/DiyaKanwar)
+
+---
+
+## 🧱 Built With
+
+- ⚛️ React  
+- 🌬️ Tailwind CSS  
+- 💡 TypeScript  
+- 🧑‍🎨 Figma (for UI Planning)
+
+---
+
+> © 2024 Diya Kanwar 
