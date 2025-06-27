@@ -1,54 +1,49 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Palette, Database, Brain, Users } from "lucide-react";
+import { Code, Palette, Database, Brain } from "lucide-react";
 
 export const Skills = () => {
   const skillCategories = [
     {
       title: "Front-End Development",
       skills: ["HTML", "CSS", "JavaScript", "React JS"],
-      icon: Code,
-      gradient: "from-primary to-blue-400"
+      icon: Code
     },
     {
       title: "Programming Languages", 
       skills: ["C++", "Java", "Python", "C#"],
-      icon: Code,
-      gradient: "from-secondary to-purple-400"
+      icon: Code
     },
     {
       title: "Design Tools",
       skills: ["Figma", "WordPress"],
-      icon: Palette,
-      gradient: "from-pink-500 to-rose-400"
+      icon: Palette
     },
     {
       title: "Database",
       skills: ["MySQL"],
-      icon: Database,
-      gradient: "from-green-500 to-emerald-400"
+      icon: Database
     },
     {
       title: "Soft Skills",
       skills: ["Creativity", "Adaptability", "Critical Thinking", "Communication", "Analytical Thinking"],
-      icon: Brain,
-      gradient: "from-orange-500 to-amber-400"
+      icon: Brain
     }
   ];
 
   return (
-    <section id="skills" className="py-20 bg-muted/20 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl"></div>
+    <section id="skills" className="py-20 relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.5)' }}>
+      {/* Subtle background elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(59, 48, 48, 0.05)' }}></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(121, 87, 87, 0.05)' }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#3B3030' }}>
             Skills & <span className="gradient-text">Expertise</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#795757' }}>
             A diverse set of technical and soft skills that help me create amazing digital experiences
           </p>
         </div>
@@ -57,12 +52,12 @@ export const Skills = () => {
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-0 tech-shadow">
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 backdrop-blur-sm border-0 tech-shadow" style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}>
                 <CardHeader className="pb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-6 h-6" style={{ color: '#FFF0D1' }} />
                   </div>
-                  <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <CardTitle className="text-lg font-bold group-hover:text-primary transition-colors duration-300" style={{ color: '#3B3030' }}>
                     {category.title}
                   </CardTitle>
                 </CardHeader>
@@ -71,7 +66,12 @@ export const Skills = () => {
                     {category.skills.map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="px-3 py-1.5 bg-background/80 text-foreground text-sm rounded-full border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 font-medium"
+                        className="px-3 py-1.5 text-sm rounded-full border transition-all duration-300 font-medium hover:scale-105"
+                        style={{ 
+                          backgroundColor: 'rgba(255, 240, 209, 0.8)',
+                          color: '#3B3030',
+                          borderColor: 'rgba(121, 87, 87, 0.3)'
+                        }}
                       >
                         {skill}
                       </span>

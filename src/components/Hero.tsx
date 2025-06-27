@@ -12,41 +12,39 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Tech background pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(66,153,225,0.1),transparent)]"></div>
-      
-      {/* Floating elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20" style={{ backgroundColor: '#FFF0D1' }}>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-20 h-20 rounded-full blur-xl animate-pulse" style={{ backgroundColor: 'rgba(121, 87, 87, 0.1)' }}></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full blur-xl animate-pulse delay-1000" style={{ backgroundColor: 'rgba(59, 48, 48, 0.1)' }}></div>
+      </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center animate-fade-in">
           <div className="mb-8">
             <div className="w-40 h-40 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center relative tech-shadow">
-              <div className="absolute inset-2 bg-background rounded-full flex items-center justify-center">
-                <Code className="w-16 h-16 text-primary" />
+              <div className="absolute inset-2 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFF0D1' }}>
+                <Code className="w-16 h-16" style={{ color: '#3B3030' }} />
               </div>
               <div className="absolute -top-2 -right-2">
-                <Sparkles className="w-8 h-8 text-secondary animate-pulse" />
+                <Sparkles className="w-8 h-8 animate-pulse" style={{ color: '#795757' }} />
               </div>
             </div>
           </div>
           
           <div className="space-y-4 mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+            <h1 className="text-5xl md:text-7xl font-bold" style={{ color: '#3B3030' }}>
               Hi, I'm <span className="gradient-text">Diya Kanwar</span>
             </h1>
             
-            <div className="flex items-center justify-center gap-2 text-xl md:text-2xl text-muted-foreground">
-              <Code className="w-6 h-6 text-primary" />
+            <div className="flex items-center justify-center gap-2 text-xl md:text-2xl" style={{ color: '#795757' }}>
+              <Code className="w-6 h-6" style={{ color: '#3B3030' }} />
               <span>Aspiring Front End Developer</span>
             </div>
             
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Creating <span className="text-primary font-semibold">user-centered digital experiences</span> with a passion for 
-              innovative design and clean code. Currently pursuing <span className="text-secondary font-semibold">Computer Science</span> at Chandigarh University.
+            <p className="text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#795757' }}>
+              Creating <span className="font-semibold" style={{ color: '#3B3030' }}>user-centered digital experiences</span> with a passion for 
+              innovative design and clean code. Currently pursuing <span className="font-semibold" style={{ color: '#3B3030' }}>Computer Science</span> at Chandigarh University.
             </p>
           </div>
 
@@ -55,6 +53,7 @@ export const Hero = () => {
               onClick={() => scrollToSection('projects')}
               size="lg"
               className="gradient-primary hover:opacity-90 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 tech-shadow"
+              style={{ color: '#FFF0D1' }}
             >
               <Code className="w-5 h-5 mr-2" />
               View My Work
@@ -63,7 +62,12 @@ export const Hero = () => {
               onClick={() => scrollToSection('contact')}
               variant="outline"
               size="lg"
-              className="px-8 py-3 rounded-xl font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105"
+              className="px-8 py-3 rounded-xl font-semibold border-2 transition-all duration-300 hover:scale-105"
+              style={{ 
+                borderColor: '#3B3030', 
+                color: '#3B3030',
+                backgroundColor: 'transparent'
+              }}
             >
               Get In Touch
             </Button>
@@ -74,17 +78,19 @@ export const Hero = () => {
               href="https://github.com/DiyaKanwar"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl bg-card hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 tech-shadow group"
+              className="p-4 rounded-xl transition-all duration-300 hover:scale-110 tech-shadow group"
+              style={{ backgroundColor: 'rgba(59, 48, 48, 0.1)' }}
             >
-              <Github className="w-6 h-6 group-hover:animate-pulse" />
+              <Github className="w-6 h-6 group-hover:animate-pulse" style={{ color: '#3B3030' }} />
             </a>
             <a
               href="https://www.linkedin.com/in/diya-kanwar-6a045024a"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl bg-card hover:bg-secondary hover:text-white transition-all duration-300 hover:scale-110 tech-shadow group"
+              className="p-4 rounded-xl transition-all duration-300 hover:scale-110 tech-shadow group"
+              style={{ backgroundColor: 'rgba(121, 87, 87, 0.1)' }}
             >
-              <Linkedin className="w-6 h-6 group-hover:animate-pulse" />
+              <Linkedin className="w-6 h-6 group-hover:animate-pulse" style={{ color: '#795757' }} />
             </a>
           </div>
         </div>

@@ -12,8 +12,7 @@ export const Achievements = () => {
       date: "April 2024",
       type: "Certification",
       description: "Successfully completed cloud computing course with Elite Silver grade",
-      icon: Award,
-      gradient: "from-yellow-400 to-orange-500"
+      icon: Award
     },
     {
       title: "Game of Code Participant",
@@ -21,8 +20,7 @@ export const Achievements = () => {
       date: "March 27-29, 2024",
       type: "Competition",
       description: "Participated in the competitive programming event organized by IEEE",
-      icon: Trophy,
-      gradient: "from-red-500 to-pink-500"
+      icon: Trophy
     },
     {
       title: "Introduction to Databases",
@@ -30,8 +28,7 @@ export const Achievements = () => {
       date: "March 2024",
       type: "Certification",
       description: "Meta certificate program focusing on database fundamentals and design",
-      icon: GraduationCap,
-      gradient: "from-blue-500 to-cyan-500"
+      icon: GraduationCap
     },
     {
       title: "Flutter Workshop",
@@ -39,8 +36,7 @@ export const Achievements = () => {
       date: "February 2024",
       type: "Workshop",
       description: "Attended hands-on workshop on Flutter mobile app development",
-      icon: Wrench,
-      gradient: "from-green-500 to-emerald-500"
+      icon: Wrench
     },
     {
       title: "Multi-Core Computer Architecture",
@@ -48,38 +44,37 @@ export const Achievements = () => {
       date: "July-October 2023",
       type: "Course",
       description: "Comprehensive course on computer architecture and multi-core systems",
-      icon: BookOpen,
-      gradient: "from-purple-500 to-indigo-500"
+      icon: BookOpen
     }
   ];
 
   const getTypeColor = (type: string) => {
     switch (type) {
       case "Certification":
-        return "bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0";
+        return "gradient-primary text-white border-0";
       case "Competition":
-        return "bg-gradient-to-r from-red-500 to-pink-500 text-white border-0";
+        return "gradient-primary text-white border-0";
       case "Workshop":
-        return "bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0";
+        return "gradient-primary text-white border-0";
       case "Course":
-        return "bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0";
+        return "gradient-primary text-white border-0";
       default:
-        return "bg-gradient-to-r from-gray-500 to-slate-500 text-white border-0";
+        return "gradient-primary text-white border-0";
     }
   };
 
   return (
-    <section id="achievements" className="py-20 bg-muted/20 relative overflow-hidden">
+    <section id="achievements" className="py-20 relative overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.5)' }}>
       {/* Background elements */}
-      <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-secondary/5 rounded-full blur-2xl"></div>
+      <div className="absolute top-20 left-20 w-64 h-64 rounded-full blur-2xl" style={{ backgroundColor: 'rgba(59, 48, 48, 0.05)' }}></div>
+      <div className="absolute bottom-20 right-20 w-64 h-64 rounded-full blur-2xl" style={{ backgroundColor: 'rgba(121, 87, 87, 0.05)' }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#3B3030' }}>
             Achievements & <span className="gradient-text">Certifications</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#795757' }}>
             Continuous learning and recognition in my field of expertise
           </p>
         </div>
@@ -88,24 +83,27 @@ export const Achievements = () => {
           {achievements.map((achievement, index) => {
             const IconComponent = achievement.icon;
             return (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-card/80 backdrop-blur-sm border-0 tech-shadow overflow-hidden">
-                <div className={`h-2 bg-gradient-to-r ${achievement.gradient} group-hover:h-3 transition-all duration-300`}></div>
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 backdrop-blur-sm border-0 tech-shadow overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}>
+                <div className="h-2 gradient-primary group-hover:h-3 transition-all duration-300"></div>
                 
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${achievement.gradient} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="w-6 h-6" style={{ color: '#FFF0D1' }} />
                       </div>
-                      <Badge className={getTypeColor(achievement.type) + " font-semibold"}>
+                      <Badge className={getTypeColor(achievement.type) + " font-semibold"} style={{ color: '#FFF0D1' }}>
                         {achievement.type}
                       </Badge>
                     </div>
-                    <span className="text-sm text-muted-foreground font-medium bg-muted/30 px-3 py-1 rounded-full">
+                    <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ 
+                      color: '#795757',
+                      backgroundColor: 'rgba(121, 87, 87, 0.1)'
+                    }}>
                       {achievement.date}
                     </span>
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors duration-300" style={{ color: '#3B3030' }}>
                     {achievement.title}
                   </CardTitle>
                 </CardHeader>
@@ -113,12 +111,12 @@ export const Achievements = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center">
-                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: '#3B3030' }}></span>
                       <p className="text-sm font-semibold gradient-text">
                         {achievement.organization}
                       </p>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed pl-5">
+                    <p className="text-sm leading-relaxed pl-5" style={{ color: '#795757' }}>
                       {achievement.description}
                     </p>
                   </div>

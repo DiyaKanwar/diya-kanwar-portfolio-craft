@@ -26,13 +26,13 @@ export const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'glass-effect shadow-lg' : 'bg-transparent'
-    }`}>
+      isScrolled ? 'glass-effect shadow-lg' : ''
+    }`} style={{ backgroundColor: isScrolled ? 'rgba(255, 240, 209, 0.95)' : 'transparent' }}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center">
-              <Code className="w-6 h-6 text-white" />
+              <Code className="w-6 h-6" style={{ color: '#FFF0D1' }} />
             </div>
             <span className="text-xl font-bold gradient-text">
               Diya Kanwar
@@ -50,10 +50,11 @@ export const Navigation = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-primary transition-all duration-200 font-medium relative group"
+                className="transition-all duration-200 font-medium relative group"
+                style={{ color: '#3B3030' }}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: '#795757' }}></span>
               </button>
             ))}
           </div>
@@ -61,14 +62,16 @@ export const Navigation = () => {
           <div className="flex items-center space-x-4">
             <Button
               onClick={() => scrollToSection('contact')}
-              className="hidden md:flex gradient-primary hover:opacity-90 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              className="hidden md:flex gradient-primary hover:opacity-90 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+              style={{ color: '#FFF0D1' }}
             >
               Get In Touch
             </Button>
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              className="md:hidden p-2 rounded-lg transition-colors"
+              style={{ color: '#3B3030' }}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -89,14 +92,16 @@ export const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium text-left"
+                  className="transition-colors duration-200 font-medium text-left"
+                  style={{ color: '#3B3030' }}
                 >
                   {item.label}
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection('contact')}
-                className="gradient-primary hover:opacity-90 text-white rounded-lg font-semibold transition-all duration-300"
+                className="gradient-primary hover:opacity-90 rounded-lg font-semibold transition-all duration-300"
+                style={{ color: '#FFF0D1' }}
               >
                 Get In Touch
               </Button>
