@@ -2,15 +2,20 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Send, Heart } from "lucide-react";
 
 export const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 bg-background relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Get In Touch
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             I'm always interested in new opportunities and collaborations. Let's connect!
@@ -19,46 +24,57 @@ export const Contact = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-6">
+            <Card className="p-6 tech-shadow bg-card/80 backdrop-blur-sm border-0 hover:shadow-xl transition-all duration-300 group">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold text-foreground">
-                  Let's Work Together
-                </CardTitle>
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <Send className="w-6 h-6 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold text-foreground">
+                    Let's Work Together
+                  </CardTitle>
+                </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  I'm currently seeking internship opportunities in front-end development where I can 
+              <CardContent className="space-y-6">
+                <p className="text-muted-foreground leading-relaxed">
+                  I'm currently seeking <span className="text-primary font-semibold">internship opportunities</span> in front-end development where I can 
                   contribute to innovative projects and grow as a developer.
                 </p>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">📧</span>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-muted/30 transition-colors duration-300 group/item">
+                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                      <Mail className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Email</p>
+                      <p className="font-semibold text-foreground">Email</p>
                       <a 
                         href="mailto:Kanwardiya1@gmail.com"
-                        className="text-primary hover:underline"
+                        className="text-primary hover:text-secondary transition-colors duration-300 font-medium"
                       >
                         Kanwardiya1@gmail.com
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">📱</span>
+                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-muted/30 transition-colors duration-300 group/item">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                      <Phone className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Phone</p>
+                      <p className="font-semibold text-foreground">Phone</p>
                       <a 
                         href="tel:+919643885989"
-                        className="text-primary hover:underline"
+                        className="text-primary hover:text-secondary transition-colors duration-300 font-medium"
                       >
                         +91 9643885989
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">📍</span>
+                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-muted/30 transition-colors duration-300 group/item">
+                    <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                      <MapPin className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">Location</p>
+                      <p className="font-semibold text-foreground">Location</p>
                       <p className="text-muted-foreground">Gurgaon, Haryana, India</p>
                     </div>
                   </div>
@@ -66,14 +82,19 @@ export const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6">
+            <Card className="p-6 tech-shadow bg-card/80 backdrop-blur-sm border-0 hover:shadow-xl transition-all duration-300 group">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold text-foreground">
-                  Connect With Me
-                </CardTitle>
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-secondary to-purple-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <Heart className="w-6 h-6 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold text-foreground">
+                    Connect With Me
+                  </CardTitle>
+                </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed">
                   Follow my journey and connect with me on social media platforms.
                 </p>
                 
@@ -82,11 +103,13 @@ export const Contact = () => {
                     href="https://github.com/DiyaKanwar"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors duration-200"
+                    className="flex items-center space-x-4 p-4 rounded-xl border border-border/50 hover:bg-muted/30 hover:border-primary/50 transition-all duration-300 group/link"
                   >
-                    <Github className="w-6 h-6 text-foreground" />
+                    <div className="w-10 h-10 bg-gradient-to-r from-gray-800 to-black rounded-xl flex items-center justify-center group-hover/link:scale-110 transition-transform duration-300">
+                      <Github className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">GitHub</p>
+                      <p className="font-semibold text-foreground">GitHub</p>
                       <p className="text-sm text-muted-foreground">Check out my repositories</p>
                     </div>
                   </a>
@@ -95,11 +118,13 @@ export const Contact = () => {
                     href="https://www.linkedin.com/in/diya-kanwar-6a045024a"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors duration-200"
+                    className="flex items-center space-x-4 p-4 rounded-xl border border-border/50 hover:bg-muted/30 hover:border-primary/50 transition-all duration-300 group/link"
                   >
-                    <Linkedin className="w-6 h-6 text-foreground" />
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl flex items-center justify-center group-hover/link:scale-110 transition-transform duration-300">
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </div>
                     <div>
-                      <p className="font-medium text-foreground">LinkedIn</p>
+                      <p className="font-semibold text-foreground">LinkedIn</p>
                       <p className="text-sm text-muted-foreground">Let's connect professionally</p>
                     </div>
                   </a>
@@ -107,9 +132,10 @@ export const Contact = () => {
 
                 <div className="pt-4">
                   <Button 
-                    className="w-full bg-primary hover:bg-primary/90"
+                    className="w-full gradient-primary hover:opacity-90 text-white rounded-xl font-semibold py-3 transition-all duration-300 hover:scale-105 tech-shadow"
                     onClick={() => window.open('mailto:Kanwardiya1@gmail.com', '_blank')}
                   >
+                    <Mail className="w-5 h-5 mr-2" />
                     Send me an Email
                   </Button>
                 </div>
@@ -118,9 +144,9 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="text-center mt-12 pt-8 border-t">
+        <div className="text-center mt-16 pt-8 border-t border-border/50">
           <p className="text-muted-foreground">
-            © 2024 Diya Kanwar. Built with React, TypeScript, and Tailwind CSS.
+            © 2024 Diya Kanwar. Built with <span className="text-primary">React</span>, <span className="text-secondary">TypeScript</span>, and <span className="gradient-text">Tailwind CSS</span>.
           </p>
         </div>
       </div>
