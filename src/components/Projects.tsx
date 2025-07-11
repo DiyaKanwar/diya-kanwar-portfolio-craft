@@ -1,36 +1,67 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, DollarSign, Gamepad2 } from "lucide-react";
+import { Mic, Globe, Brush, LucideIcon } from "lucide-react";
 
-export const Projects = () => {
-  const projects = [
+interface Project {
+  title: string;
+  date: string;
+  description: string;
+  features: string[];
+  technologies: string[];
+  category: string;
+  icon: LucideIcon;
+  image?: string;
+  liveLink?: string;
+}
+
+export const Projects: React.FC = () => {
+  const projects: Project[] = [
     {
       title: "Vocal AI Assistant",
       date: "December 2024",
       description: "Developed an interactive AI voice assistant using JavaScript, Speech Recognition API, and Tailwind CSS.",
       features: [
         "Voice Command Recognition",
-        "Conversational AI Responses", 
+        "Conversational AI Responses",
         "Real-time Subtitle Generation"
       ],
       technologies: ["JavaScript", "Speech Recognition API", "Tailwind CSS"],
       category: "AI/Voice",
-      icon: Mic
+      icon: Mic,
+      // liveLink: "", // ← optional: add later
     },
     {
-      title: "Expense Tracking Website",
-      date: "May 2024", 
-      description: "Contributed to the front-end development using React JS, focusing on enhancing user experience and interface design.",
+      title: "Azad's Visual Portfolio",
+      date: "April 2025",
+      description: "Designed and developed a high-end portfolio website for a visual artist to professionally showcase their creative work. The site features a dark, elegant theme with glowing amber highlights, smooth animations, and an immersive gallery experience.",
       features: [
-        "User-friendly Interface",
-        "Enhanced User Experience",
-        "Responsive Design"
+        "Interactive and animated hero section",
+        "Virtualized image gallery with category filters and modal preview",
+        "Responsive layout with smooth scroll and dark mode styling",
+        "Contact form integration with real-time feedback"
       ],
-      technologies: ["React JS", "JavaScript", "CSS"],
-      category: "Web Development",
-      icon: DollarSign
+      technologies: ["React.js", "Tailwind CSS", "JavaScript"],
+      category: "🎨 Portfolio Website",
+      icon: Brush,
+      image: "Project4_img.jpg",
+      liveLink: "https://azad-portfolio-website.vercel.app/"
+    },
+    {
+      title: "Faraiha Rehman's Portfolio",
+      date: "January 2025",
+      description: "Built a modern, clean, and responsive personal portfolio for a professional in the arts and creative fields. Prioritized clarity and design aesthetics to ensure her profile and creative journey are well-highlighted across all devices.",
+      features: [
+        "Animated section transitions and hover effects",
+        "Optimized image handling and project showcase layout",
+        "Scroll-based interactions with clean typography",
+        "Fully mobile-responsive and fast-loading design"
+      ],
+      technologies: ["React.js", "Tailwind CSS", "JavaScript"],
+      category: "🎭 Portfolio Website",
+      icon: Globe,
+      image: "Project5_img.jpg",
+      liveLink: "https://faraiha-rehman-portfolio.vercel.app/"
     },
     {
       title: "Stone-Paper-Scissors Game",
@@ -43,7 +74,8 @@ export const Projects = () => {
       ],
       technologies: ["Java", "Swing"],
       category: "Game Development",
-      icon: Gamepad2
+      icon: Brush,
+      // liveLink: "", // ← optional: add later
     }
   ];
 
@@ -62,10 +94,19 @@ export const Projects = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
-            return (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 backdrop-blur-sm border-0 tech-shadow overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}>
+
+            const card = (
+              <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 backdrop-blur-sm border-0 tech-shadow overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}>
+                {project.image && (
+                  <img
+                    src={`/${project.image}`}
+                    alt={`${project.title} Thumbnail`}
+                    className="w-full h-40 object-cover rounded-t-md"
+                  />
+                )}
+
                 <div className="h-2 gradient-primary group-hover:h-3 transition-all duration-300"></div>
-                
+
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -80,20 +121,20 @@ export const Projects = () => {
                     {project.category}
                   </Badge>
                 </CardHeader>
-                
+
                 <CardContent className="space-y-6">
                   <p className="leading-relaxed" style={{ color: '#795757' }}>
                     {project.description}
                   </p>
-                  
+
                   <div>
                     <h4 className="font-semibold mb-3 flex items-center" style={{ color: '#3B3030' }}>
                       <span className="w-2 h-2 rounded-full mr-2" style={{ backgroundColor: '#3B3030' }}></span>
                       Key Features
                     </h4>
                     <ul className="space-y-2">
-                      {project.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-sm flex items-center" style={{ color: '#795757' }}>
+                      {project.features.map((feature, fIndex) => (
+                        <li key={fIndex} className="text-sm flex items-center" style={{ color: '#795757' }}>
                           <span className="w-1.5 h-1.5 rounded-full mr-3" style={{ backgroundColor: '#795757' }}></span>
                           {feature}
                         </li>
@@ -107,13 +148,13 @@ export const Projects = () => {
                       Technologies
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
+                      {project.technologies.map((tech, tIndex) => (
                         <Badge
-                          key={techIndex}
+                          key={tIndex}
                           variant="outline"
                           className="text-xs transition-all duration-300 hover:scale-105"
-                          style={{ 
-                            borderColor: 'rgba(59, 48, 48, 0.3)', 
+                          style={{
+                            borderColor: 'rgba(59, 48, 48, 0.3)',
                             color: '#3B3030',
                             backgroundColor: 'transparent'
                           }}
@@ -125,6 +166,20 @@ export const Projects = () => {
                   </div>
                 </CardContent>
               </Card>
+            );
+
+            return project.liveLink ? (
+              <a
+                key={index}
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                {card}
+              </a>
+            ) : (
+              <div key={index}>{card}</div>
             );
           })}
         </div>
