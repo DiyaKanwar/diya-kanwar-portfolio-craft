@@ -2,51 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🎨 CONSISTENT COLOR PALETTE */
+/* 🎨 EXACT 3 COLOR PALETTE ONLY */
 @layer base {
   :root {
-    /* Your Brand Colors Only */
+    /* ONLY YOUR 3 COLORS */
     --cream: #FFECD1;        /* Base background */
-    --brown: #78290F;        /* Buttons & primary elements */
-    --orange: #FF7D00;       /* Accent & highlights */
-    --dark-navy: #001524;    /* Text & dark elements */
-    --white: #FFFFFF;        /* Cards & clean backgrounds */
+    --teal: #15616D;         /* Cards */
+    --brown: #78290F;        /* Buttons */
     
-    /* Consistent CSS Variables */
+    /* CSS Variables using ONLY your 3 colors */
     --background: 38 100% 93%;          /* #FFECD1 cream */
-    --foreground: 210 30% 8%;           /* #001524 dark navy */
-    --card: 0 0% 100%;                  /* #FFFFFF white */
-    --card-foreground: 210 30% 8%;      /* #001524 dark navy */
-    --primary: 10 80% 25%;              /* #78290F brown */
-    --primary-foreground: 0 0% 100%;    /* #FFFFFF white */
-    --secondary: 30 100% 60%;           /* #FF7D00 orange */
-    --secondary-foreground: 0 0% 100%;  /* #FFFFFF white */
-    --accent: 30 100% 60%;              /* #FF7D00 orange */
-    --accent-foreground: 0 0% 100%;     /* #FFFFFF white */
-    --muted: 38 50% 88%;                /* Light cream variant */
-    --muted-foreground: 210 30% 8%;     /* #001524 dark navy */
-    --border: 210 30% 8%;               /* #001524 dark navy for borders */
-    --input: 0 0% 100%;                 /* #FFFFFF white */
-    --ring: 10 80% 25%;                 /* #78290F brown */
+    --foreground: 190 63% 24%;          /* #15616D teal for text */
+    --card: 190 63% 24%;                /* #15616D teal for cards */
+    --card-foreground: 38 100% 93%;     /* #FFECD1 cream text on cards */
+    --primary: 10 80% 25%;              /* #78290F brown for buttons */
+    --primary-foreground: 38 100% 93%;  /* #FFECD1 cream text on buttons */
+    --secondary: 190 63% 24%;           /* #15616D teal */
+    --secondary-foreground: 38 100% 93%; /* #FFECD1 cream */
+    --accent: 190 63% 24%;              /* #15616D teal */
+    --accent-foreground: 38 100% 93%;   /* #FFECD1 cream */
+    --muted: 190 63% 24%;               /* #15616D teal */
+    --muted-foreground: 38 100% 93%;    /* #FFECD1 cream */
+    --border: 190 63% 24%;              /* #15616D teal for borders */
+    --input: 38 100% 93%;               /* #FFECD1 cream for inputs */
+    --ring: 10 80% 25%;                 /* #78290F brown for focus */
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 210 30% 8%;           /* #001524 dark navy */
-    --foreground: 38 100% 93%;          /* #FFECD1 cream */
-    --card: 210 25% 12%;                /* Darker navy for cards */
-    --card-foreground: 38 100% 93%;     /* #FFECD1 cream */
-    --primary: 10 80% 25%;              /* #78290F brown */
-    --primary-foreground: 38 100% 93%;  /* #FFECD1 cream */
-    --secondary: 30 100% 60%;           /* #FF7D00 orange */
-    --secondary-foreground: 210 30% 8%; /* #001524 dark navy */
-    --accent: 30 100% 60%;              /* #FF7D00 orange */
-    --accent-foreground: 210 30% 8%;    /* #001524 dark navy */
-    --muted: 210 30% 20%;               /* Darker navy variant */
+    --background: 190 63% 24%;          /* #15616D teal background */
+    --foreground: 38 100% 93%;          /* #FFECD1 cream text */
+    --card: 10 80% 25%;                 /* #78290F brown cards */
+    --card-foreground: 38 100% 93%;     /* #FFECD1 cream text */
+    --primary: 10 80% 25%;              /* #78290F brown buttons */
+    --primary-foreground: 38 100% 93%;  /* #FFECD1 cream text */
+    --secondary: 38 100% 93%;           /* #FFECD1 cream */
+    --secondary-foreground: 190 63% 24%; /* #15616D teal */
+    --accent: 38 100% 93%;              /* #FFECD1 cream */
+    --accent-foreground: 190 63% 24%;   /* #15616D teal */
+    --muted: 10 80% 25%;                /* #78290F brown */
     --muted-foreground: 38 100% 93%;    /* #FFECD1 cream */
-    --border: 38 100% 93%;              /* #FFECD1 cream for borders */
-    --input: 210 30% 15%;               /* Dark navy for inputs */
-    --ring: 38 100% 93%;                /* #FFECD1 cream */
+    --border: 38 100% 93%;              /* #FFECD1 cream borders */
+    --input: 10 80% 25%;                /* #78290F brown inputs */
+    --ring: 38 100% 93%;                /* #FFECD1 cream focus */
   }
 
   * {
@@ -87,13 +85,14 @@
     @apply text-base md:text-lg text-muted-foreground;
   }
 
-  /* Link Styles - Consistent Colors */
+  /* Link Styles - Only Your 3 Colors */
   a {
-    @apply transition-colors duration-200 text-primary;
+    @apply transition-colors duration-200;
+    color: #15616D; /* Teal */
   }
 
   a:hover {
-    @apply text-secondary;
+    color: #78290F; /* Brown */
   }
 }
 
@@ -150,15 +149,19 @@
     @apply p-6 pt-0;
   }
 
-  /* Navigation - Consistent Colors */
+  /* Navigation - Only Your 3 Colors */
   .nav-link {
-    @apply text-foreground hover:text-primary;
-    @apply transition-colors duration-200;
-    @apply relative;
+    color: #15616D; /* Teal */
+    @apply transition-colors duration-200 relative;
+  }
+
+  .nav-link:hover {
+    color: #78290F; /* Brown */
   }
 
   .nav-link::after {
-    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-secondary;
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5;
+    background-color: #78290F; /* Brown */
     @apply transition-all duration-200;
   }
 
@@ -176,8 +179,15 @@
     @apply text-center mb-12;
   }
 
+  /* Section Titles - Only Your 3 Colors */
   .section-title h2 {
-    @apply text-primary-solid mb-4;
+    color: #15616D; /* Teal */
+    @apply mb-4;
+  }
+
+  .section-title p {
+    color: #78290F; /* Brown */
+    @apply max-w-2xl mx-auto;
   }
 
   .section-title p {
@@ -203,10 +213,10 @@
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 
-  /* Hero Section */
+  /* Hero Section - Only Your 3 Colors */
   .hero {
     @apply min-h-screen flex items-center justify-center;
-    @apply bg-gradient-to-br from-background to-background/80;
+    background-color: #FFECD1; /* Cream */
   }
 
   .hero-content {
@@ -214,23 +224,31 @@
   }
 
   .hero-title {
-    @apply text-primary-solid mb-6;
+    color: #15616D; /* Teal */
+    @apply mb-6;
   }
 
   .hero-subtitle {
-    @apply text-xl md:text-2xl text-muted-foreground mb-8;
+    color: #78290F; /* Brown */
+    @apply text-xl md:text-2xl mb-8;
   }
 
   .hero-buttons {
     @apply flex flex-col sm:flex-row gap-4 justify-center;
   }
 
-  /* Skills/Tech Stack - Consistent Colors */
+  /* Skills/Tech Stack - Only Your 3 Colors */
   .skill-tag {
-    @apply bg-card text-primary border-2 border-primary/20 px-4 py-2 rounded-full;
-    @apply text-sm font-medium;
-    @apply transition-all duration-200;
-    @apply hover:border-secondary hover:text-secondary hover:bg-secondary/5;
+    background-color: #15616D; /* Teal */
+    color: #FFECD1; /* Cream */
+    border: 2px solid #78290F; /* Brown */
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200;
+  }
+
+  .skill-tag:hover {
+    background-color: #78290F; /* Brown */
+    color: #FFECD1; /* Cream */
+    border-color: #15616D; /* Teal */
   }
 
   /* Project Cards */
@@ -266,9 +284,11 @@
     @apply min-h-[120px];
   }
 
-  /* Footer - Consistent Colors */
+  /* Footer - Only Your 3 Colors */
   .footer {
-    @apply bg-primary text-primary-foreground py-12;
+    background-color: #15616D; /* Teal */
+    color: #FFECD1; /* Cream */
+    @apply py-12;
   }
 
   .footer-content {
@@ -280,62 +300,82 @@
   }
 
   .footer-link {
-    @apply text-primary-foreground/80 hover:text-secondary;
+    color: #FFECD1; /* Cream */
     @apply transition-colors duration-200;
+  }
+
+  .footer-link:hover {
+    color: #78290F; /* Brown */
   }
 }
 
 /* 🎨 PROFESSIONAL UTILITY CLASSES */
 @layer utilities {
-  /* Clean Color Utilities */
-  .bg-primary-solid {
-    background-color: #78290F;
+  /* Only Your 3 Colors */
+  .color-cream {
+    color: #FFECD1;
   }
 
-  .bg-secondary-solid {
-    background-color: #FF7D00;
+  .color-teal {
+    color: #15616D;
   }
 
-  .text-primary-solid {
+  .color-brown {
     color: #78290F;
   }
 
-  .text-secondary-solid {
-    color: #FF7D00;
+  .bg-cream {
+    background-color: #FFECD1;
   }
 
-  /* Professional Effects - Your Colors Only */
-  .shadow-brand {
-    box-shadow: 0 10px 40px rgba(0, 21, 36, 0.1);
+  .bg-teal {
+    background-color: #15616D;
   }
 
-  .shadow-brand-hover {
-    box-shadow: 0 20px 60px rgba(0, 21, 36, 0.15);
+  .bg-brown {
+    background-color: #78290F;
   }
 
-  .glow-orange {
-    box-shadow: 0 0 30px rgba(255, 125, 0, 0.2);
+  .border-cream {
+    border-color: #FFECD1;
+  }
+
+  .border-teal {
+    border-color: #15616D;
+  }
+
+  .border-brown {
+    border-color: #78290F;
+  }
+
+  /* Effects - Only Your 3 Colors */
+  .shadow-teal {
+    box-shadow: 0 10px 40px rgba(21, 97, 109, 0.2);
+  }
+
+  .shadow-brown {
+    box-shadow: 0 10px 40px rgba(120, 41, 15, 0.2);
+  }
+
+  .glow-teal {
+    box-shadow: 0 0 30px rgba(21, 97, 109, 0.3);
   }
 
   .glow-brown {
-    box-shadow: 0 0 30px rgba(120, 41, 15, 0.2);
+    box-shadow: 0 0 30px rgba(120, 41, 15, 0.3);
   }
 
-  .border-brand {
-    @apply border-2 border-primary/20;
+  /* Text Colors - Only Your 3 Colors */
+  .text-cream {
+    color: #FFECD1;
   }
 
-  .border-brand-hover {
-    @apply border-2 border-secondary/40;
+  .text-teal {
+    color: #15616D;
   }
 
-  /* Text Utilities */
-  .text-primary-color {
-    @apply text-primary-solid;
-  }
-
-  .text-secondary-color {
-    @apply text-secondary-solid;
+  .text-brown {
+    color: #78290F;
   }
 
   .text-balance {
@@ -369,18 +409,28 @@
     @apply mb-8 md:mb-12;
   }
 
-  /* Professional borders - Your Colors Only */
-  .border-brand-light {
-    @apply border border-primary/10;
+  /* Borders - Only Your 3 Colors */
+  .border-cream-light {
+    border: 1px solid rgba(255, 236, 209, 0.3);
   }
 
-  .border-accent-light {
-    @apply border border-secondary/20;
+  .border-teal-light {
+    border: 1px solid rgba(21, 97, 109, 0.3);
   }
 
-  /* Focus states - Your Colors Only */
-  .focus-brand {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  .border-brown-light {
+    border: 1px solid rgba(120, 41, 15, 0.3);
+  }
+
+  /* Focus states - Only Your 3 Colors */
+  .focus-brown {
+    outline: none;
+    box-shadow: 0 0 0 2px #78290F;
+  }
+
+  .focus-teal {
+    outline: none;
+    box-shadow: 0 0 0 2px #15616D;
   }
 }
 
