@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mic, Globe, Brush, LucideIcon } from "lucide-react";
 
@@ -29,17 +29,17 @@ export const Projects: React.FC = () => {
       technologies: ["JavaScript", "Speech Recognition API", "Tailwind CSS"],
       category: "AI/Voice",
       icon: Mic,
-      // liveLink: "", // ← optional: add later
+      // liveLink: ""
     },
     {
       title: "Azad's Visual Portfolio",
       date: "April 2025",
-      description: "Designed and developed a high-end portfolio website for a visual artist to professionally showcase their creative work. The site features a dark, elegant theme with glowing amber highlights, smooth animations, and an immersive gallery experience.",
+      description: "Designed and developed a high-end portfolio website for a visual artist to professionally showcase their creative work.",
       features: [
-        "Interactive and animated hero section",
-        "Virtualized image gallery with category filters and modal preview",
-        "Responsive layout with smooth scroll and dark mode styling",
-        "Contact form integration with real-time feedback"
+        "Animated hero",
+        "Gallery with filters",
+        "Dark theme",
+        "Contact form"
       ],
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       category: "🎨 Portfolio Website",
@@ -50,12 +50,12 @@ export const Projects: React.FC = () => {
     {
       title: "Faraiha Rehman's Portfolio",
       date: "January 2025",
-      description: "Built a modern, clean, and responsive personal portfolio for a professional in the arts and creative fields. Prioritized clarity and design aesthetics to ensure her profile and creative journey are well-highlighted across all devices.",
+      description: "Built a modern and responsive personal portfolio for a creative professional.",
       features: [
-        "Animated section transitions and hover effects",
-        "Optimized image handling and project showcase layout",
-        "Scroll-based interactions with clean typography",
-        "Fully mobile-responsive and fast-loading design"
+        "Animated transitions",
+        "Clean design",
+        "Scroll-based interactions",
+        "Mobile optimized"
       ],
       technologies: ["React.js", "Tailwind CSS", "JavaScript"],
       category: "🎭 Portfolio Website",
@@ -66,106 +66,69 @@ export const Projects: React.FC = () => {
     {
       title: "Stone-Paper-Scissors Game",
       date: "March 2023",
-      description: "Developed a graphical user interface for a Stone-Paper-Scissors game using Java and Swing, improving user interaction.",
-      features: [
-        "Graphical User Interface",
-        "Interactive Gameplay",
-        "User-friendly Design"
-      ],
+      description: "Developed a graphical user interface using Java and Swing.",
+      features: ["GUI", "Gameplay", "Design"],
       technologies: ["Java", "Swing"],
       category: "Game Development",
       icon: Brush,
-      // liveLink: "", // ← optional: add later
+      // liveLink: ""
     }
   ];
 
   return (
-    <section id="projects" className="py-20 relative overflow-hidden" style={{ backgroundColor: '#FFF0D1' }}>
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="projects" className="py-20 bg-[#FFECD1]">
+      <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#3B3030' }}>
-            My <span className="gradient-text">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#001524]">
+            My <span className="text-[#FF7D00]">Projects</span>
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: '#795757' }}>
+          <p className="text-lg text-[#15616D] mt-2">
             A showcase of my technical projects and contributions
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-8">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
 
             const card = (
-              <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 backdrop-blur-sm border-0 tech-shadow overflow-hidden" style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}>
-                {project.image && (
-                  <img
-                    src={`/${project.image}`}
-                    alt={`${project.title} Thumbnail`}
-                    className="w-full h-40 object-cover rounded-t-md"
-                  />
-                )}
-
-                <div className="h-2 gradient-primary group-hover:h-3 transition-all duration-300"></div>
-
-                <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <IconComponent className="w-6 h-6" style={{ color: '#FFF0D1' }} />
+              <div
+                className="relative w-full h-64 md:h-56 lg:h-60 rounded-xl overflow-hidden group transition-transform transform hover:scale-[1.01] shadow-xl"
+                style={{
+                  backgroundImage: project.image
+                    ? `url('/${project.image}')`
+                    : undefined,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundColor: '#15616D'
+                }}
+              >
+                <div className="absolute inset-0 bg-black/50"></div>
+                <div className="relative z-10 p-6 h-full flex flex-col justify-between text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-[#FF7D00] rounded-md flex items-center justify-center">
+                        <IconComponent className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold">{project.title}</h3>
                     </div>
-                    <span className="text-sm font-medium" style={{ color: '#795757' }}>{project.date}</span>
-                  </div>
-                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors duration-300" style={{ color: '#3B3030' }}>
-                    {project.title}
-                  </CardTitle>
-                  <Badge className="w-fit gradient-primary border-0 font-semibold" style={{ color: '#FFF0D1' }}>
-                    {project.category}
-                  </Badge>
-                </CardHeader>
-
-                <CardContent className="space-y-6">
-                  <p className="leading-relaxed" style={{ color: '#795757' }}>
-                    {project.description}
-                  </p>
-
-                  <div>
-                    <h4 className="font-semibold mb-3 flex items-center" style={{ color: '#3B3030' }}>
-                      <span className="w-2 h-2 rounded-full mr-2" style={{ backgroundColor: '#3B3030' }}></span>
-                      Key Features
-                    </h4>
-                    <ul className="space-y-2">
-                      {project.features.map((feature, fIndex) => (
-                        <li key={fIndex} className="text-sm flex items-center" style={{ color: '#795757' }}>
-                          <span className="w-1.5 h-1.5 rounded-full mr-3" style={{ backgroundColor: '#795757' }}></span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                    <span className="text-sm opacity-80">{project.date}</span>
                   </div>
 
-                  <div>
-                    <h4 className="font-semibold mb-3 flex items-center" style={{ color: '#3B3030' }}>
-                      <span className="w-2 h-2 rounded-full mr-2" style={{ backgroundColor: '#795757' }}></span>
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, tIndex) => (
-                        <Badge
-                          key={tIndex}
-                          variant="outline"
-                          className="text-xs transition-all duration-300 hover:scale-105"
-                          style={{
-                            borderColor: 'rgba(59, 48, 48, 0.3)',
-                            color: '#3B3030',
-                            backgroundColor: 'transparent'
-                          }}
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
+                  <p className="text-sm mt-2 line-clamp-2">{project.description}</p>
+
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {project.technologies.map((tech, i) => (
+                      <Badge
+                        key={i}
+                        className="bg-[#78290F] text-white text-xs py-1 px-2 rounded"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
 
             return project.liveLink ? (

@@ -1,129 +1,81 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Custom 3-color palette */
 @layer base {
   :root {
-    --background: 45 100% 95%; /* #FFF0D1 */
-    --foreground: 15 15% 20%; /* #3B3030 */
+    --background: 35 100% 92%;         /* #FFECD1 */
+    --foreground: 210 20% 10%;         /* #001524 */
 
-    --card: 45 100% 98%;
-    --card-foreground: 15 15% 20%;
+    --card: 190 50% 25%;               /* #15616D */
+    --card-foreground: 35 100% 92%;
 
-    --popover: 45 100% 95%;
-    --popover-foreground: 15 15% 20%;
+    --popover: 35 100% 92%;
+    --popover-foreground: 210 20% 10%;
 
-    /* Primary: Dark brown for headings/buttons */
-    --primary: 15 15% 20%; /* #3B3030 */
-    --primary-foreground: 45 100% 95%;
+    --primary: 15 100% 25%;            /* #78290F */
+    --primary-foreground: 35 100% 92%;
 
-    /* Secondary: Medium brown for highlights */
-    --secondary: 15 15% 45%; /* #795757 */
-    --secondary-foreground: 45 100% 95%;
+    --secondary: 30 100% 60%;          /* #FF7D00 */
+    --secondary-foreground: 210 20% 10%;
 
-    --muted: 45 50% 90%;
-    --muted-foreground: 15 15% 45%;
+    --muted: 35 50% 90%;
+    --muted-foreground: 210 20% 25%;
 
-    --accent: 45 30% 85%;
-    --accent-foreground: 15 15% 20%;
+    --accent: 35 100% 85%;
+    --accent-foreground: 210 20% 10%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 45 100% 95%;
+    --destructive-foreground: 35 100% 92%;
 
-    --border: 15 15% 80%;
-    --input: 15 15% 80%;
-    --ring: 15 15% 20%;
+    --border: 190 30% 45%;
+    --input: 190 30% 45%;
+    --ring: 15 100% 25%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 45 100% 95%;
-    --sidebar-foreground: 15 15% 20%;
-    --sidebar-primary: 15 15% 20%;
-    --sidebar-primary-foreground: 45 100% 95%;
-    --sidebar-accent: 45 30% 85%;
-    --sidebar-accent-foreground: 15 15% 20%;
-    --sidebar-border: 15 15% 80%;
-    --sidebar-ring: 15 15% 20%;
+    --sidebar-background: 35 100% 92%;
+    --sidebar-foreground: 210 20% 10%;
+    --sidebar-primary: 15 100% 25%;
+    --sidebar-primary-foreground: 35 100% 92%;
+    --sidebar-accent: 30 100% 60%;
+    --sidebar-accent-foreground: 210 20% 10%;
+    --sidebar-border: 190 30% 45%;
+    --sidebar-ring: 15 100% 25%;
   }
 
   .dark {
-    --background: 15 15% 20%;
-    --foreground: 45 100% 95%;
+    --background: 210 20% 10%;
+    --foreground: 35 100% 92%;
 
-    --card: 15 15% 18%;
-    --card-foreground: 45 100% 95%;
+    --card: 210 20% 15%;
+    --card-foreground: 35 100% 92%;
 
-    --popover: 15 15% 18%;
-    --popover-foreground: 45 100% 95%;
+    --popover: 210 20% 15%;
+    --popover-foreground: 35 100% 92%;
 
-    --primary: 45 100% 95%;
-    --primary-foreground: 15 15% 20%;
+    --primary: 35 100% 92%;
+    --primary-foreground: 210 20% 10%;
 
-    --secondary: 15 15% 45%;
-    --secondary-foreground: 45 100% 95%;
+    --secondary: 30 100% 60%;
+    --secondary-foreground: 210 20% 10%;
 
-    --muted: 15 15% 25%;
-    --muted-foreground: 15 15% 60%;
+    --muted: 210 20% 25%;
+    --muted-foreground: 35 100% 80%;
 
-    --accent: 15 15% 25%;
-    --accent-foreground: 45 100% 95%;
+    --accent: 210 20% 25%;
+    --accent-foreground: 35 100% 92%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 45 100% 95%;
+    --destructive-foreground: 35 100% 92%;
 
-    --border: 15 15% 25%;
-    --input: 15 15% 25%;
-    --ring: 45 100% 95%;
+    --border: 210 20% 25%;
+    --input: 210 20% 25%;
+    --ring: 35 100% 92%;
 
-    --sidebar-background: 15 15% 20%;
-    --sidebar-foreground: 45 100% 95%;
-    --sidebar-primary: 45 100% 95%;
-    --sidebar-primary-foreground: 15 15% 20%;
-    --sidebar-accent: 15 15% 25%;
-    --sidebar-accent-foreground: 45 100% 95%;
-    --sidebar-border: 15 15% 25%;
-    --sidebar-ring: 45 100% 95%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-inter;
-    background-color: #FFF0D1;
-    color: #3B3030;
-  }
-}
-
-/* Custom utility classes with 3-color theme */
-@layer utilities {
-  .gradient-primary {
-    background: linear-gradient(135deg, #3B3030 0%, #795757 100%);
-  }
-  
-  .gradient-text {
-    background: linear-gradient(135deg, #3B3030 0%, #795757 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .glass-effect {
-    background: rgba(255, 240, 209, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(59, 48, 48, 0.1);
-  }
-  
-  .tech-shadow {
-    box-shadow: 0 8px 32px rgba(59, 48, 48, 0.1);
-  }
-  
-  .glow-effect {
-    box-shadow: 0 0 20px rgba(121, 87, 87, 0.2);
+    --sidebar-background: 210 20% 10%;
+    --sidebar-foreground: 35 100% 92%;
+    --sidebar-primary: 35 100% 92%;
+    --sidebar-primary-foreground: 210 20% 10%;
+    --sidebar-accent: 210 20% 25%;
+    --sidebar-accent-foreground: 35 100% 92%;
+    --sidebar-border: 210 20% 25%;
+    --sidebar-ring: 35 100% 92%;
   }
 }
