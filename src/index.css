@@ -2,62 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🌈 CUSTOM THEME COLORS */
+/* 🎨 PROFESSIONAL COLOR PALETTE */
 @layer base {
   :root {
+    /* Main Colors */
+    --cream: #FFECD1;        /* Base background */
+    --brown: #78290F;        /* Buttons & primary elements */
+    --orange: #FF7D00;       /* Accent & highlights */
+    --dark-navy: #001524;    /* Text & dark elements */
+    --card-bg: #FFFFFF;      /* Card backgrounds */
+    
+    /* CSS Variables for consistency */
     --background: 38 100% 93%;          /* #FFECD1 */
     --foreground: 210 30% 8%;           /* #001524 */
-
-    --card: 190 38% 25%;                /* #15616D */
-    --card-foreground: 38 100% 93%;
-
+    --card: 0 0% 100%;                  /* White cards */
+    --card-foreground: 210 30% 8%;      /* Dark text on cards */
     --primary: 10 80% 25%;              /* #78290F */
-    --primary-foreground: 38 100% 93%;
-
+    --primary-foreground: 38 100% 93%;  /* Light text on primary */
     --secondary: 30 100% 60%;           /* #FF7D00 */
-    --secondary-foreground: 210 30% 8%;
-
-    --muted: 38 50% 90%;
-    --muted-foreground: 210 30% 25%;
-
-    --accent: 190 30% 85%;
+    --secondary-foreground: 210 30% 8%; /* Dark text on secondary */
+    --accent: 30 100% 60%;              /* #FF7D00 */
     --accent-foreground: 210 30% 8%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 38 100% 93%;
-
-    --border: 190 30% 45%;
-    --input: 190 30% 45%;
+    --muted: 38 50% 88%;
+    --muted-foreground: 210 30% 35%;
+    --border: 38 30% 85%;
+    --input: 0 0% 100%;
     --ring: 10 80% 25%;
-
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 210 30% 8%;
-    --foreground: 38 100% 93%;
-
+    --background: 210 30% 8%;           /* Dark navy */
+    --foreground: 38 100% 93%;          /* Cream text */
     --card: 210 25% 12%;
     --card-foreground: 38 100% 93%;
-
-    --popover: 210 25% 12%;
-    --popover-foreground: 38 100% 93%;
-
-    --primary: 38 100% 93%;
-    --primary-foreground: 210 30% 8%;
-
-    --secondary: 30 100% 60%;
+    --primary: 10 80% 25%;              /* Keep brown for buttons */
+    --primary-foreground: 38 100% 93%;
+    --secondary: 30 100% 60%;           /* Keep orange */
     --secondary-foreground: 210 30% 8%;
-
+    --accent: 30 100% 60%;
+    --accent-foreground: 210 30% 8%;
     --muted: 210 30% 25%;
     --muted-foreground: 38 100% 93%;
-
-    --accent: 210 30% 25%;
-    --accent-foreground: 38 100% 93%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 38 100% 93%;
-
     --border: 210 30% 25%;
     --input: 210 30% 25%;
     --ring: 38 100% 93%;
@@ -68,14 +54,241 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  /* Professional Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-foreground;
+    line-height: 1.2;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply text-base md:text-lg text-muted-foreground;
+  }
+
+  /* Link Styles */
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-secondary;
   }
 }
 
-/* 🎨 CUSTOM UTILITY STYLES */
+/* 🎨 PROFESSIONAL COMPONENT STYLES */
+@layer components {
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-primary/90 active:bg-primary/80;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-lg hover:shadow-xl;
+    @apply border-0 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-secondary/90 active:bg-secondary/80;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-lg hover:shadow-xl;
+    @apply border-0 cursor-pointer;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary bg-transparent px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply transition-all duration-200 ease-in-out;
+    @apply cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply text-primary bg-transparent px-6 py-3 rounded-lg font-medium;
+    @apply hover:bg-primary/10;
+    @apply transition-all duration-200 ease-in-out;
+    @apply cursor-pointer;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-card text-card-foreground rounded-xl shadow-lg;
+    @apply border border-border/50;
+    @apply transition-all duration-200 ease-in-out;
+    @apply hover:shadow-xl hover:border-border;
+  }
+
+  .card-header {
+    @apply p-6 pb-0;
+  }
+
+  .card-content {
+    @apply p-6;
+  }
+
+  .card-footer {
+    @apply p-6 pt-0;
+  }
+
+  /* Professional Navigation */
+  .nav-link {
+    @apply text-foreground/80 hover:text-foreground;
+    @apply transition-colors duration-200;
+    @apply relative;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-secondary;
+    @apply transition-all duration-200;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  /* Section Styles */
+  .section {
+    @apply py-16 md:py-20;
+  }
+
+  .section-title {
+    @apply text-center mb-12;
+  }
+
+  .section-title h2 {
+    @apply gradient-text mb-4;
+  }
+
+  .section-title p {
+    @apply text-muted-foreground max-w-2xl mx-auto;
+  }
+
+  /* Container Styles */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Grid Layouts */
+  .grid-auto-fit {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .grid-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+  }
+
+  .grid-3 {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Hero Section */
+  .hero {
+    @apply min-h-screen flex items-center justify-center;
+    @apply bg-gradient-to-br from-background to-background/80;
+  }
+
+  .hero-content {
+    @apply text-center max-w-4xl mx-auto;
+  }
+
+  .hero-title {
+    @apply gradient-text mb-6;
+  }
+
+  .hero-subtitle {
+    @apply text-xl md:text-2xl text-muted-foreground mb-8;
+  }
+
+  .hero-buttons {
+    @apply flex flex-col sm:flex-row gap-4 justify-center;
+  }
+
+  /* Skills/Tech Stack */
+  .skill-tag {
+    @apply bg-card text-card-foreground px-4 py-2 rounded-full;
+    @apply border border-border/50;
+    @apply text-sm font-medium;
+    @apply transition-all duration-200;
+    @apply hover:border-secondary hover:text-secondary;
+  }
+
+  /* Project Cards */
+  .project-card {
+    @apply card group cursor-pointer;
+    @apply hover:scale-105 hover:shadow-2xl;
+  }
+
+  .project-image {
+    @apply w-full h-48 object-cover rounded-t-xl;
+    @apply transition-transform duration-200;
+    @apply group-hover:scale-105;
+  }
+
+  /* Contact Form */
+  .form-group {
+    @apply mb-6;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-2;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border border-border;
+    @apply bg-input text-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+
+  .form-textarea {
+    @apply form-input resize-none;
+    @apply min-h-[120px];
+  }
+
+  /* Footer */
+  .footer {
+    @apply bg-foreground text-background py-12;
+  }
+
+  .footer-content {
+    @apply container grid-2 items-center;
+  }
+
+  .footer-links {
+    @apply flex flex-wrap gap-6;
+  }
+
+  .footer-link {
+    @apply text-background/80 hover:text-background;
+    @apply transition-colors duration-200;
+  }
+}
+
+/* 🎨 PROFESSIONAL UTILITY CLASSES */
 @layer utilities {
+  /* Gradient Utilities */
   .gradient-primary {
     background: linear-gradient(135deg, #78290F 0%, #FF7D00 100%);
   }
@@ -87,17 +300,180 @@
     background-clip: text;
   }
 
+  .gradient-bg {
+    background: linear-gradient(135deg, #FFECD1 0%, rgba(255, 236, 209, 0.8) 100%);
+  }
+
+  /* Professional Effects */
   .glass-effect {
-    background: rgba(21, 97, 109, 0.65); /* Card bg */
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 21, 36, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .tech-shadow {
-    box-shadow: 0 8px 32px rgba(0, 21, 36, 0.1);
+  .shadow-professional {
+    box-shadow: 0 10px 40px rgba(0, 21, 36, 0.1);
   }
 
-  .glow-effect {
-    box-shadow: 0 0 20px rgba(255, 125, 0, 0.25);
+  .shadow-hover {
+    box-shadow: 0 20px 60px rgba(0, 21, 36, 0.15);
   }
+
+  .glow-orange {
+    box-shadow: 0 0 30px rgba(255, 125, 0, 0.2);
+  }
+
+  .glow-brown {
+    box-shadow: 0 0 30px rgba(120, 41, 15, 0.2);
+  }
+
+  /* Text Utilities */
+  .text-gradient {
+    @apply gradient-text;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Responsive Text */
+  .text-responsive {
+    @apply text-sm md:text-base lg:text-lg;
+  }
+
+  /* Spacing */
+  .space-section {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .space-element {
+    @apply mb-8 md:mb-12;
+  }
+
+  /* Professional borders */
+  .border-professional {
+    @apply border border-border/20;
+  }
+
+  .border-accent {
+    @apply border-2 border-secondary/20;
+  }
+
+  /* Focus states */
+  .focus-professional {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+}
+
+/* 🎬 PROFESSIONAL ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 📱 RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .hero-title {
+    @apply text-3xl;
+  }
+  
+  .hero-subtitle {
+    @apply text-lg;
+  }
+  
+  .hero-buttons {
+    @apply flex-col;
+  }
+  
+  .grid-auto-fit {
+    grid-template-columns: 1fr;
+  }
+  
+  .section {
+    @apply py-12;
+  }
+}
+
+/* 🎨 SCROLL BEHAVIOR */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--secondary));
+}
+
+/* 🔧 ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Selection styling */
+::selection {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
 }
