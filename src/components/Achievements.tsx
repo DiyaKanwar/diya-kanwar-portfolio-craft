@@ -47,21 +47,44 @@ export const Achievements = () => {
     }
   ];
 
-  const getTypeClass = () => "gradient-primary text-background border-0";
+
 
   return (
-    <section id="achievements" className="py-20 bg-muted/40 text-foreground relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute top-20 left-20 w-64 h-64 rounded-full blur-2xl bg-[#0015240D]"></div>
-      <div className="absolute bottom-20 right-20 w-64 h-64 rounded-full blur-2xl bg-[#7957570D]"></div>
+    <section id="achievements" className="py-24 relative overflow-hidden min-h-screen" style={{ backgroundColor: '#FFF0D1' }}>
+      {/* Enhanced Background effects */}
+      <div 
+        className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-20"
+        style={{ backgroundColor: '#175764' }}
+      ></div>
+      <div 
+        className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-15"
+        style={{ backgroundColor: '#731E0D', animationDelay: '1000ms' }}
+      ></div>
+      <div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-2xl opacity-10"
+        style={{ backgroundColor: '#175764' }}
+      ></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Achievements & <span className="gradient-text">Certifications</span>
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-block mb-4">
+            <span 
+              className="px-6 py-3 rounded-full text-sm font-medium border-2"
+              style={{ 
+                backgroundColor: 'rgba(115, 30, 13, 0.1)', 
+                borderColor: '#731E0D',
+                color: '#731E0D'
+              }}
+            >
+              Growth & Learning
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{ color: '#175764' }}>
+            Achievements & <span style={{ color: '#731E0D' }}>Certifications</span>
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-            Continuous learning and recognition in my field of expertise
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#731E0D' }}>
+            A collection of my accomplishments and continuous learning journey in technology and development
           </p>
         </div>
 
@@ -69,37 +92,71 @@ export const Achievements = () => {
           {achievements.map((achievement, index) => {
             const Icon = achievement.icon;
             return (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 glass-effect overflow-hidden">
-                <div className="h-2 gradient-primary group-hover:h-3 transition-all duration-300"></div>
-
+              <Card 
+                key={index} 
+                className="group transition-all duration-500 hover:-translate-y-2 border-2 overflow-hidden"
+                style={{ 
+                  backgroundColor: index % 2 === 0 ? 'rgba(23, 87, 100, 0.05)' : 'rgba(115, 30, 13, 0.05)',
+                  borderColor: index % 2 === 0 ? 'rgba(23, 87, 100, 0.2)' : 'rgba(115, 30, 13, 0.2)'
+                }}
+              >
                 <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-6 h-6 text-background" />
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center gap-4">
+                      <div 
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg"
+                        style={{ 
+                          backgroundColor: index % 2 === 0 ? '#175764' : '#731E0D'
+                        }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: '#FFF0D1' }} />
                       </div>
-                      <Badge className={getTypeClass() + " font-semibold"}>
+                      <span 
+                        className="px-3 py-1 text-xs rounded-full font-medium"
+                        style={{ 
+                          backgroundColor: index % 2 === 0 ? 'rgba(23, 87, 100, 0.1)' : 'rgba(115, 30, 13, 0.1)',
+                          color: index % 2 === 0 ? '#175764' : '#731E0D'
+                        }}
+                      >
                         {achievement.type}
-                      </Badge>
+                      </span>
                     </div>
-                    <span className="text-sm font-medium px-3 py-1 rounded-full bg-muted text-muted-foreground">
+                    <span 
+                      className="text-sm font-medium px-3 py-1 rounded-full"
+                      style={{ 
+                        backgroundColor: 'rgba(255, 240, 209, 0.8)',
+                        color: index % 2 === 0 ? '#175764' : '#731E0D'
+                      }}
+                    >
                       {achievement.date}
                     </span>
                   </div>
-                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                  <CardTitle 
+                    className="text-xl font-bold mb-2"
+                    style={{ color: index % 2 === 0 ? '#175764' : '#731E0D' }}
+                  >
                     {achievement.title}
                   </CardTitle>
                 </CardHeader>
 
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-center">
-                      <span className="w-2 h-2 rounded-full mr-3 bg-foreground"></span>
-                      <p className="text-sm font-semibold gradient-text">
+                    <div className="flex items-center gap-3">
+                      <span 
+                        className="w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: index % 2 === 0 ? '#175764' : '#731E0D' }}
+                      ></span>
+                      <p 
+                        className="text-sm font-semibold"
+                        style={{ color: index % 2 === 0 ? '#175764' : '#731E0D' }}
+                      >
                         {achievement.organization}
                       </p>
                     </div>
-                    <p className="text-sm leading-relaxed pl-5 text-muted-foreground">
+                    <p 
+                      className="text-base leading-relaxed pl-4"
+                      style={{ color: '#731E0D' }}
+                    >
                       {achievement.description}
                     </p>
                   </div>

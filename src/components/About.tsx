@@ -84,8 +84,11 @@ export const About = () => {
             ].map((item, idx) => (
               <div key={idx} className="group cursor-pointer">
                 <Card 
-                  className="p-8 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] backdrop-blur-sm"
-                  style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}
+                  className="p-8 border-2 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+                  style={{ 
+                    backgroundColor: idx === 1 ? 'rgba(115, 30, 13, 0.05)' : 'rgba(23, 87, 100, 0.05)',
+                    borderColor: idx === 1 ? 'rgba(115, 30, 13, 0.2)' : 'rgba(23, 87, 100, 0.2)'
+                  }}
                 >
                   <CardContent className="p-0">
                     <div className="flex items-start mb-6">

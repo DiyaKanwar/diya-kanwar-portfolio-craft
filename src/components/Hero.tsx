@@ -9,76 +9,128 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 w-full" style={{ backgroundColor: '#FFF0D1' }}>
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full blur-xl animate-pulse" style={{ backgroundColor: 'rgba(121, 87, 87, 0.1)' }} />
-        <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full blur-xl animate-pulse delay-1000" style={{ backgroundColor: 'rgba(59, 48, 48, 0.1)' }} />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20" style={{ backgroundColor: '#FFF0D1' }}>
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-20"
+          style={{ backgroundColor: '#175764' }}
+        ></div>
+        <div 
+          className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-15"
+          style={{ backgroundColor: '#731E0D', animationDelay: '1000ms' }}
+        ></div>
+        <div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-2xl opacity-10"
+          style={{ backgroundColor: '#175764' }}
+        ></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 text-center max-w-full">
-        <div className="mb-8">
-          <div className="w-32 h-32 md:w-40 md:h-40 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center relative tech-shadow">
-            <div className="absolute inset-2 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFF0D1' }}>
-              <Code className="w-12 h-12 md:w-16 md:h-16" style={{ color: '#3B3030' }} />
+      <div className="container mx-auto px-6 relative z-10 text-center">
+        {/* Profile Icon */}
+        <div className="mb-12">
+          <div className="relative inline-block">
+            <div 
+              className="w-32 h-32 rounded-2xl transform rotate-12 absolute -inset-4 opacity-50"
+              style={{ backgroundColor: '#731E0D' }}
+            ></div>
+            <div 
+              className="w-32 h-32 rounded-2xl relative flex items-center justify-center border-2 transform transition-transform duration-500 hover:scale-110 hover:rotate-12"
+              style={{ 
+                backgroundColor: '#175764',
+                borderColor: 'rgba(255, 240, 209, 0.3)'
+              }}
+            >
+              <Code className="w-16 h-16" style={{ color: '#FFF0D1' }} />
             </div>
             <div className="absolute -top-2 -right-2">
-              <Sparkles className="w-6 h-6 md:w-8 md:h-8 animate-pulse" style={{ color: '#795757' }} />
+              <Sparkles className="w-8 h-8 animate-pulse" style={{ color: '#731E0D' }} />
             </div>
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold break-words" style={{ color: '#3B3030' }}>
-          Hi, I'm <span className="gradient-text">Diya Kanwar</span>
-        </h1>
-        <div className="flex items-center justify-center gap-2 text-lg md:text-xl lg:text-2xl text-[#795757] mt-2 flex-wrap">
-          <Code className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#3B3030' }} />
-          <span>Aspiring Front End Developer</span>
-        </div>
-        <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed mt-4 px-2" style={{ color: '#795757' }}>
-          Creating <span className="font-semibold text-[#3B3030]">user-centered digital experiences</span> with a passion for 
-          innovative design and clean code. Currently pursuing <span className="font-semibold text-[#3B3030]">Computer Science</span> at Chandigarh University.
-        </p>
+        {/* Main Content */}
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: '#175764' }}>
+            Hi, I'm <span style={{ color: '#731E0D' }}>Diya Kanwar</span>
+          </h1>
+          
+          <div className="flex items-center justify-center gap-3 text-xl md:text-2xl mb-6">
+            <span 
+              className="px-4 py-2 rounded-xl text-lg font-medium"
+              style={{ 
+                backgroundColor: 'rgba(23, 87, 100, 0.1)',
+                color: '#175764'
+              }}
+            >
+              Front End Developer
+            </span>
+          </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 mb-12 px-4">
-          <Button
-            onClick={() => scrollToSection('projects')}
-            size="lg"
-            className="gradient-primary hover:opacity-90 text-white px-6 md:px-8 py-3 rounded-xl font-semibold transition-all duration-300 tech-shadow w-full sm:w-auto"
-            style={{ color: '#FFF0D1' }}
-          >
-            <Code className="w-5 h-5 mr-2" />
-            View My Work
-          </Button>
-          <Button
-            onClick={() => scrollToSection('contact')}
-            variant="outline"
-            size="lg"
-            className="px-6 md:px-8 py-3 rounded-xl font-semibold border-2 transition-all duration-300 w-full sm:w-auto"
-            style={{ borderColor: '#3B3030', color: '#3B3030', backgroundColor: 'transparent' }}
-          >
-            Get In Touch
-          </Button>
-        </div>
+          <p className="text-lg max-w-2xl mx-auto leading-relaxed mb-12" style={{ color: '#731E0D' }}>
+            Creating <span className="font-semibold" style={{ color: '#175764' }}>user-centered digital experiences</span> with a passion for 
+            innovative design and clean code. Currently pursuing <span className="font-semibold" style={{ color: '#175764' }}>Computer Science</span> at Chandigarh University.
+          </p>
 
-        <div className="flex items-center justify-center gap-6">
-          <a
-            href="https://github.com/DiyaKanwar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 md:p-4 rounded-xl transition-all duration-300 tech-shadow group"
-            style={{ backgroundColor: 'rgba(59, 48, 48, 0.1)' }}
-          >
-            <Github className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#3B3030' }} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/diya-kanwar-6a045024a"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 md:p-4 rounded-xl transition-all duration-300 tech-shadow group"
-            style={{ backgroundColor: 'rgba(121, 87, 87, 0.1)' }}
-          >
-            <Linkedin className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#795757' }} />
-          </a>
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <Button
+              onClick={() => scrollToSection('projects')}
+              size="lg"
+              className="px-8 py-6 rounded-xl font-medium text-base transition-all duration-300 hover:-translate-y-1"
+              style={{ 
+                backgroundColor: '#175764',
+                color: '#FFF0D1',
+                border: '2px solid rgba(255, 240, 209, 0.2)'
+              }}
+            >
+              <Code className="w-5 h-5 mr-2" />
+              Explore My Work
+            </Button>
+            <Button
+              onClick={() => scrollToSection('contact')}
+              variant="outline"
+              size="lg"
+              className="px-8 py-6 rounded-xl font-medium text-base transition-all duration-300 hover:-translate-y-1"
+              style={{ 
+                backgroundColor: 'rgba(115, 30, 13, 0.1)',
+                borderColor: '#731E0D',
+                color: '#731E0D'
+              }}
+            >
+              Let's Connect
+            </Button>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex items-center justify-center gap-4">
+            <a
+              href="https://github.com/DiyaKanwar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-xl transition-all duration-300 hover:-translate-y-1 border-2"
+              style={{ 
+                backgroundColor: 'rgba(23, 87, 100, 0.1)',
+                borderColor: 'rgba(23, 87, 100, 0.2)',
+                color: '#175764'
+              }}
+            >
+              <Github className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/diya-kanwar-6a045024a"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-xl transition-all duration-300 hover:-translate-y-1 border-2"
+              style={{ 
+                backgroundColor: 'rgba(115, 30, 13, 0.1)',
+                borderColor: 'rgba(115, 30, 13, 0.2)',
+                color: '#731E0D'
+              }}
+            >
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

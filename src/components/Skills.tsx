@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Palette, Database, Brain, Zap, Star } from "lucide-react";
+import { Code, Palette, Database, Brain, Zap } from "lucide-react";
 
 export const Skills = () => {
   const skillCategories = [
@@ -36,24 +36,6 @@ export const Skills = () => {
     }
   ];
 
-  const proficiencyLevels = {
-    "HTML": 95,
-    "CSS": 90,
-    "JavaScript": 85,
-    "React JS": 80,
-    "C++": 88,
-    "Java": 82,
-    "Python": 78,
-    "C#": 75,
-    "Figma": 85,
-    "WordPress": 80,
-    "MySQL": 75,
-    "Creativity": 95,
-    "Adaptability": 90,
-    "Critical Thinking": 88,
-    "Communication": 85,
-    "Analytical Thinking": 90
-  };
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden min-h-screen" style={{ backgroundColor: '#FFF0D1' }}>
@@ -103,19 +85,18 @@ export const Skills = () => {
           {skillCategories.map(({ title, skills, icon: Icon, primary }, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 backdrop-blur-sm border-0 hover:scale-[1.02] cursor-pointer"
-              style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}
+              className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 hover:scale-[1.02] cursor-pointer overflow-hidden"
+              style={{ 
+                backgroundColor: primary ? 'rgba(23, 87, 100, 0.05)' : 'rgba(115, 30, 13, 0.05)',
+                borderColor: primary ? 'rgba(23, 87, 100, 0.2)' : 'rgba(115, 30, 13, 0.2)'
+              }}
             >
               <CardHeader className="pb-6">
                 <div 
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg relative"
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg"
                   style={{ backgroundColor: primary ? '#175764' : '#731E0D' }}
                 >
                   <Icon className="w-8 h-8" style={{ color: '#FFF0D1' }} />
-                  <div 
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ backgroundColor: 'rgba(255, 240, 209, 0.2)' }}
-                  ></div>
                 </div>
                 <CardTitle className="text-xl font-bold transition-all duration-300" style={{ color: '#175764' }}>
                   {title}
@@ -140,20 +121,7 @@ export const Skills = () => {
                         {skill}
                       </span>
                       
-                      {/* Skill proficiency tooltip */}
-                      <div 
-                        className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 text-xs rounded-lg opacity-0 group-hover/skill:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap shadow-lg z-20"
-                        style={{ backgroundColor: '#175764', color: '#FFF0D1' }}
-                      >
-                        <div className="flex items-center gap-2">
-                          <Star className="w-3 h-3 fill-current" style={{ color: '#731E0D' }} />
-                          <span>{proficiencyLevels[skill] || 80}%</span>
-                        </div>
-                        <div 
-                          className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent"
-                          style={{ borderTopColor: '#175764' }}
-                        ></div>
-                      </div>
+
                     </div>
                   ))}
                 </div>
@@ -184,57 +152,6 @@ export const Skills = () => {
           ))}
         </div>
 
-        {/* Skills Summary */}
-        <div className="text-center">
-          <Card 
-            className="inline-block p-8 border-2 shadow-lg backdrop-blur-sm"
-            style={{ 
-              backgroundColor: 'rgba(255, 240, 209, 0.9)',
-              borderColor: '#175764'
-            }}
-          >
-            <CardContent className="p-0">
-              <div className="flex items-center justify-center gap-8 text-center">
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2" style={{ color: '#175764' }}>
-                    {skillCategories.reduce((total, category) => total + category.skills.length, 0)}+
-                  </div>
-                  <div className="text-sm font-medium uppercase tracking-wide" style={{ color: '#731E0D' }}>
-                    Total Skills
-                  </div>
-                </div>
-                
-                <div 
-                  className="w-px h-12"
-                  style={{ backgroundColor: 'rgba(23, 87, 100, 0.3)' }}
-                ></div>
-                
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2" style={{ color: '#731E0D' }}>
-                    {skillCategories.length}
-                  </div>
-                  <div className="text-sm font-medium uppercase tracking-wide" style={{ color: '#731E0D' }}>
-                    Categories
-                  </div>
-                </div>
-                
-                <div 
-                  className="w-px h-12"
-                  style={{ backgroundColor: 'rgba(23, 87, 100, 0.3)' }}
-                ></div>
-                
-                <div className="text-center">
-                  <div className="text-4xl font-bold mb-2" style={{ color: '#175764' }}>
-                    4+
-                  </div>
-                  <div className="text-sm font-medium uppercase tracking-wide" style={{ color: '#731E0D' }}>
-                    Years Learning
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </section>
   );
