@@ -4,24 +4,40 @@ import { GraduationCap, MapPin, Phone, Mail, User, Target, Rocket, Award } from 
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 bg-background text-foreground relative overflow-hidden min-h-screen">
-      {/* Enhanced Background effects */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 animate-pulse"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl bg-gradient-to-tr from-indigo-500/10 to-pink-500/10 animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-2xl bg-gradient-to-r from-cyan-500/5 to-violet-500/5"></div>
+    <section id="about" className="py-24 relative overflow-hidden min-h-screen" style={{ backgroundColor: '#FFF0D1' }}>
+      {/* Enhanced Background effects using theme colors */}
+      <div 
+        className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-30"
+        style={{ backgroundColor: '#175764' }}
+      ></div>
+      <div 
+        className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-20"
+        style={{ backgroundColor: '#731E0D', animationDelay: '1000ms' }}
+      ></div>
+      <div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-2xl opacity-10"
+        style={{ backgroundColor: '#175764' }}
+      ></div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         {/* Header Section */}
         <div className="text-center mb-20">
           <div className="inline-block mb-4">
-            <span className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-sm font-medium text-foreground border border-blue-500/20">
+            <span 
+              className="px-6 py-3 rounded-full text-sm font-medium border-2 backdrop-blur-sm"
+              style={{ 
+                backgroundColor: 'rgba(23, 87, 100, 0.1)', 
+                borderColor: '#175764',
+                color: '#175764'
+              }}
+            >
               Get to know me
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-foreground leading-tight">
-            About <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Me</span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{ color: '#175764' }}>
+            About <span style={{ color: '#731E0D' }}>Me</span>
           </h2>
-          <p className="text-xl max-w-3xl mx-auto text-muted-foreground leading-relaxed">
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#731E0D' }}>
             Passionate about creating digital experiences that make a difference and solving complex problems through innovative solutions
           </p>
         </div>
@@ -36,12 +52,11 @@ export const About = () => {
                 subtitle: "Building the foundation",
                 content: (
                   <>
-                    I'm currently pursuing a <span className="font-semibold text-foreground bg-gradient-to-r from-blue-500/10 to-purple-500/10 px-2 py-1 rounded">Bachelor of Engineering in Computer Science</span> at Chandigarh University
-                    with a CGPA of <span className="font-bold text-foreground bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-2 py-1 rounded">7.53</span>. My passion lies in front-end development and creating intuitive user
+                    I'm currently pursuing a <span className="font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'rgba(23, 87, 100, 0.1)', color: '#175764' }}>Bachelor of Engineering in Computer Science</span> at Chandigarh University
+                    with a CGPA of <span className="font-bold px-2 py-1 rounded" style={{ backgroundColor: 'rgba(115, 30, 13, 0.1)', color: '#731E0D' }}>7.53</span>. My passion lies in front-end development and creating intuitive user
                     interfaces that solve real-world problems.
                   </>
-                ),
-                color: "from-blue-500 to-cyan-500"
+                )
               },
               {
                 icon: Target,
@@ -49,12 +64,11 @@ export const About = () => {
                 subtitle: "Purpose behind the code",
                 content: (
                   <>
-                    I believe in the power of <span className="font-semibold text-foreground bg-gradient-to-r from-purple-500/10 to-pink-500/10 px-2 py-1 rounded">technology to transform ideas into reality</span>. My approach combines
-                    technical expertise with creative problem-solving, always keeping the <span className="font-semibold text-foreground bg-gradient-to-r from-orange-500/10 to-red-500/10 px-2 py-1 rounded">user experience</span> at
+                    I believe in the power of <span className="font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'rgba(115, 30, 13, 0.1)', color: '#731E0D' }}>technology to transform ideas into reality</span>. My approach combines
+                    technical expertise with creative problem-solving, always keeping the <span className="font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'rgba(23, 87, 100, 0.1)', color: '#175764' }}>user experience</span> at
                     the center of every project.
                   </>
-                ),
-                color: "from-purple-500 to-pink-500"
+                )
               },
               {
                 icon: Rocket,
@@ -62,30 +76,38 @@ export const About = () => {
                 subtitle: "Ready for new challenges",
                 content: (
                   <>
-                    I'm actively seeking <span className="font-semibold text-foreground bg-gradient-to-r from-indigo-500/10 to-blue-500/10 px-2 py-1 rounded">internship opportunities</span> where I can contribute to innovative projects,
+                    I'm actively seeking <span className="font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'rgba(23, 87, 100, 0.1)', color: '#175764' }}>internship opportunities</span> where I can contribute to innovative projects,
                     collaborate with experienced teams, and continue growing as a developer. Ready to bring fresh perspectives and dedication to your team.
                   </>
-                ),
-                color: "from-indigo-500 to-purple-500"
+                )
               }
             ].map((item, idx) => (
               <div key={idx} className="group cursor-pointer">
-                <Card className="p-8 bg-gradient-to-br from-background/50 to-muted/20 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] backdrop-blur-sm">
+                <Card 
+                  className="p-8 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] backdrop-blur-sm"
+                  style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}
+                >
                   <CardContent className="p-0">
                     <div className="flex items-start mb-6">
-                      <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                        <item.icon className="w-7 h-7 text-white" />
+                      <div 
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg"
+                        style={{ backgroundColor: idx === 1 ? '#731E0D' : '#175764' }}
+                      >
+                        <item.icon className="w-7 h-7" style={{ color: '#FFF0D1' }} />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300 mb-2">
+                        <h3 
+                          className="text-2xl font-bold mb-2 transition-all duration-300"
+                          style={{ color: '#175764' }}
+                        >
                           {item.title}
                         </h3>
-                        <p className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wide">
+                        <p className="text-sm font-medium mb-4 uppercase tracking-wide" style={{ color: '#731E0D' }}>
                           {item.subtitle}
                         </p>
                       </div>
                     </div>
-                    <p className="leading-relaxed text-muted-foreground text-lg">
+                    <p className="leading-relaxed text-lg" style={{ color: '#731E0D' }}>
                       {item.content}
                     </p>
                   </CardContent>
@@ -97,17 +119,23 @@ export const About = () => {
           {/* Right Side - Info Cards */}
           <div className="space-y-8">
             {/* Education Card */}
-            <Card className="p-8 bg-gradient-to-br from-background/50 to-muted/20 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm">
+            <Card 
+              className="p-8 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm"
+              style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}
+            >
               <CardContent className="p-0">
                 <div className="flex items-center mb-8">
-                  <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                    <GraduationCap className="w-7 h-7 text-white" />
+                  <div 
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg"
+                    style={{ backgroundColor: '#175764' }}
+                  >
+                    <GraduationCap className="w-7 h-7" style={{ color: '#FFF0D1' }} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text transition-all duration-300">
+                    <h3 className="text-2xl font-bold transition-all duration-300" style={{ color: '#175764' }}>
                       Education
                     </h3>
-                    <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                    <p className="text-sm font-medium uppercase tracking-wide" style={{ color: '#731E0D' }}>
                       Academic Excellence
                     </p>
                   </div>
@@ -134,23 +162,33 @@ export const About = () => {
                       level: "completed"
                     }
                   ].map((edu, idx) => (
-                    <div key={idx} className={`p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] relative overflow-hidden ${
-                      edu.level === 'current' 
-                        ? 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20' 
-                        : 'bg-muted/40 hover:bg-muted/60'
-                    }`}>
+                    <div 
+                      key={idx} 
+                      className={`p-6 rounded-2xl transition-all duration-300 hover:scale-[1.02] relative overflow-hidden ${
+                        edu.level === 'current' ? 'border-2' : ''
+                      }`}
+                      style={{ 
+                        backgroundColor: edu.level === 'current' 
+                          ? 'rgba(23, 87, 100, 0.1)' 
+                          : 'rgba(115, 30, 13, 0.1)',
+                        borderColor: edu.level === 'current' ? '#175764' : 'transparent'
+                      }}
+                    >
                       {edu.level === 'current' && (
                         <div className="absolute top-2 right-2">
-                          <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full">
+                          <span 
+                            className="px-3 py-1 text-xs font-semibold rounded-full"
+                            style={{ backgroundColor: '#731E0D', color: '#FFF0D1' }}
+                          >
                             Current
                           </span>
                         </div>
                       )}
-                      <h4 className="font-bold text-foreground text-lg mb-2">{edu.title}</h4>
-                      <p className="text-muted-foreground mb-2">{edu.subtitle}</p>
+                      <h4 className="font-bold text-lg mb-2" style={{ color: '#175764' }}>{edu.title}</h4>
+                      <p className="mb-2" style={{ color: '#731E0D' }}>{edu.subtitle}</p>
                       <div className="flex items-center">
-                        <Award className="w-4 h-4 mr-2 text-yellow-500" />
-                        <p className="font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">{edu.extra}</p>
+                        <Award className="w-4 h-4 mr-2" style={{ color: '#731E0D' }} />
+                        <p className="font-bold" style={{ color: '#731E0D' }}>{edu.extra}</p>
                       </div>
                     </div>
                   ))}
@@ -159,17 +197,23 @@ export const About = () => {
             </Card>
 
             {/* Contact Info Card */}
-            <Card className="p-8 bg-gradient-to-br from-background/50 to-muted/20 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm">
+            <Card 
+              className="p-8 border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group backdrop-blur-sm"
+              style={{ backgroundColor: 'rgba(255, 240, 209, 0.8)' }}
+            >
               <CardContent className="p-0">
                 <div className="flex items-center mb-8">
-                  <div className="w-14 h-14 bg-gradient-to-br from-rose-500 to-pink-500 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                    <MapPin className="w-7 h-7 text-white" />
+                  <div 
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg"
+                    style={{ backgroundColor: '#731E0D' }}
+                  >
+                    <MapPin className="w-7 h-7" style={{ color: '#FFF0D1' }} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-rose-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
+                    <h3 className="text-2xl font-bold transition-all duration-300" style={{ color: '#175764' }}>
                       Get In Touch
                     </h3>
-                    <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+                    <p className="text-sm font-medium uppercase tracking-wide" style={{ color: '#731E0D' }}>
                       Let's connect
                     </p>
                   </div>
@@ -177,15 +221,22 @@ export const About = () => {
                 
                 <div className="space-y-4">
                   {[
-                    { icon: MapPin, text: "Gurgaon, Haryana, India", color: "text-blue-500" },
-                    { icon: Phone, text: "+91 9643885989", color: "text-green-500" },
-                    { icon: Mail, text: "Kanwardiya1@gmail.com", color: "text-purple-500" }
+                    { icon: MapPin, text: "Gurgaon, Haryana, India" },
+                    { icon: Phone, text: "+91 9643885989" },
+                    { icon: Mail, text: "Kanwardiya1@gmail.com" }
                   ].map((item, idx) => (
-                    <div key={idx} className="flex items-center p-4 rounded-xl bg-muted/30 hover:bg-muted/50 transition-all duration-300 hover:scale-[1.02] group/item">
-                      <div className="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-xl flex items-center justify-center mr-4 group-hover/item:scale-110 transition-transform duration-300">
-                        <item.icon className={`w-5 h-5 ${item.color}`} />
+                    <div 
+                      key={idx} 
+                      className="flex items-center p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] group/item"
+                      style={{ backgroundColor: 'rgba(23, 87, 100, 0.1)' }}
+                    >
+                      <div 
+                        className="w-10 h-10 rounded-xl flex items-center justify-center mr-4 group-hover/item:scale-110 transition-transform duration-300"
+                        style={{ backgroundColor: idx === 0 ? '#175764' : idx === 1 ? '#731E0D' : '#175764' }}
+                      >
+                        <item.icon className="w-5 h-5" style={{ color: '#FFF0D1' }} />
                       </div>
-                      <span className="font-medium text-foreground group-hover/item:text-transparent group-hover/item:bg-gradient-to-r group-hover/item:from-gray-700 group-hover/item:to-gray-900 group-hover/item:bg-clip-text dark:group-hover/item:from-gray-200 dark:group-hover/item:to-gray-400 transition-all duration-300">
+                      <span className="font-medium transition-all duration-300" style={{ color: '#175764' }}>
                         {item.text}
                       </span>
                     </div>
