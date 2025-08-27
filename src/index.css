@@ -6,47 +6,49 @@
 @layer base {
   :root {
     /* ONLY YOUR 3 COLORS */
-    --cream: #FFECD1;        /* Base background */
-    --teal: #15616D;         /* Cards */
-    --brown: #78290F;        /* Buttons */
+    --cream: #FFECD1;         /* Base background */
+    --teal: #15616D;          /* Cards */
+    --brown: #78290F;         /* Buttons */
     
     /* CSS Variables using ONLY your 3 colors */
-    --background: 38 100% 93%;          /* #FFECD1 cream */
-    --foreground: 190 63% 24%;          /* #15616D teal for text */
-    --card: 190 63% 24%;                /* #15616D teal for cards */
-    --card-foreground: 38 100% 93%;     /* #FFECD1 cream text on cards */
-    --primary: 10 80% 25%;              /* #78290F brown for buttons */
-    --primary-foreground: 38 100% 93%;  /* #FFECD1 cream text on buttons */
-    --secondary: 190 63% 24%;           /* #15616D teal */
+    --background: 38 100% 93%;        /* #FFECD1 cream */
+    --foreground: 190 63% 24%;        /* #15616D teal for text */
+    --card: 190 63% 24%;              /* #15616D teal for cards */
+    --card-foreground: 38 100% 93%;   /* #FFECD1 cream text on cards */
+    --primary: 10 80% 25%;            /* #78290F brown for buttons */
+    --primary-foreground: 38 100% 93%; /* #FFECD1 cream text on buttons */
+    --secondary: 190 63% 24%;          /* #15616D teal */
     --secondary-foreground: 38 100% 93%; /* #FFECD1 cream */
-    --accent: 190 63% 24%;              /* #15616D teal */
-    --accent-foreground: 38 100% 93%;   /* #FFECD1 cream */
-    --muted: 190 63% 24%;               /* #15616D teal */
-    --muted-foreground: 38 100% 93%;    /* #FFECD1 cream */
-    --border: 190 63% 24%;              /* #15616D teal for borders */
-    --input: 38 100% 93%;               /* #FFECD1 cream for inputs */
-    --ring: 10 80% 25%;                 /* #78290F brown for focus */
+    --accent: 190 63% 24%;             /* #15616D teal */
+    --accent-foreground: 38 100% 93%;  /* #FFECD1 cream */
+    --muted: 190 63% 24%;              /* #15616D teal */
+    --muted-foreground: 38 100% 93%;   /* #FFECD1 cream */
+    --border: 190 63% 24%;             /* #15616D teal for borders */
+    --input: 38 100% 93%;              /* #FFECD1 cream for inputs */
+    --ring: 10 80% 25%;                /* #78290F brown for focus */
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 190 63% 24%;          /* #15616D teal background */
-    --foreground: 38 100% 93%;          /* #FFECD1 cream text */
-    --card: 10 80% 25%;                 /* #78290F brown cards */
-    --card-foreground: 38 100% 93%;     /* #FFECD1 cream text */
-    --primary: 10 80% 25%;              /* #78290F brown buttons */
-    --primary-foreground: 38 100% 93%;  /* #FFECD1 cream text */
-    --secondary: 38 100% 93%;           /* #FFECD1 cream */
+    --background: 190 63% 24%;        /* #15616D teal background */
+    --foreground: 38 100% 93%;        /* #FFECD1 cream text */
+    --card: 10 80% 25%;               /* #78290F brown cards */
+    --card-foreground: 38 100% 93%;   /* #FFECD1 cream text */
+    --primary: 10 80% 25%;            /* #78290F brown buttons */
+    --primary-foreground: 38 100% 93%; /* #FFECD1 cream text */
+    --secondary: 38 100% 93%;          /* #FFECD1 cream */
     --secondary-foreground: 190 63% 24%; /* #15616D teal */
-    --accent: 38 100% 93%;              /* #FFECD1 cream */
-    --accent-foreground: 190 63% 24%;   /* #15616D teal */
-    --muted: 10 80% 25%;                /* #78290F brown */
-    --muted-foreground: 38 100% 93%;    /* #FFECD1 cream */
-    --border: 38 100% 93%;              /* #FFECD1 cream borders */
-    --input: 10 80% 25%;                /* #78290F brown inputs */
-    --ring: 38 100% 93%;                /* #FFECD1 cream focus */
+    --accent: 38 100% 93%;             /* #FFECD1 cream */
+    --accent-foreground: 190 63% 24%;  /* #15616D teal */
+    --muted: 10 80% 25%;               /* #78290F brown */
+    --muted-foreground: 38 100% 93%;   /* #FFECD1 cream */
+    --border: 38 100% 93%;             /* #FFECD1 cream borders */
+    --input: 10 80% 25%;               /* #78290F brown inputs */
+    --ring: 38 100% 93%;               /* #FFECD1 cream focus */
   }
 
+  /* This is the fix! 
+     It has been moved here to ensure the --border variable is defined. */
   * {
     @apply border-border;
   }

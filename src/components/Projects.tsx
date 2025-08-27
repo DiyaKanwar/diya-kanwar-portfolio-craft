@@ -1,186 +1,321 @@
-import React from "react";
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  ExternalLink, Play, Palette, ChevronRight,
+  Star, Smartphone
+} from "lucide-react";
 
-interface Project {
-  title: string;
-  date: string;
-  description: string;
-  features: string[];
-  technologies: string[];
-  image: string;
-  liveLink?: string;
+interface ProjectsProps {
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+    bg: string;
+  };
 }
 
-const projects: Project[] = [
-  {
-    title: "Vocal AI Assistant",
-    date: "December 2024",
-    description:
-      "Developed an interactive AI voice assistant using JavaScript, Speech Recognition API, and Tailwind CSS.",
-    features: [
-      "Voice Command Recognition",
-      "Conversational AI Responses",
-      "Real-time Subtitle Generation",
-    ],
-    technologies: ["JavaScript", "Speech Recognition API", "Tailwind CSS"],
-    image: "", // optional future thumbnail
-    // liveLink: "", // optional future link
-  },
-  {
-    title: "Stone-Paper-Scissors Game",
-    date: "March 2023",
-    description:
-      "Developed a GUI for a Stone-Paper-Scissors game using Java and Swing, improving user interaction.",
-    features: ["Graphical User Interface", "Interactive Gameplay", "User-friendly Design"],
-    technologies: ["Java", "Swing"],
-    image: "", // optional future thumbnail
-    // liveLink: "", // optional future link
-  },
-];
+const Projects: React.FC<ProjectsProps> = ({ colors }) => {
+  const projects = [
+    {
+      title: "Creative Portfolio Website – Personal Branding",
+      subtitle: "Web Development Project",
+      date: "May 2024",
+      category: "Web Development",
+      description: "Developed a fully responsive portfolio website tailored for a client’s professional branding. The site was designed with a strong emphasis on UX/UI best practices, ensuring a clean layout, smooth navigation, and optimized performance across devices. The design balances creativity with functionality to highlight the client’s personal/professional identity.",
+      impact: "Strengthened client’s digital presence by creating an engaging portfolio website that elevated their professional visibility.",
+      features: [
+        "Fully responsive design",
+        "Interactive project showcase",
+        "Optimized loading and SEO-friendly structure",
+        "Smooth animations and transitions"
+      ],
+      technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
+      designTools: ["Figma"],
+      imagePath: "/UX UI PROJECTS/client_portfolio_1/1.jpg",
+      additionalImages: [ // Added additional images
+        "/UX UI PROJECTS/client_portfolio_1/2.jpg",
+        "/UX UI PROJECTS/client_portfolio_1/3.jpg",
+        "/UX UI PROJECTS/client_portfolio_1/4.jpg",
+      ],
+      liveDemo: true,
+      liveDemoLink: "https://faraiha-rehman-portfolio.vercel.app/",
+    },
+    {
+      title: "Professional Portfolio Website – Client Project",
+      subtitle: "Web Development Project",
+      date: "July 2024",
+      category: "Web Development",
+      description: "Designed and developed a modern portfolio website for another client, focusing on storytelling through visuals and minimal design. Integrated custom components for project showcases and streamlined navigation to provide a user-centric experience.",
+      impact: "Enhanced the client’s ability to showcase their work and connect with their audience, resulting in a stronger professional brand identity.",
+      features: [
+        "Tailored UI components",
+        "Dark/light mode toggle",
+        "Interactive animations",
+        "Structured navigation flow"
+      ],
+      technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
+      designTools: ["Figma"],
+      imagePath: "/UX UI PROJECTS/client_portfolio_2/1.jpg",
+      additionalImages: [ // Added additional images
+        "/UX UI PROJECTS/client_portfolio_2/2.jpg",
+        "/UX UI PROJECTS/client_portfolio_2/3.jpg",
+        "/UX UI PROJECTS/client_portfolio_2/4.jpg",
+      ],
+      liveDemo: true,
+      liveDemoLink: "https://vercel.com/diya-kanwars-projects/azad-portfolio-website",
+    },
+    {
+      title: "Manodasha - Mental Health Tracking App",
+      subtitle: "UX/UI Application Design",
+      date: "September 2024",
+      category: "UX/UI Design",
+      description: "Created wireframes and high-fidelity app designs for Manodasha, a mental health tracking application. The app empowers users to log moods, track emotional trends, and engage with wellness resources. The design emphasized calm, intuitive interfaces to reduce cognitive load while engaging with sensitive topics.",
+      impact: "Encouraged mental well-being and mindfulness, providing users with a supportive tool to manage and understand their mental health.",
+      features: [
+        "Mood and activity tracking",
+        "Interactive dashboards with progress insights",
+        "Personalized wellness reminders",
+        "Minimal, soothing design elements"
+      ],
+      technologies: [],
+      designTools: ["Figma"],
+      imagePath: "/UX UI PROJECTS/Manodasha/1.jpg",
+      additionalImages: [ // Added additional images
+        "/UX UI PROJECTS/Manodasha/2.jpg",
+        "/UX UI PROJECTS/Manodasha/3.jpg",
+        "/UX UI PROJECTS/Manodasha/4.jpg",
+      ],
+      liveDemo: true,
+      liveDemoLink: "https://www.figma.com/design/TgbL1dwOMgzpE2OVlDR95x/Mental-health-application?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
+    },
+    {
+      title: "Divinepedia – Mythology Exploration App",
+      subtitle: "UX/UI Application Design",
+      date: "October 2024",
+      category: "UX/UI Design",
+      description: "Designed Divinepedia, a mythology-focused application that presents stories, origins, and traditions from various cultures. The app design supported both dark and light themes, ensuring accessibility and visual comfort. User journey flows were crafted to encourage exploration while maintaining readability.",
+      impact: "Promoted cultural learning and storytelling by delivering a modern and accessible platform for exploring mythologies.",
+      features: [
+        "Light/Dark mode design system",
+        "Story exploration pages",
+        "Categorized mythological content",
+        "Modern, immersive typography choices"
+      ],
+      technologies: [],
+      designTools: ["Figma"],
+      imagePath: "/UX UI PROJECTS/Divinepedia/1.jpg",
+      additionalImages: [ // Added additional images
+        "/UX UI PROJECTS/Divinepedia/2.jpg",
+        "/UX UI PROJECTS/Divinepedia/3.jpg",
+        "/UX UI PROJECTS/Divinepedia/4.jpg",
+      ],
+      liveDemo: true,
+      liveDemoLink: "https://www.figma.com/design/7zqW2BTutQGZX90xhK8Vir/MYTHOLOGY-APP?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
+    },
+    {
+      title: "Vana Snacks – Digital Store App",
+      subtitle: "UX/UI Application Design",
+      date: "November 2024",
+      category: "UX/UI Design",
+      description: "Created app design prototypes for Vana Snacks, a physical snack store’s digital application. The design enabled customers to browse snacks, explore offers, and place orders seamlessly. The UI focused on a playful yet professional aesthetic, aligning with the brand’s identity.",
+      impact: "Improved the client’s ability to engage with customers digitally, boosting customer retention and sales opportunities.",
+      features: [
+        "Product browsing with categories",
+        "Interactive cart and checkout flows",
+        "Offers & loyalty section",
+        "Consistent branding with engaging visuals"
+      ],
+      technologies: [],
+      designTools: ["Figma"],
+      imagePath: "/UX UI PROJECTS/Vana_Snacks/1.jpg",
+      additionalImages: [ // Added additional images
+        "/UX UI PROJECTS/Vana_Snacks/2.jpg",
+        "/UX UI PROJECTS/Vana_Snacks/3.jpg",
+        "/UX UI PROJECTS/Vana_Snacks/4.jpg",
+      ],
+      liveDemo: true,
+      liveDemoLink: "https://www.figma.com/design/RhUH8eGoUGSmJt9luNGPhu/Vana-Snacks?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
+    },
+  ];
 
-export const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative overflow-hidden min-h-screen" style={{ backgroundColor: '#FFF0D1' }}>
-      {/* Background effects */}
-      <div 
-        className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-20"
-        style={{ backgroundColor: '#175764' }}
-      ></div>
-      <div 
-        className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-15"
-        style={{ backgroundColor: '#731E0D', animationDelay: '1000ms' }}
-      ></div>
-      <div 
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-2xl opacity-10"
-        style={{ backgroundColor: '#175764' }}
-      ></div>
+    <section id="projects" className="py-32 relative overflow-hidden">
+      {/* Background blobs for a dynamic feel */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-10"
+          style={{ backgroundColor: colors.primary }}></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-10"
+          style={{ backgroundColor: colors.secondary }}></div>
+      </div>
 
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        {/* Header Section */}
+        {/* Header section */}
         <div className="text-center mb-20">
-          <div className="inline-block mb-4">
-            <span 
-              className="px-6 py-3 rounded-full text-sm font-medium border-2 backdrop-blur-sm"
-              style={{ 
-                backgroundColor: 'rgba(115, 30, 13, 0.1)', 
-                borderColor: '#731E0D',
-                color: '#731E0D'
-              }}
-            >
-              My Work
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style={{ color: '#175764' }}>
-            My <span style={{ color: '#731E0D' }}>Projects</span>
+          <Badge className="px-8 py-4 rounded-full text-sm font-bold border-2 mb-6"
+            style={{
+              backgroundColor: `${colors.secondary}15`,
+              borderColor: colors.secondary,
+              color: colors.secondary
+            }}>
+             Designs and Projects
+          </Badge>
+          <h2 className="text-5xl md:text-6xl font-black mb-8" style={{ color: colors.primary }}>
+            My <span style={{ color: colors.secondary }}>Projects</span>
           </h2>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#731E0D' }}>
-            A collection of my most impactful projects that showcase my technical skills and creativity
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: colors.secondary }}>
+            Showcasing innovative solutions with comprehensive design process and technical implementation
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {projects.map((project, index) => {
-            const card = (
-              <div
-                key={index}
-                className="group relative rounded-2xl overflow-hidden border-2 transition-all duration-500"
-                style={{
-                  minHeight: "380px",
-                  backgroundColor: 'rgba(23, 87, 100, 0.05)',
-                  borderColor: 'rgba(23, 87, 100, 0.2)'
-                }}
-              >
-                <div className="p-8 h-full flex flex-col">
-                  {/* Project Header */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span 
-                        className="px-3 py-1 text-xs rounded-full font-medium"
-                        style={{ backgroundColor: '#731E0D', color: '#FFF0D1' }}
-                      >
-                        {project.date}
-                      </span>
-                      {project.liveLink && (
-                        <span 
-                          className="px-3 py-1 text-xs rounded-full font-medium animate-pulse"
-                          style={{ backgroundColor: '#175764', color: '#FFF0D1' }}
-                        >
-                          Live Project
-                        </span>
-                      )}
-                    </div>
-                    <h3 
-                      className="text-2xl font-bold mb-3 group-hover:translate-x-2 transition-transform duration-300"
-                      style={{ color: '#175764' }}
-                    >
-                      {project.title}
-                    </h3>
-                    <p className="text-base leading-relaxed" style={{ color: '#731E0D' }}>
-                      {project.description}
-                    </p>
+        {/* Individual Project Showcase */}
+        <div className="space-y-32">
+          {projects.map((project, index) => (
+            <div key={index} className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+              {/* Project Visual */}
+              <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
+                <div className="relative">
+                  {/* Main Project Image (1.jpg) */}
+                  <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 group-hover:scale-105 transition-all duration-700"
+                    style={{ borderColor: colors.primary }}>
+                    <img
+                      src={project.imagePath}
+                      alt={`${project.title} - Main View`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
-                  {/* Features */}
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-sm font-semibold" style={{ color: '#175764' }}>Key Features</span>
-                      <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(23, 87, 100, 0.2)' }}></div>
-                    </div>
-                    <ul className="grid gap-3">
-                      {project.features.map((f, i) => (
-                        <li 
-                          key={i} 
-                          className="flex items-start gap-3 group-hover:translate-x-2 transition-transform duration-300"
-                          style={{ transitionDelay: `${i * 50}ms` }}
-                        >
-                          <span 
-                            className="w-2 h-2 rounded-full mt-2 transition-colors duration-300"
-                            style={{ backgroundColor: '#731E0D' }}
-                          ></span>
-                          <span className="text-sm" style={{ color: '#731E0D' }}>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Floating Design Elements */}
+                  <div className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl animate-bounce"
+                    style={{ backgroundColor: colors.secondary }}>
+                    <Palette className="w-6 h-6" style={{ color: colors.accent }} />
                   </div>
 
-                  {/* Technologies */}
-                  <div className="mt-6 pt-6 border-t" style={{ borderColor: 'rgba(23, 87, 100, 0.2)' }}>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="text-xs px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
-                          style={{ 
-                            backgroundColor: 'rgba(23, 87, 100, 0.1)',
-                            color: '#175764',
-                            border: '1px solid rgba(23, 87, 100, 0.2)'
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                  {/* Live Demo Badge */}
+                  {project.liveDemo && (
+                    <div className="absolute top-6 left-6">
+                      <Badge className="px-4 py-2 font-bold animate-pulse"
+                        style={{ backgroundColor: colors.primary, color: colors.bg }}>
+                        <Play className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </Badge>
                     </div>
-                  </div>
+                  )}
+                </div>
+
+                {/* Additional Design Screens (2.jpg, 3.jpg, 4.jpg) */}
+                <div className="grid grid-cols-3 gap-4 mt-8">
+                  {project.additionalImages.map((image, i) => (
+                    <div key={i}
+                      className="aspect-square rounded-2xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105"
+                      style={{ backgroundColor: `${colors.primary}5`, borderColor: `${colors.primary}30` }}>
+                      <img
+                        src={image}
+                        alt={`${project.title} - Screenshot ${i + 2}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
 
-            return project.liveLink ? (
-              <a 
-                key={index}
-                href={project.liveLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="block transform transition-transform duration-500 hover:scale-[1.02]"
-              >
-                {card}
-              </a>
-            ) : (
-              card
-            );
-          })}
+              {/* Project Details */}
+              <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-8`}>
+                {/* Project Meta */}
+                <div className="flex items-center gap-4 flex-wrap">
+                  <Badge className="px-4 py-2 font-bold"
+                    style={{ backgroundColor: colors.secondary, color: colors.accent }}>
+                    {project.category}
+                  </Badge>
+                  <span className="px-4 py-2 rounded-full text-sm font-medium border"
+                    style={{ borderColor: colors.primary, color: colors.primary }}>
+                    {project.date}
+                  </span>
+                </div>
+
+                {/* Project Title */}
+                <div>
+                  <h3 className="text-4xl font-black mb-2" style={{ color: colors.primary }}>
+                    {project.title}
+                  </h3>
+                  <p className="text-xl font-semibold opacity-75" style={{ color: colors.secondary }}>
+                    {project.subtitle}
+                  </p>
+                </div>
+
+                {/* Description */}
+                <p className="text-lg leading-relaxed" style={{ color: colors.secondary }}>
+                  {project.description}
+                </p>
+
+                {/* Impact Statement */}
+                <div className="p-6 rounded-2xl border-l-4"
+                  style={{
+                    backgroundColor: `${colors.primary}10`,
+                    borderLeftColor: colors.primary
+                  }}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <Star className="w-5 h-5" style={{ color: colors.primary }} />
+                    <span className="font-bold" style={{ color: colors.primary }}>Impact</span>
+                  </div>
+                  <p style={{ color: colors.secondary }}>{project.impact}</p>
+                </div>
+
+                {/* Key Features */}
+                <div>
+                  <h4 className="text-xl font-bold mb-4" style={{ color: colors.primary }}>
+                    Key Features
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {project.features.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-3 p-3 rounded-xl transition-all hover:scale-105"
+                        style={{ backgroundColor: `${colors.secondary}10` }}>
+                        <ChevronRight className="w-4 h-4" style={{ color: colors.secondary }} />
+                        <span className="text-sm font-medium" style={{ color: colors.secondary }}>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech Stack */}
+                <div>
+                  <h4 className="text-lg font-bold mb-4" style={{ color: colors.primary }}>
+                    Technologies & Design Tools
+                  </h4>
+                  <div className="flex flex-wrap gap-3">
+                    {[...project.technologies, ...project.designTools].map((tech, i) => (
+                      <Badge key={i}
+                        className="px-4 py-2 text-sm font-medium border hover:scale-105 transition-all"
+                        style={{
+                          backgroundColor: `${colors.primary}15`,
+                          borderColor: colors.primary,
+                          color: colors.primary
+                        }}>
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-4 pt-4">
+                  {project.liveDemo && (
+                    <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer">
+                      <Button className="px-6 py-3 rounded-xl font-bold group"
+                        style={{ backgroundColor: colors.primary, color: colors.bg }}>
+                        <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform" />
+                        View Live Project
+                      </Button>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
+
+export default Projects;
