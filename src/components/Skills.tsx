@@ -16,7 +16,7 @@ const Skills: React.FC<SkillsProps> = ({ colors }) => {
   const skillCategories = [
     { 
       title: "UX/UI Design", 
-      skills: ["Figma", "Adobe XD", "Prototyping", "Wireframing", "User Research", "Design Systems"], 
+      skills: ["Figma", "Prototyping", "Wireframing", "User Research", "Design Systems"], 
       icon: Palette,
     },
     { 
