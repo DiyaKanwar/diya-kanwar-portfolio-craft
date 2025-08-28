@@ -63,7 +63,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
         "/UX UI PROJECTS/client_portfolio_2/4.jpg",
       ],
       liveDemo: true,
-      liveDemoLink: "https://vercel.com/diya-kanwars-projects/azad-portfolio-website",
+      liveDemoLink: "https://azad-portfolio-website.vercel.app/",
     },
     {
       title: "Manodasha - Mental Health Tracking App",
