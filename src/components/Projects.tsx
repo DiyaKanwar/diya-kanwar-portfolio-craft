@@ -16,7 +16,7 @@ interface ProjectsProps {
   darkMode: boolean;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
+const Projects = ({ colors, darkMode }: ProjectsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentProjectImages, setCurrentProjectImages] = useState<string[]>([]);
@@ -43,6 +43,32 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
     );
   };
   
+  // Handle window resize for responsive design with debouncing
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const handleResize = () => {
+      if (isModalOpen) {
+        // Clear previous timeout
+        clearTimeout(timeoutId);
+        
+        // Set new timeout for performance optimization
+        timeoutId = setTimeout(() => {
+          // Update modal dimensions based on viewport
+          const vh = window.innerHeight * 0.9;
+          const vw = window.innerWidth * 0.9;
+          // Any additional resize logic can be added here
+        }, 150); // 150ms debounce delay
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, [isModalOpen]);
+
   // Add keyboard navigation with a useEffect hook
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -190,43 +216,42 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
   const allImagesInProject = (project: typeof projects[0]) => [project.imagePath, ...project.additionalImages];
 
   return (
-    <section id="projects" className="py-32 relative overflow-hidden">
-      {/* Background blobs for a dynamic feel */}
+    <section id="projects" className="py-16 sm:py-24 md:py-32 relative overflow-hidden">
+      {/* Background blobs for a dynamic feel - Responsive sizes */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-10"
+        <div className="absolute top-0 left-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 rounded-full blur-3xl animate-pulse opacity-10"
           style={{ backgroundColor: colors.primary }}></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full blur-3xl animate-pulse opacity-10"
+        <div className="absolute bottom-0 right-0 w-40 sm:w-64 md:w-80 h-40 sm:h-64 md:h-80 rounded-full blur-3xl animate-pulse opacity-10"
           style={{ backgroundColor: colors.secondary }}></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        {/* Header section */}
-        <div className="text-center mb-20">
-          <Badge className="px-8 py-4 rounded-full text-sm font-bold border-2 mb-6"
-            style={{
-              backgroundColor: `${colors.secondary}15`,
-              borderColor: colors.secondary,
-              color: colors.secondary
-            }}>
-            Designs and Projects
-          </Badge>
-          <h2 className="text-5xl md:text-6xl font-black mb-8" style={{ color: colors.primary }}>
-            My <span style={{ color: colors.secondary }}>Projects</span>
-          </h2>
-          <p className="text-xl max-w-3xl mx-auto" style={{ color: colors.secondary }}>
-            Showcasing innovative solutions with comprehensive design process and technical implementation
-          </p>
-        </div>
-
-        {/* Individual Project Showcase */}
-        <div className="space-y-32">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
+        {/* Header section - Responsive typography and spacing */}
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <Badge 
+              className="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm font-medium border mb-3 sm:mb-4 inline-block"
+              style={{
+                backgroundColor: `${colors.secondary}15`,
+                borderColor: colors.secondary,
+                color: colors.secondary
+              }}>
+              Designs and Projects
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 md:mb-6" style={{ color: colors.primary }}>
+              My <span style={{ color: colors.secondary }}>Projects</span>
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg max-w-[80vw] sm:max-w-xl md:max-w-2xl mx-auto" style={{ color: colors.secondary }}>
+              Showcasing innovative solutions with comprehensive design process and technical implementation
+            </p>
+          </div>        {/* Individual Project Showcase - More compact spacing for better density */}
+        <div className="space-y-12 sm:space-y-16 md:space-y-24">
           {projects.map((project, index) => (
-            <div key={index} className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-              {/* Project Visual */}
+            <div key={index} className={`grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+              {/* Project Visual - Enhanced responsive handling */}
               <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
                 <div className="relative">
-                  {/* Main Project Image (1.jpg) */}
-                  <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 group-hover:scale-105 transition-all duration-700 cursor-pointer"
+                  {/* Main Project Image with responsive border and shadow */}
+                  <div className="aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl md:shadow-2xl border-2 sm:border-4 group-hover:scale-105 transition-all duration-700 cursor-pointer"
                     style={{ borderColor: colors.primary }}
                     onClick={() => openModal(allImagesInProject(project), 0)}
                   >
@@ -234,21 +259,22 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
                       src={project.imagePath}
                       alt={`${project.title} - Main View`}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
 
-                  {/* Floating Design Elements */}
-                  <div className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl animate-bounce"
+                  {/* Floating Design Elements - Responsive sizes */}
+                  <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl animate-bounce"
                     style={{ backgroundColor: colors.secondary }}>
-                    <Palette className="w-6 h-6" style={{ color: colors.bg }} />
+                    <Palette className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: colors.bg }} />
                   </div>
                 </div>
 
-                {/* Additional Design Screens (2.jpg, 3.jpg, 4.jpg) */}
-                <div className="grid grid-cols-3 gap-4 mt-8">
+                {/* Additional Design Screens - More compact grid */}
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-3 mt-3 sm:mt-6">
                   {project.additionalImages.map((image, i) => (
                     <div key={i}
-                      className="aspect-square rounded-2xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105 cursor-pointer"
+                      className="aspect-square rounded-lg sm:rounded-xl border overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105 cursor-pointer"
                       style={{ backgroundColor: `${colors.primary}5`, borderColor: `${colors.primary}30` }}
                       onClick={() => openModal(allImagesInProject(project), i + 1)}
                     >
@@ -256,32 +282,35 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
                         src={image}
                         alt={`${project.title} - Screenshot ${i + 2}`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Project Details */}
-              <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-8`}>
-                {/* Project Meta */}
-                <div className="flex items-center gap-4 flex-wrap">
-                  <Badge className="px-4 py-2 font-bold"
+              {/* Project Details - Enhanced responsive layout */}
+              <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-6 sm:space-y-8`}>
+                {/* Project Meta - More compact spacing */}
+                <div className="flex items-center gap-1.5 sm:gap-3 flex-wrap">
+                  <Badge 
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium"
                     style={{
                       backgroundColor: colors.secondary,
                       color: colors.bg
                     }}>
                     {project.category}
                   </Badge>
-                  <span className="px-4 py-2 rounded-full text-sm font-medium border"
+                  <span 
+                    className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium border"
                     style={{ borderColor: colors.primary, color: colors.primary }}>
                     {project.date}
                   </span>
                 </div>
 
-                {/* Project Title and CTA Button */}
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-4xl font-black" style={{ color: colors.primary }}>
+                {/* Project Title and CTA Button - Responsive typography */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-black" style={{ color: colors.primary }}>
                     {project.title}
                   </h3>
                   {project.liveDemo && (
@@ -359,28 +388,31 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
         </div>
       </div>
 
-      {/* Image Modal */}
+      {/* Image Modal - Enhanced responsive design */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm sm:backdrop-blur-md animate-fade-in p-4 sm:p-6 md:p-8"
           onClick={closeModal}
         >
-          <div className="relative max-w-5xl max-h-[90vh] p-4" onClick={(e) => e.stopPropagation()}>
-            {/* Close Button */}
+          <div 
+            className="relative w-full max-w-[90vw] sm:max-w-[85vw] md:max-w-5xl max-h-[85vh] sm:max-h-[90vh]" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button - Adjusted positioning for mobile */}
             <Button
               onClick={closeModal}
-              className="absolute -top-12 right-0 md:-right-12 text-white bg-transparent hover:bg-gray-700 p-2 rounded-full"
+              className="absolute -top-10 right-0 sm:-top-12 md:-right-12 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
               variant="ghost"
               size="icon"
             >
-              <X className="w-8 h-8" />
+              <X className="w-6 h-6 sm:w-8 sm:h-8" />
             </Button>
 
-            {/* Previous Image Button */}
+            {/* Previous Image Button - Responsive positioning */}
             {currentProjectImages.length > 1 && (
               <Button
                 onClick={showPrevImage}
-                className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full z-10 bg-gray-800/50 hover:bg-gray-700/70 text-white"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
                 variant="ghost"
                 size="icon"
               >
@@ -388,28 +420,31 @@ const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
               </Button>
             )}
 
-            {/* Current Image */}
-            <img
-              src={currentProjectImages[currentImageIndex]}
-              alt="Full screen project view"
-              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-            />
+            {/* Image Container - Enhanced responsive sizing and loading */}
+            <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-lg overflow-hidden bg-black/10">
+              <img
+                src={currentProjectImages[currentImageIndex]}
+                alt="Project detail view"
+                className="w-full h-full object-contain"
+                loading="eager"
+              />
+            </div>
 
-            {/* Next Image Button */}
+            {/* Next Image Button - Responsive positioning and touch-friendly */}
             {currentProjectImages.length > 1 && (
               <Button
                 onClick={showNextImage}
-                className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full z-10 bg-gray-800/50 hover:bg-gray-700/70 text-white"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
                 variant="ghost"
                 size="icon"
               >
-                <ChevronRight className="w-10 h-10" />
+                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
             )}
 
-            {/* Image Count */}
+            {/* Image Counter - Improved visibility and positioning */}
             {currentProjectImages.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-lg bg-black bg-opacity-50 px-4 py-2 rounded-full">
+              <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
                 {currentImageIndex + 1} / {currentProjectImages.length}
               </div>
             )}

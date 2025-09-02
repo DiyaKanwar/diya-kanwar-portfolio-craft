@@ -34,22 +34,25 @@ export const Navigation = ({ colors, darkMode, setDarkMode }: NavigationProps) =
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "glass-effect shadow-lg" : ""
+      className={`fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-sm ${
+        isScrolled ? "shadow-lg" : ""
       }`}
-      style={{ backgroundColor: scrolledBgColor }}
+      style={{ 
+        backgroundColor: scrolledBgColor,
+        height: isMobileMenuOpen ? 'auto' : 'auto'
+      }}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
         {/* Left Section (Logo + Name) */}
-        <div className="flex items-center space-x-2">
-          <div className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center">
+        <div className="flex items-center space-x-1.5">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 gradient-primary rounded-md flex items-center justify-center transform transition-transform hover:scale-105">
             <Code
-              className="w-6 h-6"
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4"
               style={{ color: darkMode ? "#D9E0E5" : "#175764" }}
             />
           </div>
           <span
-            className="text-xl font-bold"
+            className="text-base sm:text-lg font-bold"
             style={{ color: darkMode ? "#D9E0E5" : "#175764" }}
           >
             Diya Kanwar
@@ -59,18 +62,18 @@ export const Navigation = ({ colors, darkMode, setDarkMode }: NavigationProps) =
         {/* Right Section (Links + Toggle + Button + Mobile Menu) */}
         <div className="flex items-center space-x-6">
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {["about", "skills", "projects", "achievements", "contact"].map(
               (id) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className="transition-all duration-200 font-medium relative group"
+                  className="transition-all duration-200 text-sm font-medium relative group"
                   style={{ color: colors.primary }}
                 >
                   {id.charAt(0).toUpperCase() + id.slice(1)}
                   <span
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
+                    className="absolute -bottom-0.5 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                     style={{ backgroundColor: colors.secondary }}
                   />
                 </button>

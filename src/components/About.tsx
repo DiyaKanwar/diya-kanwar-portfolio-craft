@@ -30,10 +30,10 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
         ></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-        <div className="text-center mb-20">
+      <div className="container mx-auto px-4 sm:px-5 relative z-10 max-w-6xl">
+        <div className="text-center mb-12 sm:mb-16">
           <Badge
-            className="px-8 py-4 rounded-full text-sm font-bold border-2 mb-6"
+            className="px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium border mb-4 sm:mb-5"
             style={{
               backgroundColor: `${colors.secondary}15`,
               borderColor: colors.secondary,
@@ -43,16 +43,16 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
             Get to Know Me
           </Badge>
           <h2
-            className="text-5xl md:text-6xl font-black mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6"
             style={{ color: colors.primary }}
           >
             About <span style={{ color: colors.secondary }}>Me</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {/* Story Cards */}
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-6">
             {[
               {
                 icon: User,
@@ -75,7 +75,7 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
             ].map((item, idx) => (
               <Card
                 key={idx}
-                className="p-8 border-2 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 group"
+                className="p-4 sm:p-6 border shadow-md hover:shadow-lg transition-all duration-500 hover:scale-[1.02] group"
                 style={{
                   backgroundColor:
                     idx % 2 === 0 ? `${colors.primary}10` : `${colors.secondary}10`,
@@ -84,15 +84,15 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
                 }}
               >
                 <CardContent className="p-0">
-                  <div className="flex items-start mb-6">
+                  <div className="flex items-start mb-4">
                     <div
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mr-4 sm:mr-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-md"
                       style={{
                         backgroundColor: idx % 2 === 0 ? colors.primary : colors.secondary,
                       }}
                     >
                       <item.icon
-                        className="w-8 h-8"
+                        className="w-5 h-5 sm:w-6 sm:h-6"
                         style={{ color: colors.bg }} 
                       />
                     </div>
