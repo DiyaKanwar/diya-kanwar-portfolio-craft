@@ -9,9 +9,10 @@ interface AchievementsProps {
     accent: string;
     bg: string;
   };
+  darkMode: boolean;
 }
 
-const Achievements: React.FC<AchievementsProps> = ({ colors }) => {
+const Achievements: React.FC<AchievementsProps> = ({ colors, darkMode }) => {
   const achievements = [
     {
       title: "Elite Silver - NPTEL Cloud Computing",

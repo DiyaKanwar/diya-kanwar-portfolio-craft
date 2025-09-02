@@ -12,9 +12,10 @@ interface AboutProps {
     accent: string;
     bg: string;
   };
+  darkMode: boolean; // This is the line you need to add
 }
 
-const About: React.FC<AboutProps> = ({ colors }) => {
+const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       {/* Dynamic Background - Same as Hero */}
@@ -92,7 +93,7 @@ const About: React.FC<AboutProps> = ({ colors }) => {
                     >
                       <item.icon
                         className="w-8 h-8"
-                        style={{ color: idx % 2 === 0 ? colors.bg : colors.accent }}
+                        style={{ color: colors.bg }} 
                       />
                     </div>
                     <div>
@@ -133,7 +134,7 @@ const About: React.FC<AboutProps> = ({ colors }) => {
                   >
                     <GraduationCap
                       className="w-8 h-8"
-                      style={{ color: colors.accent }}
+                      style={{ color: colors.bg }}
                     />
                   </div>
                   <div>
@@ -176,7 +177,7 @@ const About: React.FC<AboutProps> = ({ colors }) => {
                           className="mb-3 font-bold"
                           style={{
                             backgroundColor: colors.secondary,
-                            color: colors.accent,
+                            color: colors.primary,
                           }}
                         >
                           Current
@@ -240,7 +241,7 @@ const About: React.FC<AboutProps> = ({ colors }) => {
                       className="w-12 h-12 rounded-xl flex items-center justify-center mr-4"
                       style={{ backgroundColor: colors.secondary }}
                     >
-                      <Mail className="w-6 h-6" style={{ color: colors.accent }} />
+                      <Mail className="w-6 h-6" style={{ color: colors.bg }} />
                     </div>
                     <span className="font-medium" style={{ color: colors.secondary }}>
                       Kanwardiya1@gmail.com

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   ExternalLink, Play, Palette, ChevronRight,
-  Star, Smartphone
+  Star, Smartphone, X, ChevronLeft
 } from "lucide-react";
 
 interface ProjectsProps {
@@ -13,9 +13,57 @@ interface ProjectsProps {
     accent: string;
     bg: string;
   };
+  darkMode: boolean;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ colors }) => {
+const Projects: React.FC<ProjectsProps> = ({ colors, darkMode }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentProjectImages, setCurrentProjectImages] = useState<string[]>([]);
+
+  const openModal = (images: string[], index: number) => {
+    setCurrentProjectImages(images);
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCurrentImageIndex(0);
+    setCurrentProjectImages([]);
+  };
+
+  const showNextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentProjectImages.length);
+  };
+
+  const showPrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      (prevIndex - 1 + currentProjectImages.length) % currentProjectImages.length
+    );
+  };
+  
+  // Add keyboard navigation with a useEffect hook
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isModalOpen) return;
+      
+      if (event.key === 'ArrowRight') {
+        showNextImage();
+      } else if (event.key === 'ArrowLeft') {
+        showPrevImage();
+      } else if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen, showNextImage, showPrevImage]);
+
+
   const projects = [
     {
       title: "Creative Portfolio Website – Personal Branding",
@@ -33,7 +81,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/client_portfolio_1/1.jpg",
-      additionalImages: [ // Added additional images
+      additionalImages: [
         "/UX UI PROJECTS/client_portfolio_1/2.jpg",
         "/UX UI PROJECTS/client_portfolio_1/3.jpg",
         "/UX UI PROJECTS/client_portfolio_1/4.jpg",
@@ -57,7 +105,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/client_portfolio_2/1.jpg",
-      additionalImages: [ // Added additional images
+      additionalImages: [
         "/UX UI PROJECTS/client_portfolio_2/2.jpg",
         "/UX UI PROJECTS/client_portfolio_2/3.jpg",
         "/UX UI PROJECTS/client_portfolio_2/4.jpg",
@@ -81,7 +129,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       technologies: [],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/Manodasha/1.jpg",
-      additionalImages: [ // Added additional images
+      additionalImages: [
         "/UX UI PROJECTS/Manodasha/2.jpg",
         "/UX UI PROJECTS/Manodasha/3.jpg",
         "/UX UI PROJECTS/Manodasha/4.jpg",
@@ -105,7 +153,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       technologies: [],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/Divinepedia/1.jpg",
-      additionalImages: [ // Added additional images
+      additionalImages: [
         "/UX UI PROJECTS/Divinepedia/2.jpg",
         "/UX UI PROJECTS/Divinepedia/3.jpg",
         "/UX UI PROJECTS/Divinepedia/4.jpg",
@@ -129,7 +177,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       technologies: [],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/Vana_Snacks/1.jpg",
-      additionalImages: [ // Added additional images
+      additionalImages: [
         "/UX UI PROJECTS/Vana_Snacks/2.jpg",
         "/UX UI PROJECTS/Vana_Snacks/3.jpg",
         "/UX UI PROJECTS/Vana_Snacks/4.jpg",
@@ -138,6 +186,8 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
       liveDemoLink: "https://www.figma.com/design/RhUH8eGoUGSmJt9luNGPhu/Vana-Snacks?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
     },
   ];
+
+  const allImagesInProject = (project: typeof projects[0]) => [project.imagePath, ...project.additionalImages];
 
   return (
     <section id="projects" className="py-32 relative overflow-hidden">
@@ -158,7 +208,7 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
               borderColor: colors.secondary,
               color: colors.secondary
             }}>
-             Designs and Projects
+            Designs and Projects
           </Badge>
           <h2 className="text-5xl md:text-6xl font-black mb-8" style={{ color: colors.primary }}>
             My <span style={{ color: colors.secondary }}>Projects</span>
@@ -176,8 +226,10 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
               <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
                 <div className="relative">
                   {/* Main Project Image (1.jpg) */}
-                  <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 group-hover:scale-105 transition-all duration-700"
-                    style={{ borderColor: colors.primary }}>
+                  <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 group-hover:scale-105 transition-all duration-700 cursor-pointer"
+                    style={{ borderColor: colors.primary }}
+                    onClick={() => openModal(allImagesInProject(project), 0)}
+                  >
                     <img
                       src={project.imagePath}
                       alt={`${project.title} - Main View`}
@@ -188,27 +240,18 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
                   {/* Floating Design Elements */}
                   <div className="absolute -top-6 -right-6 w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl animate-bounce"
                     style={{ backgroundColor: colors.secondary }}>
-                    <Palette className="w-6 h-6" style={{ color: colors.accent }} />
+                    <Palette className="w-6 h-6" style={{ color: colors.bg }} />
                   </div>
-
-                  {/* Live Demo Badge */}
-                  {project.liveDemo && (
-                    <div className="absolute top-6 left-6">
-                      <Badge className="px-4 py-2 font-bold animate-pulse"
-                        style={{ backgroundColor: colors.primary, color: colors.bg }}>
-                        <Play className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </Badge>
-                    </div>
-                  )}
                 </div>
 
                 {/* Additional Design Screens (2.jpg, 3.jpg, 4.jpg) */}
                 <div className="grid grid-cols-3 gap-4 mt-8">
                   {project.additionalImages.map((image, i) => (
                     <div key={i}
-                      className="aspect-square rounded-2xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105"
-                      style={{ backgroundColor: `${colors.primary}5`, borderColor: `${colors.primary}30` }}>
+                      className="aspect-square rounded-2xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105 cursor-pointer"
+                      style={{ backgroundColor: `${colors.primary}5`, borderColor: `${colors.primary}30` }}
+                      onClick={() => openModal(allImagesInProject(project), i + 1)}
+                    >
                       <img
                         src={image}
                         alt={`${project.title} - Screenshot ${i + 2}`}
@@ -224,7 +267,10 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
                 {/* Project Meta */}
                 <div className="flex items-center gap-4 flex-wrap">
                   <Badge className="px-4 py-2 font-bold"
-                    style={{ backgroundColor: colors.secondary, color: colors.accent }}>
+                    style={{
+                      backgroundColor: colors.secondary,
+                      color: colors.bg
+                    }}>
                     {project.category}
                   </Badge>
                   <span className="px-4 py-2 rounded-full text-sm font-medium border"
@@ -233,14 +279,25 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
                   </span>
                 </div>
 
-                {/* Project Title */}
-                <div>
-                  <h3 className="text-4xl font-black mb-2" style={{ color: colors.primary }}>
+                {/* Project Title and CTA Button */}
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-4xl font-black" style={{ color: colors.primary }}>
                     {project.title}
                   </h3>
-                  <p className="text-xl font-semibold opacity-75" style={{ color: colors.secondary }}>
-                    {project.subtitle}
-                  </p>
+                  {project.liveDemo && (
+                    <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer">
+                      <Button
+                        className="px-6 py-3 rounded-xl font-bold group"
+                        style={{
+                          backgroundColor: colors.primary,
+                          color: colors.bg
+                        }}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform" />
+                        View Live Project
+                      </Button>
+                    </a>
+                  )}
                 </div>
 
                 {/* Description */}
@@ -296,24 +353,69 @@ const Projects: React.FC<ProjectsProps> = ({ colors }) => {
                     ))}
                   </div>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4 pt-4">
-                  {project.liveDemo && (
-                    <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer">
-                      <Button className="px-6 py-3 rounded-xl font-bold group"
-                        style={{ backgroundColor: colors.primary, color: colors.bg }}>
-                        <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform" />
-                        View Live Project
-                      </Button>
-                    </a>
-                  )}
-                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Image Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md animate-fade-in"
+          onClick={closeModal}
+        >
+          <div className="relative max-w-5xl max-h-[90vh] p-4" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button */}
+            <Button
+              onClick={closeModal}
+              className="absolute -top-12 right-0 md:-right-12 text-white bg-transparent hover:bg-gray-700 p-2 rounded-full"
+              variant="ghost"
+              size="icon"
+            >
+              <X className="w-8 h-8" />
+            </Button>
+
+            {/* Previous Image Button */}
+            {currentProjectImages.length > 1 && (
+              <Button
+                onClick={showPrevImage}
+                className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full z-10 bg-gray-800/50 hover:bg-gray-700/70 text-white"
+                variant="ghost"
+                size="icon"
+              >
+                <ChevronLeft className="w-10 h-10" />
+              </Button>
+            )}
+
+            {/* Current Image */}
+            <img
+              src={currentProjectImages[currentImageIndex]}
+              alt="Full screen project view"
+              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+            />
+
+            {/* Next Image Button */}
+            {currentProjectImages.length > 1 && (
+              <Button
+                onClick={showNextImage}
+                className="absolute right-0 top-1/2 -translate-y-1/2 p-2 rounded-full z-10 bg-gray-800/50 hover:bg-gray-700/70 text-white"
+                variant="ghost"
+                size="icon"
+              >
+                <ChevronRight className="w-10 h-10" />
+              </Button>
+            )}
+
+            {/* Image Count */}
+            {currentProjectImages.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-lg bg-black bg-opacity-50 px-4 py-2 rounded-full">
+                {currentImageIndex + 1} / {currentProjectImages.length}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

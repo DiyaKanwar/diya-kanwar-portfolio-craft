@@ -10,9 +10,10 @@ interface SkillsProps {
     accent: string;
     bg: string;
   };
+  darkMode: boolean; // Added this line
 }
 
-const Skills: React.FC<SkillsProps> = ({ colors }) => {
+const Skills: React.FC<SkillsProps> = ({ colors, darkMode }) => {
   const skillCategories = [
     { 
       title: "UX/UI Design", 
@@ -76,7 +77,8 @@ const Skills: React.FC<SkillsProps> = ({ colors }) => {
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg"
                        style={{ backgroundColor: index % 2 === 0 ? colors.primary : colors.secondary }}>
-                    <category.icon className="w-7 h-7" style={{ color: index % 2 === 0 ? colors.bg : colors.accent }} />
+                    {/* The color of the icon should be a high-contrast value, like your background color */}
+                    <category.icon className="w-7 h-7" style={{ color: colors.bg }} />
                   </div>
                   <CardTitle className="text-xl font-bold" style={{ color: colors.primary }}>
                     {category.title}

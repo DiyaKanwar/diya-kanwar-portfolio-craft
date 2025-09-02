@@ -2,53 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🎨 EXACT 3 COLOR PALETTE ONLY */
 @layer base {
+  /* Define CSS variables for both themes */
   :root {
-    /* ONLY YOUR 3 COLORS */
-    --cream: #FFECD1;         /* Base background */
-    --teal: #15616D;          /* Cards */
-    --brown: #78290F;         /* Buttons */
-    
-    /* CSS Variables using ONLY your 3 colors */
-    --background: 38 100% 93%;        /* #FFECD1 cream */
-    --foreground: 190 63% 24%;        /* #15616D teal for text */
-    --card: 190 63% 24%;              /* #15616D teal for cards */
-    --card-foreground: 38 100% 93%;   /* #FFECD1 cream text on cards */
-    --primary: 10 80% 25%;            /* #78290F brown for buttons */
-    --primary-foreground: 38 100% 93%; /* #FFECD1 cream text on buttons */
-    --secondary: 190 63% 24%;          /* #15616D teal */
-    --secondary-foreground: 38 100% 93%; /* #FFECD1 cream */
-    --accent: 190 63% 24%;             /* #15616D teal */
-    --accent-foreground: 38 100% 93%;  /* #FFECD1 cream */
-    --muted: 190 63% 24%;              /* #15616D teal */
-    --muted-foreground: 38 100% 93%;   /* #FFECD1 cream */
-    --border: 190 63% 24%;             /* #15616D teal for borders */
-    --input: 38 100% 93%;              /* #FFECD1 cream for inputs */
-    --ring: 10 80% 25%;                /* #78290F brown for focus */
-    --radius: 0.75rem;
+    /* Light Theme Colors */
+    --color-primary: #175764;
+    --color-secondary: #731E0D;
+    --color-accent: #D16C4D;
+    --color-bg: #FFF0D1;
+    --color-text-cta: #175764;
+    --color-bg-cta: #FFF2DB;
+    --color-hover-text-cta: #FFF0D1;
+    --color-hover-bg-cta: #731E0D;
   }
 
   .dark {
-    --background: 190 63% 24%;        /* #15616D teal background */
-    --foreground: 38 100% 93%;        /* #FFECD1 cream text */
-    --card: 10 80% 25%;               /* #78290F brown cards */
-    --card-foreground: 38 100% 93%;   /* #FFECD1 cream text */
-    --primary: 10 80% 25%;            /* #78290F brown buttons */
-    --primary-foreground: 38 100% 93%; /* #FFECD1 cream text */
-    --secondary: 38 100% 93%;          /* #FFECD1 cream */
-    --secondary-foreground: 190 63% 24%; /* #15616D teal */
-    --accent: 38 100% 93%;             /* #FFECD1 cream */
-    --accent-foreground: 190 63% 24%;  /* #15616D teal */
-    --muted: 10 80% 25%;               /* #78290F brown */
-    --muted-foreground: 38 100% 93%;   /* #FFECD1 cream */
-    --border: 38 100% 93%;             /* #FFECD1 cream borders */
-    --input: 10 80% 25%;               /* #78290F brown inputs */
-    --ring: 38 100% 93%;               /* #FFECD1 cream focus */
+    /* Dark Theme Colors */
+    --color-primary: #D9E0E5;
+    --color-secondary: #8B949E;
+    --color-accent: #58A6FF;
+    --color-bg: #0D1117;
+    --color-text-cta: #0D1117;
+    --color-bg-cta: #8B949E;
+    --color-hover-text-cta: #FFF0D1;
+    --color-hover-bg-cta: #58A6FF;
   }
 
-  /* This is the fix! 
-     It has been moved here to ensure the --border variable is defined. */
+  /* Apply global transitions for all color-related properties */
+  * {
+    transition-property: background-color, color, border-color, fill, stroke, transform;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+  }
+
+  /*
+   * This is a fix for the `border-border` issue.
+   * It has been moved here to ensure the --border variable is defined.
+   */
   * {
     @apply border-border;
   }

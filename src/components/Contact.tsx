@@ -9,9 +9,10 @@ interface ContactProps {
     accent: string;
     bg: string;
   };
+  darkMode: boolean; // Added this line
 }
 
-const Contact: React.FC<ContactProps> = ({ colors }) => {
+const Contact: React.FC<ContactProps> = ({ colors, darkMode }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -127,7 +128,7 @@ const Contact: React.FC<ContactProps> = ({ colors }) => {
             className="text-sm opacity-75"
             style={{ color: colors.secondary }}
           >
-            © {currentYear} Diya Kanwar — Designed & Developed with ❤
+            © {currentYear} Diya Kanwar
           </p>
         </div>
       </div>

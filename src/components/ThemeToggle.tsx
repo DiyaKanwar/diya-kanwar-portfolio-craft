@@ -15,19 +15,27 @@ interface ThemeToggleProps {
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode, colors }) => {
   return (
-    <div className="fixed top-6 right-6 z-50">
-      <Button
-        onClick={() => setDarkMode(!darkMode)}
-        className="w-12 h-12 rounded-full shadow-2xl border-2 transition-all duration-300 hover:scale-110"
-        style={{ 
-          backgroundColor: colors.primary,
-          borderColor: colors.secondary,
-          color: colors.bg
-        }}
-      >
-        {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-      </Button>
-    </div>
+ <Button
+  onClick={() => setDarkMode(!darkMode)}
+  className="w-12 h-12 rounded-full shadow-2xl border-2 transition-all duration-300 hover:scale-110"
+  style={{
+    backgroundColor: darkMode ? "#0D1117" : "#FBEACB",
+    color: darkMode ? "#D9E0E5" : "#731E0D",
+    borderColor: darkMode ? "#D9E0E5" : "#731E0D",
+  }}
+  onMouseEnter={(e) => {
+    (e.currentTarget as HTMLButtonElement).style.backgroundColor = darkMode ? "#8B949E" : "#731E0D";
+    (e.currentTarget as HTMLButtonElement).style.color = darkMode ? "#0D1117" : "#FFF0D1";
+  }}
+  onMouseLeave={(e) => {
+    (e.currentTarget as HTMLButtonElement).style.backgroundColor = darkMode ? "#0D1117" : "#FBEACB";
+    (e.currentTarget as HTMLButtonElement).style.color = darkMode ? "#D9E0E5" : "#731E0D";
+  }}
+>
+  {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+</Button>
+
+
   );
 };
 
