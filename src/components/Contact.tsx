@@ -159,7 +159,7 @@ const Contact: React.FC<ContactProps> = ({ colors, darkMode }) => {
             className="text-xs sm:text-sm opacity-75"
             style={{ color: colors.secondary }}
           >
-            © {currentYear} Diya Kanwar. All rights reserved.
+            © {currentYear} Diya Kanwar 
           </p>
         </footer>
       </div>
