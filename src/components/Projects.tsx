@@ -179,7 +179,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       liveDemoLink: "https://www.figma.com/design/7zqW2BTutQGZX90xhK8Vir/MYTHOLOGY-APP?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
     },
     {
-      title: "Vana Snacks – Digital Store App",
+      title: "Digital Store App",
       subtitle: "UX/UI Application Design",
       date: "November 2024",
       category: "UX/UI Design",
