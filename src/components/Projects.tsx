@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  ExternalLink, Play, Palette, ChevronRight,
-  Star, Smartphone, X, ChevronLeft
+  ExternalLink, Palette, ChevronRight,
+  Star, X, ChevronLeft, Loader2
 } from "lucide-react";
 
 interface ProjectsProps {
@@ -20,56 +20,38 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentProjectImages, setCurrentProjectImages] = useState<string[]>([]);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [currentProjectTitle, setCurrentProjectTitle] = useState('');
 
-  const openModal = (images: string[], index: number) => {
+  const openModal = (images: string[], index: number, title: string) => {
     setCurrentProjectImages(images);
     setCurrentImageIndex(index);
+    setCurrentProjectTitle(title);
     setIsModalOpen(true);
+    setImageLoading(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentImageIndex(0);
     setCurrentProjectImages([]);
+    setCurrentProjectTitle('');
+    setImageLoading(true);
   };
 
   const showNextImage = () => {
+    setImageLoading(true);
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentProjectImages.length);
   };
 
   const showPrevImage = () => {
+    setImageLoading(true);
     setCurrentImageIndex((prevIndex) =>
       (prevIndex - 1 + currentProjectImages.length) % currentProjectImages.length
     );
   };
-  
-  // Handle window resize for responsive design with debouncing
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleResize = () => {
-      if (isModalOpen) {
-        // Clear previous timeout
-        clearTimeout(timeoutId);
-        
-        // Set new timeout for performance optimization
-        timeoutId = setTimeout(() => {
-          // Update modal dimensions based on viewport
-          const vh = window.innerHeight * 0.9;
-          const vw = window.innerWidth * 0.9;
-          // Any additional resize logic can be added here
-        }, 150); // 150ms debounce delay
-      }
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
-    };
-  }, [isModalOpen]);
 
-  // Add keyboard navigation with a useEffect hook
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!isModalOpen) return;
@@ -84,11 +66,20 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isModalOpen, showNextImage, showPrevImage]);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen]);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   const projects = [
     {
@@ -96,8 +87,8 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       subtitle: "Web Development Project",
       date: "May 2024",
       category: "Web Development",
-      description: "Developed a fully responsive portfolio website tailored for a client’s professional branding. The site was designed with a strong emphasis on UX/UI best practices, ensuring a clean layout, smooth navigation, and optimized performance across devices. The design balances creativity with functionality to highlight the client’s personal/professional identity.",
-      impact: "Strengthened client’s digital presence by creating an engaging portfolio website that elevated their professional visibility.",
+      description: "Developed a fully responsive portfolio website tailored for a client's professional branding. The site was designed with a strong emphasis on UX/UI best practices, ensuring a clean layout, smooth navigation, and optimized performance across devices.",
+      impact: "Strengthened client's digital presence by creating an engaging portfolio website that elevated their professional visibility.",
       features: [
         "Fully responsive design",
         "Interactive project showcase",
@@ -121,7 +112,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       date: "July 2024",
       category: "Web Development",
       description: "Designed and developed a modern portfolio website for another client, focusing on storytelling through visuals and minimal design. Integrated custom components for project showcases and streamlined navigation to provide a user-centric experience.",
-      impact: "Enhanced the client’s ability to showcase their work and connect with their audience, resulting in a stronger professional brand identity.",
+      impact: "Enhanced the client's ability to showcase their work and connect with their audience, resulting in a stronger professional brand identity.",
       features: [
         "Tailored UI components",
         "Dark/light mode toggle",
@@ -144,7 +135,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       subtitle: "UX/UI Application Design",
       date: "September 2024",
       category: "UX/UI Design",
-      description: "Created wireframes and high-fidelity app designs for Manodasha, a mental health tracking application. The app empowers users to log moods, track emotional trends, and engage with wellness resources. The design emphasized calm, intuitive interfaces to reduce cognitive load while engaging with sensitive topics.",
+      description: "Created wireframes and high-fidelity app designs for Manodasha, a mental health tracking application. The app empowers users to log moods, track emotional trends, and engage with wellness resources. The design emphasized calm, intuitive interfaces to reduce cognitive load.",
       impact: "Encouraged mental well-being and mindfulness, providing users with a supportive tool to manage and understand their mental health.",
       features: [
         "Mood and activity tracking",
@@ -168,7 +159,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       subtitle: "UX/UI Application Design",
       date: "October 2024",
       category: "UX/UI Design",
-      description: "Designed Divinepedia, a mythology-focused application that presents stories, origins, and traditions from various cultures. The app design supported both dark and light themes, ensuring accessibility and visual comfort. User journey flows were crafted to encourage exploration while maintaining readability.",
+      description: "Designed Divinepedia, a mythology-focused application that presents stories, origins, and traditions from various cultures. The app design supported both dark and light themes, ensuring accessibility and visual comfort.",
       impact: "Promoted cultural learning and storytelling by delivering a modern and accessible platform for exploring mythologies.",
       features: [
         "Light/Dark mode design system",
@@ -192,8 +183,8 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       subtitle: "UX/UI Application Design",
       date: "November 2024",
       category: "UX/UI Design",
-      description: "Created app design prototypes for Vana Snacks, a physical snack store’s digital application. The design enabled customers to browse snacks, explore offers, and place orders seamlessly. The UI focused on a playful yet professional aesthetic, aligning with the brand’s identity.",
-      impact: "Improved the client’s ability to engage with customers digitally, boosting customer retention and sales opportunities.",
+      description: "Created app design prototypes for Vana Snacks, a physical snack store's digital application. The design enabled customers to browse snacks, explore offers, and place orders seamlessly. The UI focused on a playful yet professional aesthetic.",
+      impact: "Improved the client's ability to engage with customers digitally, boosting customer retention and sales opportunities.",
       features: [
         "Product browsing with categories",
         "Interactive cart and checkout flows",
@@ -216,9 +207,13 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
   const allImagesInProject = (project: typeof projects[0]) => [project.imagePath, ...project.additionalImages];
 
   return (
-    <section id="projects" className="py-16 sm:py-24 md:py-32 relative overflow-hidden">
-      {/* Background blobs for a dynamic feel - Responsive sizes */}
-      <div className="absolute inset-0">
+    <section 
+      id="projects" 
+      className="py-24 sm:py-32 md:py-40 relative overflow-hidden"
+      aria-labelledby="projects-heading"
+    >
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-0 left-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 rounded-full blur-3xl animate-pulse opacity-10"
           style={{ backgroundColor: colors.primary }}></div>
         <div className="absolute bottom-0 right-0 w-40 sm:w-64 md:w-80 h-40 sm:h-64 md:h-80 rounded-full blur-3xl animate-pulse opacity-10"
@@ -226,138 +221,193 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-        {/* Header section - Responsive typography and spacing */}
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <Badge 
-              className="px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm font-medium border mb-3 sm:mb-4 inline-block"
-              style={{
-                backgroundColor: `${colors.secondary}15`,
-                borderColor: colors.secondary,
-                color: colors.secondary
-              }}>
-              Designs and Projects
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 md:mb-6" style={{ color: colors.primary }}>
-              My <span style={{ color: colors.secondary }}>Projects</span>
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg max-w-[80vw] sm:max-w-xl md:max-w-2xl mx-auto" style={{ color: colors.secondary }}>
-              Showcasing innovative solutions with comprehensive design process and technical implementation
-            </p>
-          </div>        {/* Individual Project Showcase - More compact spacing for better density */}
-        <div className="space-y-12 sm:space-y-16 md:space-y-24">
+        {/* Header section */}
+        <div className="text-center mb-16 sm:mb-20">
+          <Badge 
+            className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold border mb-5 sm:mb-6 shadow-sm"
+            style={{
+              backgroundColor: `${colors.secondary}15`,
+              borderColor: colors.secondary,
+              color: colors.secondary
+            }}>
+            Designs and Projects
+          </Badge>
+          <h2 
+            id="projects-heading"
+            className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 sm:mb-6" 
+            style={{ color: colors.primary }}
+          >
+            My <span style={{ color: colors.secondary }}>Projects</span>
+          </h2>
+          <p 
+            className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4" 
+            style={{ color: colors.secondary }}
+          >
+            Showcasing innovative solutions with comprehensive design process and technical implementation
+          </p>
+        </div>
+
+        {/* Projects Showcase */}
+        <div className="space-y-16 sm:space-y-20 md:space-y-28">
           {projects.map((project, index) => (
-            <div key={index} className={`grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
-              {/* Project Visual - Enhanced responsive handling */}
+            <article 
+              key={index} 
+              className={`grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-14 items-start ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}
+              aria-labelledby={`project-title-${index}`}
+            >
+              {/* Project Visual */}
               <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
                 <div className="relative">
-                  {/* Main Project Image with responsive border and shadow */}
-                  <div className="aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl md:shadow-2xl border-2 sm:border-4 group-hover:scale-105 transition-all duration-700 cursor-pointer"
-                    style={{ borderColor: colors.primary }}
-                    onClick={() => openModal(allImagesInProject(project), 0)}
+                  {/* Main Project Image */}
+                  <button
+                    onClick={() => openModal(allImagesInProject(project), 0, project.title)}
+                    className="w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl md:shadow-2xl border-2 sm:border-4 group-hover:scale-[1.02] transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-offset-2"
+                    style={{ 
+                      borderColor: colors.primary,
+                      '--tw-ring-color': colors.primary
+                    } as React.CSSProperties}
+                    aria-label={`View ${project.title} gallery`}
                   >
                     <img
                       src={project.imagePath}
-                      alt={`${project.title} - Main View`}
+                      alt={`${project.title} - Main preview showcasing the project design`}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
-                  </div>
+                  </button>
 
-                  {/* Floating Design Elements - Responsive sizes */}
-                  <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl animate-bounce"
-                    style={{ backgroundColor: colors.secondary }}>
-                    <Palette className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: colors.bg }} />
+                  {/* Floating Design Element */}
+                  <div 
+                    className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl animate-bounce"
+                    style={{ backgroundColor: colors.secondary }}
+                    aria-hidden="true"
+                  >
+                    <Palette className="w-5 h-5 sm:w-7 sm:h-7" style={{ color: colors.bg }} />
                   </div>
                 </div>
 
-                {/* Additional Design Screens - More compact grid */}
-                <div className="grid grid-cols-3 gap-1.5 sm:gap-3 mt-3 sm:mt-6">
+                {/* Additional Design Screens */}
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6" role="list" aria-label="Additional project screenshots">
                   {project.additionalImages.map((image, i) => (
-                    <div key={i}
-                      className="aspect-square rounded-lg sm:rounded-xl border overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all group-hover:scale-105 cursor-pointer"
-                      style={{ backgroundColor: `${colors.primary}5`, borderColor: `${colors.primary}30` }}
-                      onClick={() => openModal(allImagesInProject(project), i + 1)}
+                    <button
+                      key={i}
+                      onClick={() => openModal(allImagesInProject(project), i + 1, project.title)}
+                      className="aspect-square rounded-lg sm:rounded-xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2"
+                      style={{ 
+                        backgroundColor: `${colors.primary}5`, 
+                        borderColor: `${colors.primary}30`,
+                        '--tw-ring-color': colors.primary
+                      } as React.CSSProperties}
+                      aria-label={`View ${project.title} screenshot ${i + 2}`}
+                      role="listitem"
                     >
                       <img
                         src={image}
-                        alt={`${project.title} - Screenshot ${i + 2}`}
+                        alt={`${project.title} - Additional screenshot ${i + 2}`}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
 
-              {/* Project Details - Enhanced responsive layout */}
+              {/* Project Details */}
               <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-6 sm:space-y-8`}>
-                {/* Project Meta - More compact spacing */}
-                <div className="flex items-center gap-1.5 sm:gap-3 flex-wrap">
+                {/* Project Meta */}
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                   <Badge 
-                    className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium"
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold shadow-sm"
                     style={{
                       backgroundColor: colors.secondary,
                       color: colors.bg
                     }}>
                     {project.category}
                   </Badge>
-                  <span 
-                    className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium border"
-                    style={{ borderColor: colors.primary, color: colors.primary }}>
+                  <Badge
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold border-2"
+                    style={{ 
+                      borderColor: colors.primary, 
+                      color: colors.primary,
+                      backgroundColor: `${colors.primary}10`
+                    }}>
                     {project.date}
-                  </span>
+                  </Badge>
                 </div>
 
-                {/* Project Title and CTA Button - Responsive typography */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-black" style={{ color: colors.primary }}>
+                {/* Project Title and CTA */}
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 sm:gap-6">
+                  <h3 
+                    id={`project-title-${index}`}
+                    className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black leading-tight flex-1" 
+                    style={{ color: colors.primary }}
+                  >
                     {project.title}
                   </h3>
                   {project.liveDemo && (
-                    <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer">
+                    <a 
+                      href={project.liveDemoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex"
+                    >
                       <Button
-                        className="px-6 py-3 rounded-xl font-bold group"
+                        className="px-6 py-3 sm:px-7 sm:py-4 rounded-xl font-bold group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:ring-4 focus:ring-offset-2"
                         style={{
                           backgroundColor: colors.primary,
-                          color: colors.bg
-                        }}
+                          color: colors.bg,
+                          '--tw-ring-color': colors.primary
+                        } as React.CSSProperties}
+                        aria-label={`Visit live demo of ${project.title}`}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform" />
-                        View Live Project
+                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-45 transition-transform" aria-hidden="true" />
+                        View Live
                       </Button>
                     </a>
                   )}
                 </div>
 
                 {/* Description */}
-                <p className="text-lg leading-relaxed" style={{ color: colors.secondary }}>
+                <p className="text-base sm:text-lg leading-relaxed" style={{ color: colors.secondary }}>
                   {project.description}
                 </p>
 
                 {/* Impact Statement */}
-                <div className="p-6 rounded-2xl border-l-4"
+                <div 
+                  className="p-5 sm:p-6 md:p-7 rounded-2xl border-l-4 shadow-sm"
                   style={{
                     backgroundColor: `${colors.primary}10`,
                     borderLeftColor: colors.primary
-                  }}>
-                  <div className="flex items-center gap-3 mb-2">
-                    <Star className="w-5 h-5" style={{ color: colors.primary }} />
-                    <span className="font-bold" style={{ color: colors.primary }}>Impact</span>
+                  }}
+                  role="complementary"
+                  aria-label="Project impact"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <Star className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: colors.primary }} aria-hidden="true" />
+                    <span className="font-bold text-base sm:text-lg" style={{ color: colors.primary }}>Impact</span>
                   </div>
-                  <p style={{ color: colors.secondary }}>{project.impact}</p>
+                  <p className="text-sm sm:text-base leading-relaxed" style={{ color: colors.secondary }}>
+                    {project.impact}
+                  </p>
                 </div>
 
                 {/* Key Features */}
                 <div>
-                  <h4 className="text-xl font-bold mb-4" style={{ color: colors.primary }}>
+                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
                     Key Features
                   </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3" role="list">
                     {project.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 rounded-xl transition-all hover:scale-105"
-                        style={{ backgroundColor: `${colors.secondary}10` }}>
-                        <ChevronRight className="w-4 h-4" style={{ color: colors.secondary }} />
-                        <span className="text-sm font-medium" style={{ color: colors.secondary }}>{feature}</span>
+                      <div 
+                        key={i} 
+                        className="flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all hover:scale-[1.02]"
+                        style={{ backgroundColor: `${colors.secondary}10` }}
+                        role="listitem"
+                      >
+                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: colors.secondary }} aria-hidden="true" />
+                        <span className="text-sm sm:text-base font-medium" style={{ color: colors.secondary }}>
+                          {feature}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -365,86 +415,109 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
 
                 {/* Tech Stack */}
                 <div>
-                  <h4 className="text-lg font-bold mb-4" style={{ color: colors.primary }}>
-                    Technologies & Design Tools
+                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
+                    Technologies & Tools
                   </h4>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3" role="list">
                     {[...project.technologies, ...project.designTools].map((tech, i) => (
-                      <Badge key={i}
-                        className="px-4 py-2 text-sm font-medium border hover:scale-105 transition-all"
+                      <Badge 
+                        key={i}
+                        className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-2 hover:scale-105 transition-all shadow-sm"
                         style={{
                           backgroundColor: `${colors.primary}15`,
                           borderColor: colors.primary,
                           color: colors.primary
-                        }}>
+                        }}
+                        role="listitem"
+                      >
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
 
-      {/* Image Modal - Enhanced responsive design */}
+      {/* Image Modal - Enhanced accessibility and UX */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm sm:backdrop-blur-md animate-fade-in p-4 sm:p-6 md:p-8"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm animate-fade-in p-4 sm:p-6 md:p-8"
           onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
         >
           <div 
             className="relative w-full max-w-[90vw] sm:max-w-[85vw] md:max-w-5xl max-h-[85vh] sm:max-h-[90vh]" 
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button - Adjusted positioning for mobile */}
+            {/* Close Button */}
             <Button
               onClick={closeModal}
-              className="absolute -top-10 right-0 sm:-top-12 md:-right-12 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
+              className="absolute -top-12 right-0 sm:-top-14 md:-right-14 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
               variant="ghost"
               size="icon"
+              aria-label="Close image gallery"
             >
               <X className="w-6 h-6 sm:w-8 sm:h-8" />
             </Button>
 
-            {/* Previous Image Button - Responsive positioning */}
+            {/* Previous Button */}
             {currentProjectImages.length > 1 && (
               <Button
                 onClick={showPrevImage}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 variant="ghost"
                 size="icon"
+                aria-label="Previous image"
+                style={{ minWidth: '48px', minHeight: '48px' }}
               >
-                <ChevronLeft className="w-10 h-10" />
+                <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
               </Button>
             )}
 
-            {/* Image Container - Enhanced responsive sizing and loading */}
-            <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-lg overflow-hidden bg-black/10">
+            {/* Image Container */}
+            <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-lg overflow-hidden bg-black/20">
+              {imageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Loader2 className="w-12 h-12 animate-spin text-white" aria-label="Loading image" />
+                </div>
+              )}
               <img
                 src={currentProjectImages[currentImageIndex]}
-                alt="Project detail view"
+                alt={`${currentProjectTitle} - Detail view ${currentImageIndex + 1} of ${currentProjectImages.length}`}
                 className="w-full h-full object-contain"
                 loading="eager"
+                onLoad={() => setImageLoading(false)}
+                style={{ display: imageLoading ? 'none' : 'block' }}
               />
             </div>
 
-            {/* Next Image Button - Responsive positioning and touch-friendly */}
+            {/* Next Button */}
             {currentProjectImages.length > 1 && (
               <Button
                 onClick={showNextImage}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white bg-black/20 hover:bg-black/40 p-1.5 sm:p-2 rounded-full transition-colors"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                 variant="ghost"
                 size="icon"
+                aria-label="Next image"
+                style={{ minWidth: '48px', minHeight: '48px' }}
               >
-                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
               </Button>
             )}
 
-            {/* Image Counter - Improved visibility and positioning */}
+            {/* Image Counter */}
             {currentProjectImages.length > 1 && (
-              <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
+              <div 
+                className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-lg"
+                id="modal-title"
+                role="status"
+                aria-live="polite"
+              >
                 {currentImageIndex + 1} / {currentProjectImages.length}
               </div>
             )}
