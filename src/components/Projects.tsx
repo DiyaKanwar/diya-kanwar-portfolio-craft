@@ -252,11 +252,11 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
           {projects.map((project, index) => (
             <article 
               key={index} 
-              className={`grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-14 items-start ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}
+              className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-14 items-start"
               aria-labelledby={`project-title-${index}`}
             >
-              {/* Project Visual */}
-              <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} relative group`}>
+              {/* LEFT SIDE: Project Visual + Technologies */}
+              <div className="relative group space-y-6 sm:space-y-8">
                 <div className="relative">
                   {/* Main Project Image */}
                   <button
@@ -287,7 +287,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
                 </div>
 
                 {/* Additional Design Screens */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6" role="list" aria-label="Additional project screenshots">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" role="list" aria-label="Additional project screenshots">
                   {project.additionalImages.map((image, i) => (
                     <button
                       key={i}
@@ -310,10 +310,33 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
                     </button>
                   ))}
                 </div>
+
+                {/* Tech Stack - Now on left side below images */}
+                <div>
+                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
+                    Technologies & Tools
+                  </h4>
+                  <div className="flex flex-wrap gap-2 sm:gap-3" role="list">
+                    {[...project.technologies, ...project.designTools].map((tech, i) => (
+                      <Badge 
+                        key={i}
+                        className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-2 hover:scale-105 transition-all shadow-sm"
+                        style={{
+                          backgroundColor: `${colors.primary}15`,
+                          borderColor: colors.primary,
+                          color: colors.primary
+                        }}
+                        role="listitem"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Project Details */}
-              <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''} space-y-6 sm:space-y-8`}>
+              {/* RIGHT SIDE: Project Details */}
+              <div className="space-y-6 sm:space-y-8">
                 {/* Project Meta */}
                 <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                   <Badge 
@@ -409,29 +432,6 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
                           {feature}
                         </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tech Stack */}
-                <div>
-                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
-                    Technologies & Tools
-                  </h4>
-                  <div className="flex flex-wrap gap-2 sm:gap-3" role="list">
-                    {[...project.technologies, ...project.designTools].map((tech, i) => (
-                      <Badge 
-                        key={i}
-                        className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-2 hover:scale-105 transition-all shadow-sm"
-                        style={{
-                          backgroundColor: `${colors.primary}15`,
-                          borderColor: colors.primary,
-                          color: colors.primary
-                        }}
-                        role="listitem"
-                      >
-                        {tech}
-                      </Badge>
                     ))}
                   </div>
                 </div>

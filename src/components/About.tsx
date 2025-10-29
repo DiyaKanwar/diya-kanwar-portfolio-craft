@@ -159,7 +159,7 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
                     <h3 className="text-2xl sm:text-3xl font-black" style={{ color: colors.primary }}>
                       Education
                     </h3>
-                    <p className="text-sm sm:text-base mt-1" style={{ color: colors.secondary }}>Academic Excellence</p>
+                    <p className="text-sm sm:text-base mt-1" style={{ color: colors.secondary }}>Academics</p>
                   </div>
                 </div>
 
