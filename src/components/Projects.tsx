@@ -2,84 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  ExternalLink, Palette, ChevronRight,
-  Star, X, ChevronLeft, Loader2
+  ExternalLink, ChevronRight, ChevronLeft
 } from "lucide-react";
 
 interface ProjectsProps {
   colors: {
     primary: string;
     secondary: string;
-    accent: string;
     bg: string;
   };
   darkMode: boolean;
 }
 
 const Projects = ({ colors, darkMode }: ProjectsProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentProjectImages, setCurrentProjectImages] = useState<string[]>([]);
-  const [imageLoading, setImageLoading] = useState(true);
-  const [currentProjectTitle, setCurrentProjectTitle] = useState('');
-
-  const openModal = (images: string[], index: number, title: string) => {
-    setCurrentProjectImages(images);
-    setCurrentImageIndex(index);
-    setCurrentProjectTitle(title);
-    setIsModalOpen(true);
-    setImageLoading(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentImageIndex(0);
-    setCurrentProjectImages([]);
-    setCurrentProjectTitle('');
-    setImageLoading(true);
-  };
-
-  const showNextImage = () => {
-    setImageLoading(true);
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentProjectImages.length);
-  };
-
-  const showPrevImage = () => {
-    setImageLoading(true);
-    setCurrentImageIndex((prevIndex) =>
-      (prevIndex - 1 + currentProjectImages.length) % currentProjectImages.length
-    );
-  };
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isModalOpen) return;
-      
-      if (event.key === 'ArrowRight') {
-        showNextImage();
-      } else if (event.key === 'ArrowLeft') {
-        showPrevImage();
-      } else if (event.key === 'Escape') {
-        closeModal();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen]);
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isModalOpen]);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
   const projects = [
     {
@@ -98,11 +34,6 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/client_portfolio_1/1.jpg",
-      additionalImages: [
-        "/UX UI PROJECTS/client_portfolio_1/2.jpg",
-        "/UX UI PROJECTS/client_portfolio_1/3.jpg",
-        "/UX UI PROJECTS/client_portfolio_1/4.jpg",
-      ],
       liveDemo: true,
       liveDemoLink: "https://azad-portfolio-website.vercel.app/",
     },
@@ -122,11 +53,6 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       technologies: ["ReactJS", "JavaScript", "CSS3", "HTML5"],
       designTools: ["Figma"],
       imagePath: "/UX UI PROJECTS/client_portfolio_2/1.jpg",
-      additionalImages: [
-        "/UX UI PROJECTS/client_portfolio_2/2.jpg",
-        "/UX UI PROJECTS/client_portfolio_2/3.jpg",
-        "/UX UI PROJECTS/client_portfolio_2/4.jpg",
-      ],
       liveDemo: true,
       liveDemoLink: "https://faraiha-rehman-portfolio.vercel.app/",
     },
@@ -145,12 +71,7 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       ],
       technologies: [],
       designTools: ["Figma"],
-      imagePath: "/UX UI PROJECTS/Manodasha/1.jpg",
-      additionalImages: [
-        "/UX UI PROJECTS/Manodasha/2.jpg",
-        "/UX UI PROJECTS/Manodasha/3.jpg",
-        "/UX UI PROJECTS/Manodasha/4.jpg",
-      ],
+      imagePath: "/UX UI PROJECTS/Manodasha/1.jpeg",
       liveDemo: true,
       liveDemoLink: "https://www.figma.com/design/TgbL1dwOMgzpE2OVlDR95x/Mental-health-application?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
     },
@@ -169,42 +90,61 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       ],
       technologies: [],
       designTools: ["Figma"],
-      imagePath: "/UX UI PROJECTS/Divinepedia/1.jpg",
-      additionalImages: [
-        "/UX UI PROJECTS/Divinepedia/2.jpg",
-        "/UX UI PROJECTS/Divinepedia/3.jpg",
-        "/UX UI PROJECTS/Divinepedia/4.jpg",
-      ],
+      imagePath: "/UX UI PROJECTS/Divinepedia/1.jpeg",
       liveDemo: true,
       liveDemoLink: "https://www.figma.com/design/7zqW2BTutQGZX90xhK8Vir/MYTHOLOGY-APP?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
     },
     {
-      title: "Digital Store App",
-      subtitle: "UX/UI Application Design",
-      date: "November 2024",
+      title: "Kreuz Vinyl – Underground Record Shop App",
+      subtitle: "UX/UI Mobile Application Design",
+      date: "2024",
       category: "UX/UI Design",
-      description: "Created app design prototypes for Vana Snacks, a physical snack store's digital application. The design enabled customers to browse snacks, explore offers, and place orders seamlessly. The UI focused on a playful yet professional aesthetic.",
-      impact: "Improved the client's ability to engage with customers digitally, boosting customer retention and sales opportunities.",
+      description: "Designed Kreuz Vinyl, a concept mobile application for an underground electronic music record store. The app focuses on vinyl discovery, artist storytelling, and event promotion, inspired by Berlin's techno culture. A dark, immersive interface was crafted to reflect the raw, minimal, and atmospheric identity of underground music scenes.",
+      impact: "Created a visually immersive digital experience that elevates music discovery, strengthens artist presence, and connects users to records and live events through a cohesive brand-driven interface.",
       features: [
-        "Product browsing with categories",
-        "Interactive cart and checkout flows",
-        "Offers & loyalty section",
-        "Consistent branding with engaging visuals"
+        "Dark-mode-first design system tailored for underground music culture",
+        "Vinyl discovery and featured record highlights",
+        "Detailed record pages with artist narratives and pricing",
+        "Event promotion and live DJ set listings",
+        "Wishlist and call-to-action driven purchase flow",
+        "Minimal bottom navigation for seamless browsing"
       ],
       technologies: [],
       designTools: ["Figma"],
-      imagePath: "/UX UI PROJECTS/Vana_Snacks/1.jpg",
-      additionalImages: [
-        "/UX UI PROJECTS/Vana_Snacks/2.jpg",
-        "/UX UI PROJECTS/Vana_Snacks/3.jpg",
-        "/UX UI PROJECTS/Vana_Snacks/4.jpg",
-      ],
+      imagePath: "/UX UI PROJECTS/Kreuz Vinyl/1.jpeg",
       liveDemo: true,
-      liveDemoLink: "https://www.figma.com/design/RhUH8eGoUGSmJt9luNGPhu/Vana-Snacks?node-id=0-1&t=HVhISGBqvRKjcJPT-1",
+      liveDemoLink: "https://www.figma.com/proto/1swPbFRvp6HVCel6PgpwQc/Record-Shop-App--Kreuz-Vinyl-?node-id=23-155&t=UUFlcOrVFC9NcgbB-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A2"
     },
   ];
 
-  const allImagesInProject = (project: typeof projects[0]) => [project.imagePath, ...project.additionalImages];
+  const currentProject = projects[currentProjectIndex];
+
+  const nextProject = () => {
+    setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const handleImageClick = () => {
+    if (currentProject.liveDemo && currentProject.liveDemoLink) {
+      window.open(currentProject.liveDemoLink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        nextProject();
+      } else if (event.key === 'ArrowLeft') {
+        prevProject();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentProjectIndex]);
 
   return (
     <section 
@@ -212,16 +152,14 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
       className="py-24 sm:py-32 md:py-40 relative overflow-hidden"
       aria-labelledby="projects-heading"
     >
-      {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-0 left-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 rounded-full blur-3xl animate-pulse opacity-10"
+        <div className="absolute top-0 left-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 rounded-full blur-3xl animate-pulse opacity-[0.05]"
           style={{ backgroundColor: colors.primary }}></div>
-        <div className="absolute bottom-0 right-0 w-40 sm:w-64 md:w-80 h-40 sm:h-64 md:h-80 rounded-full blur-3xl animate-pulse opacity-10"
+        <div className="absolute bottom-0 right-0 w-40 sm:w-64 md:w-80 h-40 sm:h-64 md:h-80 rounded-full blur-3xl animate-pulse opacity-[0.05]"
           style={{ backgroundColor: colors.secondary }}></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-        {/* Header section */}
         <div className="text-center mb-16 sm:mb-20">
           <Badge 
             className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold border mb-5 sm:mb-6 shadow-sm"
@@ -243,287 +181,312 @@ const Projects = ({ colors, darkMode }: ProjectsProps) => {
             className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-4" 
             style={{ color: colors.secondary }}
           >
-            Showcasing innovative solutions with comprehensive design process and technical implementation
+            Use arrow keys or buttons to navigate through projects
           </p>
         </div>
 
-        {/* Projects Showcase */}
-        <div className="space-y-16 sm:space-y-20 md:space-y-28">
-          {projects.map((project, index) => (
-            <article 
-              key={index} 
-              className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-14 items-start"
-              aria-labelledby={`project-title-${index}`}
+        <div className="max-w-5xl mx-auto">
+          <div className="relative group mb-12">
+            <div
+              className="relative rounded-3xl p-8 sm:p-10 shadow-2xl transition-all duration-500"
+              style={{
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(100, 120, 150, 0.12) 0%, rgba(120, 100, 130, 0.12) 100%)'
+                 : 'linear-gradient(135deg, rgba(180, 190, 210, 0.15) 0%, rgba(200, 180, 200, 0.12) 100%)',
+
+               border: `6px solid ${darkMode ? 'rgba(120, 140, 170, 0.35)' : 'rgba(160, 170, 190, 0.35)'}`,
+
+                borderRadius: '32px',
+                boxShadow: darkMode
+                  ? '0 25px 70px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+                  : '0 20px 60px rgba(100, 110, 140, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+              }}
             >
-              {/* LEFT SIDE: Project Visual + Technologies */}
-              <div className="relative group space-y-6 sm:space-y-8">
-                <div className="relative">
-                  {/* Main Project Image */}
-                  <button
-                    onClick={() => openModal(allImagesInProject(project), 0, project.title)}
-                    className="w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl md:shadow-2xl border-2 sm:border-4 group-hover:scale-[1.02] transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-offset-2"
-                    style={{ 
-                      borderColor: colors.primary,
-                      '--tw-ring-color': colors.primary
-                    } as React.CSSProperties}
-                    aria-label={`View ${project.title} gallery`}
-                  >
-                    <img
-                      src={project.imagePath}
-                      alt={`${project.title} - Main preview showcasing the project design`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </button>
+              <div
+                className="relative rounded-2xl overflow-hidden shadow-xl"
+                style={{
+                  backgroundColor: darkMode ? 'rgba(30, 35, 50, 0.95)' : 'rgba(224, 228, 232, 0.92)',
 
-                  {/* Floating Design Element */}
-                  <div 
-                    className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl animate-bounce"
-                    style={{ backgroundColor: colors.secondary }}
-                    aria-hidden="true"
-                  >
-                    <Palette className="w-5 h-5 sm:w-7 sm:h-7" style={{ color: colors.bg }} />
-                  </div>
-                </div>
+                border: `8px solid ${darkMode ? 'rgba(100, 120, 145, 0.4)' : 'rgba(180, 190, 205, 0.45)'}`,
 
-                {/* Additional Design Screens */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" role="list" aria-label="Additional project screenshots">
-                  {project.additionalImages.map((image, i) => (
-                    <button
-                      key={i}
-                      onClick={() => openModal(allImagesInProject(project), i + 1, project.title)}
-                      className="aspect-square rounded-lg sm:rounded-xl border-2 overflow-hidden flex items-center justify-center opacity-75 hover:opacity-100 transition-all hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2"
-                      style={{ 
-                        backgroundColor: `${colors.primary}5`, 
-                        borderColor: `${colors.primary}30`,
-                        '--tw-ring-color': colors.primary
-                      } as React.CSSProperties}
-                      aria-label={`View ${project.title} screenshot ${i + 2}`}
-                      role="listitem"
-                    >
-                      <img
-                        src={image}
-                        alt={`${project.title} - Additional screenshot ${i + 2}`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </button>
-                  ))}
-                </div>
-
-                {/* Tech Stack - Now on left side below images */}
-                <div>
-                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
-                    Technologies & Tools
-                  </h4>
-                  <div className="flex flex-wrap gap-2 sm:gap-3" role="list">
-                    {[...project.technologies, ...project.designTools].map((tech, i) => (
-                      <Badge 
-                        key={i}
-                        className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-2 hover:scale-105 transition-all shadow-sm"
-                        style={{
-                          backgroundColor: `${colors.primary}15`,
-                          borderColor: colors.primary,
-                          color: colors.primary
-                        }}
-                        role="listitem"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT SIDE: Project Details */}
-              <div className="space-y-6 sm:space-y-8">
-                {/* Project Meta */}
-                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <Badge 
-                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold shadow-sm"
-                    style={{
-                      backgroundColor: colors.secondary,
-                      color: colors.bg
-                    }}>
-                    {project.category}
-                  </Badge>
-                  <Badge
-                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold border-2"
-                    style={{ 
-                      borderColor: colors.primary, 
-                      color: colors.primary,
-                      backgroundColor: `${colors.primary}10`
-                    }}>
-                    {project.date}
-                  </Badge>
-                </div>
-
-                {/* Project Title and CTA */}
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 sm:gap-6">
-                  <h3 
-                    id={`project-title-${index}`}
-                    className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black leading-tight flex-1" 
-                    style={{ color: colors.primary }}
-                  >
-                    {project.title}
-                  </h3>
-                  {project.liveDemo && (
-                    <a 
-                      href={project.liveDemoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex"
-                    >
-                      <Button
-                        className="px-6 py-3 sm:px-7 sm:py-4 rounded-xl font-bold group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:ring-4 focus:ring-offset-2"
-                        style={{
-                          backgroundColor: colors.primary,
-                          color: colors.bg,
-                          '--tw-ring-color': colors.primary
-                        } as React.CSSProperties}
-                        aria-label={`Visit live demo of ${project.title}`}
-                      >
-                        <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-45 transition-transform" aria-hidden="true" />
-                        View Live
-                      </Button>
-                    </a>
-                  )}
-                </div>
-
-                {/* Description */}
-                <p className="text-base sm:text-lg leading-relaxed" style={{ color: colors.secondary }}>
-                  {project.description}
-                </p>
-
-                {/* Impact Statement */}
-                <div 
-                  className="p-5 sm:p-6 md:p-7 rounded-2xl border-l-4 shadow-sm"
-                  style={{
-                    backgroundColor: `${colors.primary}10`,
-                    borderLeftColor: colors.primary
-                  }}
-                  role="complementary"
-                  aria-label="Project impact"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <Star className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: colors.primary }} aria-hidden="true" />
-                    <span className="font-bold text-base sm:text-lg" style={{ color: colors.primary }}>Impact</span>
-                  </div>
-                  <p className="text-sm sm:text-base leading-relaxed" style={{ color: colors.secondary }}>
-                    {project.impact}
-                  </p>
-                </div>
-
-                {/* Key Features */}
-                <div>
-                  <h4 className="text-lg sm:text-xl font-bold mb-4" style={{ color: colors.primary }}>
-                    Key Features
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3" role="list">
-                    {project.features.map((feature, i) => (
-                      <div 
-                        key={i} 
-                        className="flex items-start gap-3 p-3 sm:p-4 rounded-xl transition-all hover:scale-[1.02]"
-                        style={{ backgroundColor: `${colors.secondary}10` }}
-                        role="listitem"
-                      >
-                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" style={{ color: colors.secondary }} aria-hidden="true" />
-                        <span className="text-sm sm:text-base font-medium" style={{ color: colors.secondary }}>
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      {/* Image Modal - Enhanced accessibility and UX */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm animate-fade-in p-4 sm:p-6 md:p-8"
-          onClick={closeModal}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-        >
-          <div 
-            className="relative w-full max-w-[90vw] sm:max-w-[85vw] md:max-w-5xl max-h-[85vh] sm:max-h-[90vh]" 
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <Button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 sm:-top-14 md:-right-14 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-              variant="ghost"
-              size="icon"
-              aria-label="Close image gallery"
-            >
-              <X className="w-6 h-6 sm:w-8 sm:h-8" />
-            </Button>
-
-            {/* Previous Button */}
-            {currentProjectImages.length > 1 && (
-              <Button
-                onClick={showPrevImage}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                variant="ghost"
-                size="icon"
-                aria-label="Previous image"
-                style={{ minWidth: '48px', minHeight: '48px' }}
+                  padding: '24px',
+                  boxShadow: darkMode 
+                    ? '0 30px 80px rgba(0, 0, 0, 0.5), inset 0 2px 10px rgba(80, 100, 130, 0.15)'
+                    : '0 25px 70px rgba(100, 110, 140, 0.25), inset 0 2px 10px rgba(150, 160, 180, 0.2)',
+                }}
               >
-                <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
-              </Button>
-            )}
+                <button
+                  onClick={handleImageClick}
+                  className="relative w-full aspect-video rounded-xl overflow-hidden cursor-pointer focus:outline-none transition-all duration-500 hover:scale-[1.02]"
+                  style={{
+                   backgroundColor: darkMode ? 'rgba(20, 25, 40, 0.9)' : 'rgba(210, 215, 220, 0.45)',
 
-            {/* Image Container */}
-            <div className="relative aspect-[4/3] sm:aspect-[16/9] rounded-lg overflow-hidden bg-black/20">
-              {imageLoading && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Loader2 className="w-12 h-12 animate-spin text-white" aria-label="Loading image" />
-                </div>
-              )}
-              <img
-                src={currentProjectImages[currentImageIndex]}
-                alt={`${currentProjectTitle} - Detail view ${currentImageIndex + 1} of ${currentProjectImages.length}`}
-                className="w-full h-full object-contain"
-                loading="eager"
-                onLoad={() => setImageLoading(false)}
-                style={{ display: imageLoading ? 'none' : 'block' }}
+                    border: `4px solid ${darkMode ? 'rgba(90, 110, 140, 0.35)' : 'rgba(150, 160, 180, 0.5)'}`,
+                    boxShadow: darkMode
+                      ? '0 8px 32px rgba(60, 80, 110, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.08)'
+                      : '0 8px 32px rgba(120, 130, 155, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+                  }}
+                  aria-label={`Visit ${currentProject.title} live demo`}
+                >
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{
+                      background: darkMode
+                        ? 'linear-gradient(180deg, rgba(80, 100, 130, 0.08) 0%, transparent 30%, transparent 70%, rgba(20, 25, 40, 0.3) 100%)'
+                       : 'linear-gradient(180deg, rgba(200, 210, 225, 0.25) 0%, transparent 40%, transparent 70%, rgba(180, 190, 210, 0.18) 100%)',
+
+                      borderRadius: '12px',
+                    }}
+                  />
+
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{
+                      backgroundImage: darkMode
+                        ? 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(80, 100, 130, 0.04) 3px, rgba(80, 100, 130, 0.04) 6px)'
+                        : 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(150, 160, 180, 0.08) 3px, rgba(150, 160, 180, 0.08) 6px)',
+                      opacity: 0.5,
+                    }}
+                  />
+
+                  {!darkMode && (
+                    <div
+                      className="absolute inset-0 pointer-events-none z-10"
+                      style={{
+                        boxShadow: 'inset 0 0 60px rgba(170, 180, 200, 0.15)',
+                        borderRadius: '12px',
+                        opacity: 0.4,
+                      }}
+                    />
+                  )}
+
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                    style={{
+                      backgroundColor: darkMode ? 'rgba(80, 110, 145, 0.12)' : 'rgba(170, 180, 200, 0.15)',
+                    }}
+                  />
+
+                  <img
+                    src={currentProject.imagePath}
+                    alt={`${currentProject.title} - Main preview`}
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    style={{
+                      filter: darkMode 
+                        ? 'brightness(1.15) contrast(1.08) saturate(1.1)' 
+                        : 'brightness(1.05) contrast(1.02) saturate(1.15)',
+                    }}
+                  />
+
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{
+                      background: darkMode
+                        ? 'radial-gradient(ellipse at center, transparent 50%, rgba(20, 25, 40, 0.4) 100%)'
+                       : 'radial-gradient(ellipse at center, transparent 60%, rgba(170, 175, 180, 0.22) 100%)',
+
+                      borderRadius: '12px',
+                    }}
+                  />
+
+                  <div
+                    className="absolute top-3 left-3 right-3 h-16 pointer-events-none z-10"
+                    style={{
+                      background: darkMode
+                        ? 'linear-gradient(180deg, rgba(20, 25, 40, 0.6) 0%, transparent 100%)'
+                        : 'linear-gradient(180deg, rgba(210, 215, 220, 0.35) 0%, transparent 100%)',
+
+                      borderRadius: '12px 12px 0 0',
+                      opacity: 0.4,
+                    }}
+                  />
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevProject();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-4 sm:p-5 rounded-full transition-all duration-300 focus:outline-none opacity-0 group-hover:opacity-100 z-20 hover:scale-110"
+                  style={{
+                    backgroundColor: darkMode ? 'rgba(200, 210, 225, 0.95)' : 'rgba(230, 235, 245, 0.98)',
+                    backdropFilter: 'blur(12px)',
+                    color: darkMode ? 'rgba(60, 80, 110, 1)' : 'rgba(80, 100, 130, 1)',
+                    boxShadow: darkMode
+                      ? '0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(100, 130, 165, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
+                      : '0 6px 20px rgba(120, 135, 160, 0.35), 0 0 0 4px rgba(170, 185, 205, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7)',
+                  }}
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextProject();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-4 sm:p-5 rounded-full transition-all duration-300 focus:outline-none opacity-0 group-hover:opacity-100 z-20 hover:scale-110"
+                  style={{
+                    backgroundColor: darkMode ? 'rgba(200, 210, 225, 0.95)' : 'rgba(230, 235, 245, 0.98)',
+                    backdropFilter: 'blur(12px)',
+                    color: darkMode ? 'rgba(60, 80, 110, 1)' : 'rgba(80, 100, 130, 1)',
+                    boxShadow: darkMode
+                      ? '0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(100, 130, 165, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
+                      : '0 6px 20px rgba(120, 135, 160, 0.35), 0 0 0 4px rgba(170, 185, 205, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7)',
+                  }}
+                  aria-label="Next project"
+                >
+                  <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                </button>
+              </div>
+
+              <div
+                className="mt-8 mx-auto w-2/3 h-6 rounded-b-3xl transition-all duration-500"
+                style={{
+                 backgroundColor: darkMode ? 'rgba(150, 180, 220, 0.5)' : 'rgba(200, 220, 255, 0.35)',
+
+                  boxShadow: darkMode
+                    ? '0 10px 20px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(100, 150, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                    : '0 8px 16px rgba(150, 180, 230, 0.22), 0 4px 8px rgba(180, 200, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+                  opacity: 0.9,
+                }}
               />
             </div>
 
-            {/* Next Button */}
-            {currentProjectImages.length > 1 && (
-              <Button
-                onClick={showNextImage}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white bg-black/30 hover:bg-black/50 p-2 sm:p-3 rounded-full transition-colors focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
-                variant="ghost"
-                size="icon"
-                aria-label="Next image"
-                style={{ minWidth: '48px', minHeight: '48px' }}
-              >
-                <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
-              </Button>
-            )}
+            <div
+              className="absolute bottom-16 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-500"
+              style={{
+              backgroundColor: darkMode ? 'rgba(240, 245, 255, 0.95)' : 'rgba(236, 238, 240, 0.95)',
 
-            {/* Image Counter */}
-            {currentProjectImages.length > 1 && (
-              <div 
-                className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold shadow-lg"
-                id="modal-title"
-                role="status"
-                aria-live="polite"
-              >
-                {currentImageIndex + 1} / {currentProjectImages.length}
+                color: darkMode ? 'rgba(80, 120, 200, 1)' : 'rgba(100, 140, 220, 1)',
+                backdropFilter: 'blur(16px)',
+                border: darkMode 
+                  ? '3px solid rgba(150, 200, 255, 0.4)'
+                : '3px solid rgba(190, 195, 200, 0.45)',
+
+                boxShadow: darkMode
+                  ? '0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6)'
+                 : '0 6px 20px rgba(140, 150, 170, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+
+              }}
+              role="status"
+              aria-live="polite"
+            >
+              {currentProjectIndex + 1} / {projects.length}
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-3 flex-wrap">
+                <Badge 
+                  className="px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold shadow-sm"
+                  style={{
+                    backgroundColor: colors.secondary,
+                    color: colors.bg
+                  }}>
+                  {currentProject.category}
+                </Badge>
+                <Badge
+                  className="px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold border-2"
+                  style={{ 
+                    borderColor: colors.primary, 
+                    color: colors.primary,
+                    backgroundColor: `${colors.primary}15`
+                  }}>
+                  {currentProject.date}
+                </Badge>
               </div>
-            )}
+
+              {currentProject.liveDemo && (
+                <a 
+                  href={currentProject.liveDemoLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    style={{
+                      backgroundColor: colors.primary,
+                      color: colors.bg,
+                    }}
+                    aria-label={`Visit live demo of ${currentProject.title}`}
+                  >
+                    <ExternalLink className="w-5 h-5 mr-2 group-hover:rotate-45 transition-transform" />
+                    View Live
+                  </Button>
+                </a>
+              )}
+            </div>
+
+            <h3 
+              className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight" 
+              style={{ color: colors.primary }}
+            >
+              {currentProject.title}
+            </h3>
+
+            <p className="text-lg sm:text-xl leading-relaxed" style={{ color: colors.secondary }}>
+              {currentProject.description}
+            </p>
+
+            <div 
+              className="p-6 sm:p-8 rounded-2xl border-l-4 shadow-sm"
+              style={{
+                backgroundColor: `${colors.primary}12`,
+                borderLeftColor: colors.primary
+              }}
+            >
+              <p className="text-base sm:text-lg leading-relaxed font-medium" style={{ color: colors.secondary }}>
+                <span className="font-bold" style={{ color: colors.primary }}>Impact:</span> {currentProject.impact}
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: colors.primary }}>
+                Key Features
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {currentProject.features.map((feature, i) => (
+                  <div 
+                    key={i} 
+                    className="flex items-start gap-3 p-4 rounded-xl transition-all hover:scale-[1.02]"
+                    style={{ backgroundColor: `${colors.secondary}12` }}
+                  >
+                    <ChevronRight className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: colors.secondary }} />
+                    <span className="text-base font-medium" style={{ color: colors.secondary }}>
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: colors.primary }}>
+                Technologies & Tools
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                {[...currentProject.technologies, ...currentProject.designTools].map((tech, i) => (
+                  <Badge 
+                    key={i}
+                    className="px-4 sm:px-5 py-2 text-sm sm:text-base font-medium border-2 hover:scale-105 transition-all shadow-sm"
+                    style={{
+                      backgroundColor: `${colors.primary}15`,
+                      borderColor: colors.primary,
+                      color: colors.primary
+                    }}
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </section>
   );
 };
