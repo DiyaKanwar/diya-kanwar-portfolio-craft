@@ -9,17 +9,10 @@
     --color-primary: #175764;
     --color-secondary: #731E0D;
     --color-accent: #D16C4D;
-<<<<<<< HEAD
     --color-bg: #F2E8DC;
     --color-text-cta: #175764;
     --color-bg-cta: #FFF2DB;
     --color-hover-text-cta: #F2E8DC;
-=======
-    --color-bg: #FFF0D1;
-    --color-text-cta: #175764;
-    --color-bg-cta: #FFF2DB;
-    --color-hover-text-cta: #FFF0D1;
->>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
     --color-hover-bg-cta: #731E0D;
   }
 
@@ -31,11 +24,7 @@
     --color-bg: #0D1117;
     --color-text-cta: #0D1117;
     --color-bg-cta: #8B949E;
-<<<<<<< HEAD
     --color-hover-text-cta: #F2E8DC;
-=======
-    --color-hover-text-cta: #FFF0D1;
->>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
     --color-hover-bg-cta: #58A6FF;
   }
 

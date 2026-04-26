@@ -19,11 +19,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode, colors
       onClick={() => setDarkMode(!darkMode)}
       className="w-12 h-12 rounded-full shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-xl focus:ring-4 focus:ring-offset-2"
       style={{
-<<<<<<< HEAD
         backgroundColor: darkMode ? "#0D1117" : "#F2E8DC",
-=======
-        backgroundColor: darkMode ? "#0D1117" : "#FBEACB",
->>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
         color: darkMode ? "#D9E0E5" : "#731E0D",
         borderColor: darkMode ? "#D9E0E5" : "#731E0D",
         '--tw-ring-color': darkMode ? "#D9E0E5" : "#731E0D",
@@ -32,17 +28,10 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ darkMode, setDarkMode, colors
       } as React.CSSProperties}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLButtonElement).style.backgroundColor = darkMode ? "#8B949E" : "#731E0D";
-<<<<<<< HEAD
         (e.currentTarget as HTMLButtonElement).style.color = darkMode ? "#0D1117" : "#F2E8DC";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLButtonElement).style.backgroundColor = darkMode ? "#0D1117" : "#F2E8DC";
-=======
-        (e.currentTarget as HTMLButtonElement).style.color = darkMode ? "#0D1117" : "#FFF0D1";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.backgroundColor = darkMode ? "#0D1117" : "#FBEACB";
->>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
         (e.currentTarget as HTMLButtonElement).style.color = darkMode ? "#D9E0E5" : "#731E0D";
       }}
       aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}

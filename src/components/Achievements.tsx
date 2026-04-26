@@ -52,21 +52,12 @@ const Achievements: React.FC<AchievementsProps> = ({ colors, darkMode }) => {
     >
       {/* Background Blobs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-<<<<<<< HEAD
         <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob"
              style={{ backgroundColor: colors.secondary, opacity: darkMode ? 0.2 : 0.08 }}></div>
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
              style={{ backgroundColor: colors.accent, opacity: darkMode ? 0.2 : 0.08 }}></div>
         <div className="absolute -bottom-32 left-1/2 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"
              style={{ backgroundColor: colors.primary, opacity: darkMode ? 0.2 : 0.08 }}></div>
-=======
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob"
-             style={{ backgroundColor: colors.secondary }}></div>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-2000"
-             style={{ backgroundColor: colors.accent }}></div>
-        <div className="absolute -bottom-32 left-1/2 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-4000"
-             style={{ backgroundColor: colors.primary }}></div>
->>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl">
