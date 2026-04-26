@@ -529,4 +529,4 @@ html {
 ::selection {
   background: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
-}
+}      
