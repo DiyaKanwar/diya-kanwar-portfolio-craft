@@ -55,10 +55,17 @@ const Skills: React.FC<SkillsProps> = ({ colors, darkMode }) => {
     >
       {/* Background Blobs */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+<<<<<<< HEAD
         <div className="absolute top-1/4 left-1/4 w-[24rem] sm:w-[32rem] md:w-[42rem] h-[24rem] sm:h-[32rem] md:h-[42rem] rounded-full blur-3xl"
              style={{ backgroundColor: colors.primary, transform: "translate(-20%, -20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
         <div className="absolute bottom-1/4 right-1/4 w-[20rem] sm:w-[28rem] md:w-[38rem] h-[20rem] sm:h-[28rem] md:h-[38rem] rounded-full blur-3xl"
              style={{ backgroundColor: colors.secondary, transform: "translate(20%, 20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
+=======
+        <div className="absolute top-0 left-0 w-[24rem] sm:w-[32rem] md:w-[42rem] h-[24rem] sm:h-[32rem] md:h-[42rem] rounded-full blur-3xl opacity-15"
+             style={{ backgroundColor: colors.primary, transform: "translate(-50%, -30%)" }}></div>
+        <div className="absolute bottom-0 right-0 w-[20rem] sm:w-[28rem] md:w-[38rem] h-[20rem] sm:h-[28rem] md:h-[38rem] rounded-full blur-3xl opacity-15"
+             style={{ backgroundColor: colors.secondary, transform: "translate(40%, 50%)" }}></div>
+>>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">

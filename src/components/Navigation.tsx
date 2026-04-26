@@ -20,6 +20,7 @@ export const Navigation = ({ colors, darkMode, setDarkMode }: NavigationProps) =
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
+<<<<<<< HEAD
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -48,6 +49,24 @@ export const Navigation = ({ colors, darkMode, setDarkMode }: NavigationProps) =
         }
       },
       { threshold: 0.1, rootMargin: "-50px 0px -50% 0px" }
+=======
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track active section for better UX
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+>>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
     );
 
     const sections = ["about", "skills", "projects", "achievements", "contact"];

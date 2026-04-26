@@ -23,10 +23,21 @@ const Contact: React.FC<ContactProps> = ({ colors, darkMode }) => {
     >
       {/* Animated Background - Optimized */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+<<<<<<< HEAD
         <div className="absolute top-1/4 left-1/4 w-[24rem] sm:w-[32rem] md:w-[42rem] h-[24rem] sm:h-[32rem] md:h-[42rem] rounded-full blur-3xl"
              style={{ backgroundColor: colors.primary, transform: "translate(-20%, -20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
         <div className="absolute bottom-1/4 right-1/4 w-[20rem] sm:w-[28rem] md:w-[38rem] h-[20rem] sm:h-[28rem] md:h-[38rem] rounded-full blur-3xl"
              style={{ backgroundColor: colors.secondary, transform: "translate(20%, 20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
+=======
+        <div
+          className="absolute top-[-80px] left-[-80px] sm:top-[-100px] sm:left-[-100px] w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full blur-3xl animate-pulse opacity-15 sm:opacity-20"
+          style={{ backgroundColor: colors.primary }}
+        ></div>
+        <div
+          className="absolute bottom-[-100px] right-[-100px] sm:bottom-[-120px] sm:right-[-120px] w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] rounded-full blur-3xl animate-pulse opacity-10 sm:opacity-15"
+          style={{ backgroundColor: colors.secondary }}
+        ></div>
+>>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl">

@@ -16,7 +16,11 @@ function App() {
     primary: darkMode ? '#D9E0E5' : '#175764',
     secondary: darkMode ? '#8B949E' : '#731E0D',
     accent: darkMode ? '#58A6FF' : '#D16C4D',
+<<<<<<< HEAD
     bg: darkMode ? '#0D1117' : '#F2E8DC'
+=======
+    bg: darkMode ? '#0D1117' : '#FFF0D1'
+>>>>>>> cc613d6404ca99f1cb3d60d3189fe0bc8dec08ca
   };
 
   const scrollToSection = (sectionId: string) => {
