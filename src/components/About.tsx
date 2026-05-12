@@ -19,9 +19,9 @@ interface AboutProps {
 const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/Resumes/ui.ux.product-designer.pdf';
     link.download = 'ui.ux.product-designer.pdf';
-    document.body.appendChild(link);  
+    document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
@@ -52,7 +52,7 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
             className="text-base sm:text-lg max-w-2xl mx-auto mt-4"
             style={{ color: colors.secondary }}
           >
-            Passionate about crafting digital experiences that make a difference
+            Passionate about crafting user-centered digital experiences and product designs that make a difference.
           </p>
         </div>
 
@@ -91,13 +91,13 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
                       className="text-xl sm:text-2xl font-bold"
                       style={{ color: colors.primary }}
                     >
-                      My Resume
+                      UI/UX Product Designer Resume
                     </h3>
                     <p
                       className="text-sm sm:text-base mt-1"
                       style={{ color: colors.secondary }}
                     >
-                      Download my CV
+                      Download my UI/UX product designer resume
                     </p>
                   </div>
                 </div>
@@ -109,10 +109,10 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
                     color: colors.bg,
                     '--tw-ring-color': colors.primary
                   } as React.CSSProperties}
-                  aria-label="Download resume PDF"
+                  aria-label="Download UI/UX product designer resume PDF"
                 >
                   <Download className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
-                  <span>Download CV</span>
+                  <span>Download Resume</span>
                 </Button>
               </CardContent>
             </Card>
