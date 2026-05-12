@@ -22,12 +22,14 @@ const Contact: React.FC<ContactProps> = ({ colors, darkMode }) => {
       aria-labelledby="contact-heading"
     >
       {/* Animated Background - Optimized */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/4 left-1/4 w-[24rem] sm:w-[32rem] md:w-[42rem] h-[24rem] sm:h-[32rem] md:h-[42rem] rounded-full blur-3xl"
-             style={{ backgroundColor: colors.primary, transform: "translate(-20%, -20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[20rem] sm:w-[28rem] md:w-[38rem] h-[20rem] sm:h-[28rem] md:h-[38rem] rounded-full blur-3xl"
-             style={{ backgroundColor: colors.secondary, transform: "translate(20%, 20%)", opacity: darkMode ? 0.2 : 0.08 }}></div>
-      </div>
+      {!darkMode && (
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 left-1/4 w-[24rem] sm:w-[32rem] md:w-[42rem] h-[24rem] sm:h-[32rem] md:h-[42rem] rounded-full blur-3xl"
+               style={{ backgroundColor: colors.primary, transform: "translate(-20%, -20%)", opacity: 0.08 }}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[20rem] sm:w-[28rem] md:w-[38rem] h-[20rem] sm:h-[28rem] md:h-[38rem] rounded-full blur-3xl"
+               style={{ backgroundColor: colors.secondary, transform: "translate(20%, 20%)", opacity: 0.08 }}></div>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-5xl">
         {/* Header - Enhanced hierarchy */}
