@@ -21,7 +21,7 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
     const link = document.createElement('a');
     link.href = '/resume.pdf';
     link.download = 'ui.ux.product-designer.pdf';
-    document.body.appendChild(link);
+    document.body.appendChild(link);  
     link.click();
     document.body.removeChild(link);
   };
