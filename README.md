@@ -31,7 +31,7 @@ Hi! I’m **Diya Kanwar**, an aspiring **Front-End Developer** from Gurgaon, Ind
 
 🎓 **Education:**  
 Currently pursuing **B.E. in Computer Science** at **Chandigarh University**  
-📊 **CGPA:** 7.53 (Expected Graduation: July 2026)
+📊 **CGPA:** 7.58 (Expected Graduation: July 2026)
 
 ---
 
