@@ -20,7 +20,7 @@ const About: React.FC<AboutProps> = ({ colors, darkMode }) => {
   const handleDownloadResume = () => {
     const link = document.createElement('a');
     link.href = '/resume.pdf';
-    link.download = 'Diya_Kanwar_Resume.pdf';
+    link.download = 'ui.ux.product-designer.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
