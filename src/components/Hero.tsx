@@ -17,7 +17,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ colors = {primary: '#000', secondary: '#000', accent: '#000', bg: '#fff'}, scrollToSection, darkMode }) => {
-  const pfImageSrc = darkMode ? "/pf1.jpg" : "/pf1.jpg";
+  const pfImageSrc = darkMode ? "dark_pf.png" : "light_pf.png";
 
   return (
     <section 
